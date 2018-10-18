@@ -5,8 +5,11 @@ Modern embedded systems programming starts with the hardware and extends all the
 Specifically, this course takes a detailed look at two programming languages, C++ and Javascript; teaches students how to use build tools, version control, and advanced editors; describes how to use and create software libraries; and ties everything together with a more substantial software engineering project.
 
 **Lectures**: Thurs 6pm - 9pm
+
 **Homework**: Due weekly
+
 **Instructor**: Prof. Eric Klavins. Office hours: TBA
+
 **Teaching Assistant**: TBA
 
 ## Syllabus
