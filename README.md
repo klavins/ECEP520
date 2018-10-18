@@ -1,4 +1,4 @@
-# EE590: Advanced Programming for Embedded Systems
+# ECE P 520: Software Engineering for Embedded Applications
 
 Modern embedded systems programming starts with the hardware and extends all the way to the cloud. The resulting myriad of programming languages, libraries, tools, data structures, and algorithms may seem difficult for any one programmer to master. In this course, we introduce the fundamentals of programming languages and software engineering common to all levels of embedded systems programming, giving students the conceptual tools they need to tackle any project.
 
