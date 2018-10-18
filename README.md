@@ -30,7 +30,7 @@ Detailed assignments are listed on the [wiki](https://github.com/klavinslab/ECE9
 
 ## Resources
 
-* We will be using Github for version controlling all of our code. 
+* We will be using [Github](https://github.com/) for version controlling all of our code. 
 * Please use the Visual Studio [Code](https://code.visualstudio.com/) to edit your code for this course.
 * [Google Test](https://github.com/google/googletest) unit testing environment
 * [Docker](https://www.docker.com/) container creation and management system
