@@ -14,7 +14,7 @@ Specifically, this course takes a detailed look at two programming languages, C+
 
 ## Syllabus
 
-* Week 1: Basic tools: Git, Docker, Make, the C compiler
+* Week 1: Basic tools: Git, Docker, Make, UNIX, and the C compiler
 * Week 2: C syntax and data types, the C preprocessor, io, and building APIs
 * Week 3: Unit testing and automatic documentation generation
 * Week 4: Fundamentals of C++ and object oriented programming
