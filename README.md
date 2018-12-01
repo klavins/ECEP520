@@ -48,4 +48,4 @@ Detailed assignments are listed on the [wiki](https://github.com/klavinslab/ECE9
 
 * GNU Make. https://www.gnu.org/software/make/manual/make.html#Introduction.
 
-* Robert Lafore, **Object-Oriented Programming in C++**,  http://fac.ksu.edu.sa/sites/default/files/ObjectOrientedProgramminginC4thEdition.pdf.
+* Books about C++: https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list.
