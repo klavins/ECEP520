@@ -10,7 +10,7 @@ Specifically, this course takes a detailed look at two programming languages, C+
 
 **Instructor**: Prof. Eric Klavins. Office hours: TBA
 
-**Teaching Assistant**: TBA
+**Teaching Assistants**: Josh Vrana and Kung-Hung (Henry) Lu
 
 ## Syllabus (Approximate)
 
