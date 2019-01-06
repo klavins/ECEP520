@@ -12,7 +12,7 @@ Specifically, this course takes a detailed look at two programming languages, C+
 
 **Teaching Assistant**: TBA
 
-## Syllabus
+## Syllabus (Approximate)
 
 * Week 1: Basic tools: Git, Docker, Make, UNIX, and the C compiler
 * Week 2: C syntax and data types, the C preprocessor, io, and building APIs
@@ -22,7 +22,7 @@ Specifically, this course takes a detailed look at two programming languages, C+
 * Week 6: Programming sensors and effectors
 * Week 7: Networking
 * Week 8: Cloud computing
-* Week 9: Javascript and asynchronous process control
+* Week 9: Rust
 * Week 10: Projects
 
 ## Homework
