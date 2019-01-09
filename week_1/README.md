@@ -102,6 +102,7 @@ Compiling Tests and Linking Libraries
 
 In the fractions directory is a simple Fraction api and some unit tests for it. These tests use (Google Test)[https://github.com/google/googletest], a library that the cppenv Docker container already has installed in it. To build the executable for the fractions tests, do
 ```bash
+cd fractions
 g++ -c fraction.c -std=c++11
 g++ -c unit_tests.c -std=c++11
 g++ -c main.c -std=c++11
@@ -116,7 +117,38 @@ test
 
 Using a Makefile
 ===
+Having to type g++ commands over and over is tedious. To manage the build process, we will use (make)[https://www.gnu.org/software/make/]. The fractions directory has a Makefile in it with generic definitions for making a new project. To run make, just do
+```bash
+make
+```
+from within the fractions directory. This will make two new directories, bin and build. The former will have the executable, test, in it. The latter will have all the *.o files. Then it builds and links everything. The Makefile also build the documentation. 
 
+To just build the code with no documentation, you can do
+```bash
+make exec
+```
 
-Exercises
+You can clean up by doing
+```bash
+make clean
+```
+or
+```bash
+make spotless
+```
+to really clean up.
+
+Exercises (Due Friday 18 Jan at 11:59pm)
 ===
+
+1. Make a new directory in your ECE590 Github repo called `hw_1`. Copy the contents of the `fractions` directory from `week_1` to that directory. This will be the starting point of these exercises. 
+
+1. Add a function to the fractions example called `reduce`. It should take one Fraction argument and return a Fraction in lowest terms. Add tests into unit_test.c of the following form:
+    ```c
+    Fraction a = (Fraction) { 21, 33 };
+    EXPECT_EQ(reduce(a).num,7);
+    EXPECT_EQ(reduce(a).den,11);
+    ```
+   We will test your code with our own tests and try many different situations (multiple common factors, negative numbers, zero in the numerator, etc.). Be sure to use the exact same name `reduce` for your function.
+
+3. Make a new header file called `imaginary.h`. Similar to the fraction.h file, define a structure with a two members, `real` and `im` which should have type `double`. Add function prototypes for `add`, `negate`, `conjugate`, `multiply`, and `magnitude`. Be sure to document them using Doxygen. Functions that return a scalar should return `double`. Next, make a source file called `imaginary.c` and put the definitions of the functions into it. Finally, write tests for each of your functions. Remember, we will compile your code against our own tests, so be sure to name your functions and struct members exactly as specified here and to test edges cases.
