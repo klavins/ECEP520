@@ -1,4 +1,4 @@
-#include "hello.hh"
+#include "hello.h"
 
 /*! \mainpage Hello World
  * A simple hello world example in C++ showing how to split code up among several files.

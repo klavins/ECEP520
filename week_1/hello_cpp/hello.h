@@ -5,7 +5,8 @@
 
 #include <iostream>
 
-/*! Print the string "Hello Word" to the console.
+/*! \fn say_hello
+ *  Print the string "Hello Word" to the console.
  */ 
 void say_hello();
 
