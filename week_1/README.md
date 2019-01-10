@@ -141,7 +141,20 @@ to really clean up.
 Exercises (Due Friday 18 Jan at 11:59pm)
 ===
 
+1. If you are new to Linux, go through a tutorial, such as the one at [linuxcommand.org](http://linuxcommand.org/). Do the "Learning the Shell" part. Don't worry about writing scripts.
+
 1. Make a new directory in your ECE590 Github repo called `hw_1`. Copy the contents of the `fractions` directory from `week_1` to that directory. This will be the starting point of these exercises. 
+
+1. Note: To avoid committing compiled objects to github, you should make the following .gitignore file in the root of your repo (i.e. in ECE590):
+    ```
+    bin/
+    build/
+    html/
+    latex/
+    docs.config
+    doxygen_sqlite3.db
+    ```
+    If you make any changes to docs.config, you might not want to ignore that particular file. But for now, we are not using any of its details.
 
 1. Add a function to the fractions example called `reduce`. It should take one Fraction argument and return a Fraction in lowest terms. Add tests into unit_test.c of the following form:
     ```c
@@ -151,4 +164,18 @@ Exercises (Due Friday 18 Jan at 11:59pm)
     ```
    We will test your code with our own tests and try many different situations (multiple common factors, negative numbers, zero in the numerator, etc.). Be sure to use the exact same name `reduce` for your function.
 
-3. Make a new header file called `imaginary.h`. Similar to the fraction.h file, define a structure with a two members, `real` and `im` which should have type `double`. Add function prototypes for `add`, `negate`, `conjugate`, `multiply`, and `magnitude`. Be sure to document them using Doxygen. Functions that return a scalar should return `double`. Next, make a source file called `imaginary.c` and put the definitions of the functions into it. Finally, write tests for each of your functions. Remember, we will compile your code against our own tests, so be sure to name your functions and struct members exactly as specified here and to test edges cases.
+1. Make a new header file called `imaginary.h`. Similar to the fraction.h file, define a structure with a two members, `real` and `im` which should have type `double`. Add function prototypes for `add`, `negate`, `conjugate`, `multiply`, and `magnitude`. Be sure to document them using Doxygen. Functions that return a scalar should return `double`.
+
+    Next, make a source file called `imaginary.c` and put the definitions of the functions into it. For the `magnitude` function you will need a square root function, which can be obtained by adding the [C math library](http://www.cplusplus.com/reference/cmath/) as follows:
+
+    ```c
+    #include <math.h>
+    ```
+
+    at the top of your `imaginary.c` file. The function itself is called `sqrt` and takes one argument.
+    
+    Write tests for each of your functions. 
+
+    Note that you will need to edit the Makefile to include the header and source files and edit main.c and unit_test.c to include your new header file.
+
+    Remember, we will compile your code against our own tests, so be sure to name your functions and struct members exactly as specified here and to test edges cases.
