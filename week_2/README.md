@@ -26,7 +26,19 @@ you will get a `bash` prompt that allows you to run commands within the "contain
 
 -`gcc` and `g++`: These commands are available in the container environment and are used to compile C and C++ source files into object files and executables. Note that some of you may also have these commands available in your host environments, but will not have libraries like `gtest` installed on your host environment. So you should only use these commands in the container environment.
 
--`make`: This command is also available in the container environment and is a way to script a bunch of long `gcc` or `g++` commands together, to compile only changed files, and to keep track of files and directories. You will normally just use the course Makefile and edit a few lines to tell make what files are part of your source code.
+-`make`: This command is also available in the container environment and is a way to script a bunch of long `gcc` or `g++` commands together, to compile only changed files, and to keep track of files and directories. You will normally just use the course Makefile and edit a few lines to tell make what files are part of your source code. We have made a few changes to the Makefile, by the way. First, you no longer need to add your source and header files, because we have changed the `HEADERS` and `SOURCES` definitions to:
+```make
+HEADERS     := $(wildcard *.h)
+SOURCES     := $(wildcard *.c)
+```
+Second, we have removed documentation generation from the `all` definition. Now, to make the executable, you just type
+```make
+make
+```
+and to make the documentation, you type
+```
+make docs
+```
 
 -`gtest`: The is a C library that is installed in the cppenv image and available to `gcc` and `g++` within the container environment. Specifically, the cppenv conatiner has the gtest include files installed in 
 ```bash
@@ -64,6 +76,22 @@ Most of you have encountered C at some point. We will not review all of the deta
 
 In this lecture, we will assume these concepts are straightforward and mainly talk about C's type system, which is the most complex aspect of C programming.
 
+printf
+===
+
+One of the most useful functions in C is the `printf`. You can use it to format strings together with variables to print information to the shell. The declaration of `printf` is
+```c
+int printf ( const char * format, ... );
+```
+which means it takes a pointer to a (null terminated) string of characters and an optional set of arguments. The optional arguments are values that will be interpoloated into the string based on 'format specifiers', one for each type. For example,
+```c
+int x = 1;
+double y = 2.3;
+char z[] = "uw";
+printf("x = %d, y = %lf, z = '%s'\n", x, y, z );
+```
+prints out the values of `x`, `y`, and `z` in a nicely formatted way. See the [documentation](http://www.cplusplus.com/reference/cstdio/printf) for `printf` for a list of the other format specifiers and modifiers available to `printf`.
+
 Types in C
 ===
 
@@ -95,7 +123,7 @@ TEST(MyTest, LocalOne) {
 }
 
 TEST(MyTest, LocalTwo) {
-  double x = 6; /* different variable than in the previous block */
+  double x = 6.28; /* different variable than in the previous block */
 }
 ```
 The void type
@@ -319,7 +347,7 @@ which would print out something like:
 ```bash
 The value of p is 1 and the address of p is e5788eac.
 ```
-See the [documentation](http://www.cplusplus.com/reference/cstdio/printf) for `printf` for details about what %d and %x do. The hexadecimal number e5788eac is the physical address in memory of the first byte of the integer p. 
+The hexadecimal number e5788eac is the physical address in memory of the first byte of the integer p. 
 
 The second operator is the `*` operator, which dereferences a pointer and is also used to declare a pointer. For example, suppose `p` and `ptr` were declared as follows:
 ```c
@@ -334,7 +362,7 @@ int q = *ptr; /* q is 1 */
 
 One of the places pointers are used extensively in C is with pointers to structs. This is because a struct can be quite large, and passing structs around by copying everything in them is a waste of time and space. When you have a variable that is a pointer to a struct, then you use the `->` operator instead of the `.` operator, as in the following example:
 ```c
-typedef {
+typedef struct {
   double x, y, z;
 } Point;
 Point * ptr;
@@ -344,12 +372,109 @@ Actually, `ptr->x` is really just shorthand for
 ```c
 (*p).x
 ```
-but is more prefered. 
+but is more preferred. 
 
-You can also define pointers to functions ... TODO
+You can also define pointers to functions. The syntax is tricky. For example, the following defines a function `add` and a pointer `f_ptr` to it.
+```c
+int add(int n, int m) {
+  return n+m;
+}
+int (* f_ptr) (int);
+f_ptr = add;
+```
+You can use this syntax to send functions to other functions as arguments. For example, the following function applies a function to a value and returns the value.
+```c
+int apply(int (*f) (int), int x) {
+  return f(x);
+}
 
 Arrays
 ---
+Arrays in C are contiguous regions of memory that contain strings of values.
+Arrays can be declared with the `[]` operator as follows:
+```c
+int x[10];                             /* an array of 10 integers */
+Point plist[20];                       /* An array of 20 Point structures */
+double y[] = { 2.1, 3.2, 4.3, 5.4, };  /* Array of four doubles with initial values */
+```
+Arrays are zero indexed. Elements can be assigned and retrieved using the `[]` operator as well. For example,
+```c
+x[0] = 1;
+x[1] = x[0];
+plist[5] = (Point) { 3.1, 4.1, 5.9 };
+y[3] = plist[5].y;
+```
+In the above cases, `x`, `plist` and `y` are just pointers to the beginning of the memory location for the arrays they represent. The `[]` operator is just shorthand for pointer arithmetic. Thus, the above code is equivalent to the following:
+```c
+*(x+1) = 1;
+*(x+1) = *(x);
+*(plist + 5) = (Point) { 3.1, 4.1, 5.9 };
+*(y+3) = (plist+5)->y;
+```
+
+**Warning**: Arrays in C are not bounds checked. For example, the following code may compile just fine, but in fact contains a serious error.
+```c
+int a[10];
+a[12] = 5;
+ASSERT_EQ(a[12], 5);
+ASSERT_EQ(a[13], 0);
+```
+This compiles and runs without error in the `cppenv` container, but it is just luck. The memory locations at `a+12` and `a+13` just happen to be unused. If you do try to write to `a[1000]` or larger, you will almost certainly encounter either
+- a segmentation fault, meaning that you wrote a value outside the memory reserved by the OS for your application;
+- strange behavior, meaning you wrote a value to some other data structure's portion of memory.
+To catch errors like this, you can use a tool called 'Address Sanitizer'. To use it, we modify the Makefile as follows
+```c
+CFLAGS      := -fsanitize=address -ggdb
+LIB         := -lgtest -lpthread -lasan
+```
+Now, the code still compiles, but when you run it you get all sorts of useful error information from `asan`.
+
+Memory Allocation
+---
+When you declare arrays as with the above, you know at compile time how big they should be. However, often you do not know this, and may also need to write functions that return arrays. To dynamically allocate memory in C, you use the functions `malloc` and `calloc`, which are available in `stdlib`. For example, to dynamically allocate memory for 10 doubles, you can do:
+```c
+double * a = (double *) malloc(10*sizeof(double));
+```
+or
+```c
+double * a = (double *) calloc(10,sizeof(double)); /* also inits array to zeros */
+```
+Now `a` can be used just like a normal array, with elements `a[0]`, `a[1]` and so on. Note that 'malloc' and 'calloc' return `void *` pointers, because they do not have any way of knowing what type of array you want. Thus, we have to *type cast* or *coerce* the value returned into the correct type. That is what the `(double *)` notation does.
+
+It is important to note that if you declare a pointer and allocate memory for it in a function, then the pointer disappears when the function is complete, but the memory allocated does not. Thus, when you are done using the memory, your code must give the memory back to the operating sytem using the `free` function, also in `stdlib.h`. For example,
+```c
+void f() {
+  int * a = (int *) calloc(1000,sizeof(int));
+  /* do stuff with a */
+  free(a);
+}
+```
+This issue becomes particularly important when you use functions that allocate memory for you. For example, here is a function that joins two arrays together into a new array:
+```c
+int * join(int * a, int length_a, int * b, int length_b) {
+    int * c = (int *) calloc(length_a+length_b, sizeof(int));
+    for (int i=0; i<length_a; i++ ) {
+        c[i] = a[i];
+    }
+    for (int i=0; i<length_b; i++ ) {
+        c[i+length_a] = b[i];
+    }
+    return c;
+}
+```
+To use this function and then free the result, you might do
+```c
+TEST(Examples,AlocateAndFree) {
+    int a[] = { 0, 1, 2 };
+    int b[] = { 3, 4, 5 };
+    int * c = join(a, 3, b, 3);
+    for (int i=0; i<6; i++ ) {
+        ASSERT_EQ(c[i], i);
+    }
+    free(c);
+}
+```
+Repeated failure to free the result of `join` will result in a *memory leak*, which will eventually use up all the RAM on your computer, causing a crash. These are hard to catch. Memory leaks are in fact one of the biggest issues plaguing modern software. Modern languages have *garbage collectors* to clean up unused memory, but (a) they don't work in every case and (b) they are written in C or C++ by humans who make mistakes.
 
 Strings are arrays of chars;
 ---
@@ -371,8 +496,8 @@ Exercises (Due Friday 25 Jan at 11:59pm)
   Note: This is a DRAFT. Exercises will be finalized by 5pm Thursday 17 Jan.
 </span>
 
-1. If you are unfamiliar with C or need a refresher, you should spend a few hours reading through a good tutorial, such as [this one](https://www.tutorialspoint.com/cprogramming/index.htm). 
-1. For homework 2 you will write a set of functions that are mostly unrelated, but for convenience we will put into one source file and one header file. Your homework 2 directory should look like
+- If you are unfamiliar with C or need a refresher, you should spend a few hours reading through a good tutorial, such as [this one](https://www.tutorialspoint.com/cprogramming/index.htm). 
+- For homework 2 you will write a set of functions that are mostly unrelated, but for convenience we will put into one source file and one header file. Your homework 2 directory should look like
     ```bash
     - ECE590
       - hw_2
@@ -383,6 +508,18 @@ Exercises (Due Friday 25 Jan at 11:59pm)
         - Makefile
     ```
     the `unit_tests.h` file will include `solutions.h`, which should have all your function declarations in it. The implementations of those functions should be put in `solutions.c`. 
+
+---
+
+1. Write a function called `running_total` that keeps track of the sum of the arguments it has been called with over time. The following test should pass.
+    ```c
+    TEST(HW2,RunningTotal) {
+      ASSERT_EQ(running_total(1),  1);
+      ASSERT_EQ(running_total(1),  2);
+      ASSERT_EQ(running_total(5),  7);
+      ASSERT_EQ(running_total(-3), 4);      
+    }       
+    ```   
 1. Write a function called `reverse_in_place` which takes an array and its length and reverses it in place. Something like the following tests should apply.
     ```c
     TEST(HW2,ReverseInPlace) {
@@ -425,22 +562,7 @@ Exercises (Due Friday 25 Jan at 11:59pm)
         ASSERT_EQ(num_instances(b,42),0);        
       }
       ```
-1. Write a function called `map` which takes an array of doubles, its length, and a function pointer that returns a newly allocated array whose values are the values of the function argument applied to the array argument. Here is a test that should pass:
-    ```c
-    double f(double x) {
-      return x*x;
-    }
-
-    TEST(HW2,Map) {
-      double x[] = { 1.1, 2.2, 3.3 };
-      double * y = map(x,3,f);
-      for (int i=0; i<3; i++ ) {
-        ASSERT_EQ(y[i],x[i]*x[i]);
-      }
-      free(y);
-    }
-    ```
-1. Write a function called `map_to_point_array` that is similar to `map` above, but which takes an array of point structures and returns a function mapped onto the array. You should put the following `typedef` in your `solutions.h` file:
+1. Write a function called `map` which takes an array of Points, its length, and a function pointer that returns a newly allocated array whose values are the values of the function argument applied to the array argument. You should put the following `typedef` in your `solutions.h` file:
     ```c
     typedef struct {
       double x, y, z;
@@ -463,13 +585,48 @@ Exercises (Due Friday 25 Jan at 11:59pm)
       free(b);
     }   
     ```
-1. Write a function called `running_total` that keeps track of the sum of the arguments it has been called with over time. The following test should pass.
-    ```c
-    TEST(HW2,RunningTotal) {
-      ASSERT_EQ(running_total(1),  1);
-      ASSERT_EQ(running_total(1),  2);
-      ASSERT_EQ(running_total(5),  7);
-      ASSERT_EQ(running_total(-3), 4);      
-    }       
-    ```    
+1. Write a reverse polish notation (RPN) calculator in C with functions `rpn_init`, `rpn_push`, `rpn_add`, `rpn_negate`, `rpn_multiply`, `rpn_pop`, `rpn_error`. The way an RPN calculator works is as follows.
+
+   - The `init` method creates a new stack (allocated using `calloc` and pointed to by
+     a static variable declared in `solutions.c`). If the `init` method has been called
+     already, then it frees the old stack and creates a new stack. It should also clear errors.
+   - The `rpn_push` method pushes its argument onto the stack.
+   - The `rpn_negate` method negates the value on the top of the stack.
+   - The `rpn_add` method pops the top two values off the top of the stack and pushes their product onto the stack.
+   - The `rpn_multiply` method pops the top two values off of the stack and pushes their product onto the stack.
+   - The `rpn_pop` method pops the top value off the stack and returns it. 
+   - The `rpn_error` method should return an enum value, either
+   ```c
+   OK, POP_ERROR, NEGATE_ERROR, MULT_ERROR, ADD_ERROR, or OVERFLOW_ERROR
+   ```
+    if there have been errors since the last call to `init`. Errors include trying to `pop` or `negate` an empty stack, trying to apply `add` or `multiply` to a stack with fewer than two values on it, or having the result of a computation be greater than the maximum value a `double` can hold. `pop` should return 0 when the calculator is in an error mode.
+
+   An example test that should pass is
+   ```c
+   #include<float.h> /* includes DBL_MAX */
+
+   TEST(HW2,RPN) {
+     rpn_init();
+     rpn_push(0.5);
+     rpn_push(2.0);
+     rpn_push(1.0);
+     rpn_add();
+     rpn_multiply();
+     rpn_negate();
+     ASSERT_EQUAL(rpn_pop(),-2.5);
+     ASSERT_EQUAL(rpn_error(), OK);
+     ASSERT_EQUAL(rpn_pop(), 0);
+     ASSERT_EQUAL(rpn_error(), POP_ERROR);
+     rpn_init();
+     ASSERT_EQUAL(rpn_error(), OK);
+     rpn_push(DBL_MAX);
+     rpn_push(DBL_MAX);
+     ASSERT_EQUAL(rpn_add(),0);
+     ASSERT_EQUAL(rpn_error(), OVERFLOW_ERROR);
+   }
+   ```
+   Note that you will not know ahead of time how much space to reserve for your stack, so you should:
+
+   - Choose an initial size, say 100.
+   - If the user is about to exceed in a call to `push`, then you should use the `realloc` method to reallocate your array. See [here](https://www.tutorialspoint.com/c_standard_library/c_function_realloc.htm) for details about how to use this function.
 
