@@ -12,6 +12,8 @@ Specifically, this course takes a detailed look at two programming languages, C+
 
 **Teaching Assistants**: Justin Vrana and Kung-Hung (Henry) Lu
 
+**Canvas Page**: (with announcements, discussions, and grades): https://canvas.uw.edu/courses/1255003 
+
 ## Syllabus (Approximate)
 
 * Week 1: Basic tools: Git, Docker, Make, UNIX, and the C compiler
