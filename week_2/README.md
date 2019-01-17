@@ -54,13 +54,6 @@ in your source files. The gtest shared object library (which is like a unix DLL)
 ```
 which you link when you compile with the `-lgest` option to `g++`. 
 
-To review, you should now have
-- git installed;
-- docker installed;
-- an editor such as Visual Code installed; 
-- a github repo called ECE590; and
-- a directory in your ECE590 repo called hw_1 containing all of your homework one code;
-
 The C Programming Language
 ===
 
@@ -492,10 +485,6 @@ The special character `\0` is called the **null** character and is used to termi
 Exercises (Due Friday 25 Jan at 11:59pm)
 ===
 
-<span style="color: darkgreen; padding-left: 26px; font-weight: bold">
-  Note: This is a DRAFT. Exercises will be finalized by 5pm Thursday 17 Jan.
-</span>
-
 - If you are unfamiliar with C or need a refresher, you should spend a few hours reading through a good tutorial, such as [this one](https://www.tutorialspoint.com/cprogramming/index.htm). 
 - For homework 2 you will write a set of functions that are mostly unrelated, but for convenience we will put into one source file and one header file. Your homework 2 directory should look like
     ```bash
@@ -603,7 +592,7 @@ Exercises (Due Friday 25 Jan at 11:59pm)
 
    An example test that should pass is
    ```c
-   #include<float.h> /* includes DBL_MAX */
+   #include <float.h> /* includes DBL_MAX */
 
    TEST(HW2,RPN) {
      rpn_init();
