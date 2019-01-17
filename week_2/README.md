@@ -463,4 +463,13 @@ Exercises (Due Friday 25 Jan at 11:59pm)
       free(b);
     }   
     ```
+1. Write a function called `running_total` that keeps track of the sum of the arguments it has been called with over time. The following test should pass.
+    ```c
+    TEST(HW2,RunningTotal) {
+      ASSERT_EQ(running_total(1),  1);
+      ASSERT_EQ(running_total(1),  2);
+      ASSERT_EQ(running_total(5),  7);
+      ASSERT_EQ(running_total(-3), 4);      
+    }       
+    ```    
 
