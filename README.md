@@ -1,6 +1,6 @@
 # ECE P 520: Software Engineering for Embedded Applications
 
-Modern embedded systems programming starts with the hardware and extends all the way to the cloud. The resulting myriad of programming languages, libraries, tools, data structures, and algorithms may seem difficult for any one programmer to master. In this course, we introduce the fundamentals of programming languages and software engineering common to all levels of embedded systems programming, giving students the conceptual tools they need to tackle any project!!!!
+Modern embedded systems programming starts with the hardware and extends all the way to the cloud. The resulting myriad of programming languages, libraries, tools, data structures, and algorithms may seem difficult for any one programmer to master. In this course, we introduce the fundamentals of programming languages and software engineering common to all levels of embedded systems programming, giving students the conceptual tools they need to tackle any project.
 
 Specifically, this course takes a detailed look at two programming languages, C++ and Javascript; teaches students how to use build tools, version control, and advanced editors; describes how to use and create software libraries; and ties everything together with a more substantial software engineering project.
 
@@ -12,11 +12,13 @@ Specifically, this course takes a detailed look at two programming languages, C+
 
 **Teaching Assistants**: Justin Vrana and Kung-Hung (Henry) Lu
 
+**Canvas Page**: (with announcements, discussions, and grades): https://canvas.uw.edu/courses/1255003 
+
 ## Syllabus (Approximate)
 
 * Week 1: Basic tools: Git, Docker, Make, UNIX, and the C compiler
-* Week 2: C syntax and data types, the C preprocessor, io, and building APIs
-* Week 3: Unit testing and automatic documentation generation
+* Week 2: C syntax and data types
+* Week 3: Building APIs in C
 * Week 4: Fundamentals of C++ and object oriented programming
 * Week 5: Event loops, process control, and scheduling
 * Week 6: Programming sensors and effectors
