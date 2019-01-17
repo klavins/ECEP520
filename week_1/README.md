@@ -141,6 +141,10 @@ to really clean up.
 Exercises (Due Friday 18 Jan at 11:59pm)
 ===
 
+<span style="color: darkgreen; padding-left: 26px; font-weight: bold">
+  Note: Due Date Extended to Sunday 20 Jan at 11:59pm.
+</span>
+
 1. If you are new to Linux, go through a tutorial, such as the one at [linuxcommand.org](http://linuxcommand.org/). Do the "Learning the Shell" part. Don't worry about writing scripts.
 
 1. Make a new directory in your ECE590 Github repo called `hw_1`. Copy the contents of the `fractions` directory from `week_1` to that directory. This will be the starting point of these exercises. 

@@ -364,8 +364,12 @@ char z[2] = '\0';
 ```
 The special character `\0` is called the **null** character and is used to terminate strings so that functions that manipulate them know when to stop.
 
-Exercises
+Exercises (Due Friday 25 Jan at 11:59pm)
 ===
+
+<span style="color: darkgreen; padding-left: 26px; font-weight: bold">
+  Note: This is a DRAFT. Exercises will be finalized by 5pm Thursday 17 Jan.
+</span>
 
 1. If you are unfamiliar with C or need a refresher, you should spend a few hours reading through a good tutorial, such as [this one](https://www.tutorialspoint.com/cprogramming/index.htm). 
 1. For homework 2 you will write a set of functions that are mostly unrelated, but for convenience we will put into one source file and one header file. Your homework 2 directory should look like
