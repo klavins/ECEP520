@@ -289,7 +289,7 @@ struct {
 ```
 If you would like to avoid having to write `struct point` over and over, you can also make a type definition as in the following example:
 ```c
-typedef struct point
+typedef struct point {
   double x, y, z;
 } Point;
 Point p, q;
