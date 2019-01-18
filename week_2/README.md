@@ -6,7 +6,7 @@ Review of Week 1
 
 Last week we focused on the installation and use of several development tools. The aims were to give you a solid environment in which to develop code in C and C++, as well as to make sure the class as a whole are using the same tools.
 
--**Visual Code**: Use this editor to edit your source files, header files, and Makefile. Other similar editors such as Atom or Sumblime are fine to use as well. 
+-**Visual Code**: Use this editor to edit your source files, header files, and Makefile. Other similar editors such as Atom or Sublime are fine to use as well. 
 
 -`terminal` or `command prompt`: Everyone should have some kind of terminal window into which they can enter and run `git` and `docker` commands. On a Mac, this is the program called `Terminal`. On a PC, this is a program called `command prompt`. On a PC, if you installed the Docker toolbox version of Docker, then you should use the Docker `Quickstart` shell. We will call the environment that you run git and docker commands the "host environment".
 
