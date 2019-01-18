@@ -141,7 +141,7 @@ signed char c = -99;
 short d;                 /* two bytes */
 unsigned short e;
 int f;                   /* two or four bytes */
-unsigned it g; 
+unsigned int g; 
 long h;                  /* four bytes */
 unsigned long i;
 ```
@@ -298,10 +298,10 @@ which also delcared `p` and `q` to be of type `struct point`.
 
 You can initialize a struct using either of the following notations:
 ```c
-Point p = (Point) { .x = 1.0, .y = 2.0, .z = 3.0 };
-Point q = (Point) { 1.0, 2.0, 3.0 };
+Point p = { .x = 1.0, .y = 2.0, .z = 3.0 };
+Point q = { 1.0, 2.0, 3.0 };
 ```
-In the latter case, the order in which the members of the struct were declared determines the order in which the initializers should appear. Note that the syntax `(Point)` is an example of coercion. The value in the curly braces is not techically a `Point` but a raw struct constant. To assign it to `p`, you need to explicitly *cast* or *coerce* the raw value into a `Point`.
+The order in which the members of the struct were declared determines the order in which the initializers should appear. 
 
 Unions
 ---
@@ -314,7 +314,7 @@ typedef union thing {
 } Thing;
 Thing t;
 ```
-In this case, the addresses in memory of `t.x`, `t.y` and `t.z` are all the same. If we replaced the above with a `struct`, they would all be different. Unions were used back in the days when memory was scares. There is no really good reason to use them any more. In fact, they are pretty dangerous.
+In this case, the addresses in memory of `t.x`, `t.y` and `t.z` are all the same. If we replaced the above with a `struct`, they would all be different. 
 
 Enums
 ---
@@ -363,7 +363,7 @@ ptr->x = 3;
 ```
 Actually, `ptr->x` is really just shorthand for
 ```c
-(*p).x
+(*ptr).x
 ```
 but is more preferred. 
 
@@ -372,7 +372,7 @@ You can also define pointers to functions. The syntax is tricky. For example, th
 int add(int n, int m) {
   return n+m;
 }
-int (* f_ptr) (int);
+int (* f_ptr) (int,int);
 f_ptr = add;
 ```
 You can use this syntax to send functions to other functions as arguments. For example, the following function applies a function to a value and returns the value.
@@ -380,6 +380,7 @@ You can use this syntax to send functions to other functions as arguments. For e
 int apply(int (*f) (int), int x) {
   return f(x);
 }
+```
 
 Arrays
 ---
@@ -399,7 +400,7 @@ y[3] = plist[5].y;
 ```
 In the above cases, `x`, `plist` and `y` are just pointers to the beginning of the memory location for the arrays they represent. The `[]` operator is just shorthand for pointer arithmetic. Thus, the above code is equivalent to the following:
 ```c
-*(x+1) = 1;
+*x = 1;
 *(x+1) = *(x);
 *(plist + 5) = (Point) { 3.1, 4.1, 5.9 };
 *(y+3) = (plist+5)->y;
@@ -444,7 +445,7 @@ void f() {
 ```
 This issue becomes particularly important when you use functions that allocate memory for you. For example, here is a function that joins two arrays together into a new array:
 ```c
-int * join(int * a, int length_a, int * b, int length_b) {
+int * join(const int * a, int length_a, const int * b, int length_b) {
     int * c = (int *) calloc(length_a+length_b, sizeof(int));
     for (int i=0; i<length_a; i++ ) {
         c[i] = a[i];
@@ -534,21 +535,23 @@ Exercises (Due Friday 25 Jan at 11:59pm)
         free(y);
     }
     ```
-  1. Write a function called `num_instances` that takes an array of integers and a value and returns the number of instances of that value in the array. 
+  1. Write a function called `num_instances` that takes an array of integers, a length, and a value and returns the number of instances of that value in the array. 
      ```c
      TEST(HW2,NumInstances) {
        int a[] = { 1, 1, 2, 3, 1, 4, 5, 2, 20, 5 };
-       ASSERT_EQ(num_instances(a,1), 3);
+       ASSERT_EQ(num_instances(a,10,1), 3);
      }
      ```
-  1. Write a function called `to_set` that takes an array and its length and returns a new array with all duplicates removed. For example, the following test should pass.
+  1. Write a function called `to_set` that takes an array, its length, a pointer to an integer, and returns a new array with all duplicates removed. As a side effect, it should change the value pointed to by its third argument to the length of the set. For example, the following test should pass.
       ```c
       TEST(HW2,ToSet) {
         int a[] = { 1, 1, 2, 3, 1, 4, 5, 2, 20, 5 };
-        int * b = to_set(a, 10);
-        ASSERT_EQ(num_instances(b,1),1);
-        ASSERT_EQ(num_instances(b,2),1);
-        ASSERT_EQ(num_instances(b,42),0);        
+        int n;
+        int * b = to_set(a, 10, &n);
+        ASSERT_EQ(n,6);
+        ASSERT_EQ(num_instances(b,6,1),1);
+        ASSERT_EQ(num_instances(b,6,2),1);
+        ASSERT_EQ(num_instances(b,6,42),0);        
       }
       ```
 1. Write a function called `map` which takes an array of Points, its length, and a function pointer that returns a newly allocated array whose values are the values of the function argument applied to the array argument. You should put the following `typedef` in your `solutions.h` file:
@@ -560,11 +563,11 @@ Exercises (Due Friday 25 Jan at 11:59pm)
     Then tests like the following should pass.
     ```c
     Point negate(Point p) {
-      return = (Point) { -p.x, -p.y, -p.z };
+      return = { -p.x, -p.y, -p.z };
     }
 
     TEST(HW2,PointMap) {
-      Point a[] = { (Point) { 1,2,3 }, (Point) { 2,3,4 } };
+      Point a[] = { { 1,2,3 }, { 2,3,4 } };
       Point * b = map_to_point_array(a,2,negate);
       for(int i=0; i<2; i++) {
         ASSERT_EQ(b[i].x,-a[i].x);

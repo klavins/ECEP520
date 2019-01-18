@@ -14,15 +14,13 @@ typedef struct {
     int den;
 } Fraction;
 
-/*! \fn add 
- *  Add two fractions together
+/*! Add two fractions together
  *  \param a The first summand
  *  \param b The second summand
  */
 Fraction add ( Fraction a, Fraction b );
 
-/*! \fn multiply
- *  Multiply two fractions together (does not reduce)
+/*! Multiply two fractions together (does not reduce)
  *  \param a The first term
  *  \param b The second term
  */
