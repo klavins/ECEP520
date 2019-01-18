@@ -168,7 +168,11 @@ Exercises (Due Friday 18 Jan at 11:59pm)
     ```
    We will test your code with our own tests and try many different situations (multiple common factors, negative numbers, zero in the numerator, etc.). Be sure to use the exact same name `reduce` for your function.
 
-1. Make a new header file called `imaginary.h`. Similar to the fraction.h file, define a structure with a two members, `real` and `im` which should have type `double`. Add function prototypes for `add`, `negate`, `conjugate`, `multiply`, and `magnitude`. Be sure to document them using Doxygen. Functions that return a scalar should return `double`.
+1. Make a new header file called `imaginary.h`. Similar to the fraction.h file, define a structure with a two members, `real` and `im` which should have type `double`. Add function prototypes for `add`, `negate`, `conjugate`, `multiply`, and `magnitude`. 
+<span style="text-decoration: line-through;">
+Be sure to document them using Doxygen.
+</span> 
+Functions that return a scalar should return `double`.
 
     Next, make a source file called `imaginary.c` and put the definitions of the functions into it. For the `magnitude` function you will need a square root function, which can be obtained by adding the [C math library](http://www.cplusplus.com/reference/cmath/) as follows:
 
@@ -183,3 +187,4 @@ Exercises (Due Friday 18 Jan at 11:59pm)
     Note that you will need to edit the Makefile to include the header and source files and edit main.c and unit_test.c to include your new header file.
 
     Remember, we will compile your code against our own tests, so be sure to name your functions and struct members exactly as specified here and to test edges cases.
+
