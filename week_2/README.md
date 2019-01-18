@@ -541,11 +541,11 @@ Exercises (Due Friday 25 Jan at 11:59pm)
        ASSERT_EQ(num_instances(a,1), 3);
      }
      ```
-  1. Write a function called `to_set` that takes an array and returns a new array with all duplicates removed. For example, the following test should pass.
+  1. Write a function called `to_set` that takes an array and its length and returns a new array with all duplicates removed. For example, the following test should pass.
       ```c
       TEST(HW2,ToSet) {
         int a[] = { 1, 1, 2, 3, 1, 4, 5, 2, 20, 5 };
-        int * b = to_set(a);
+        int * b = to_set(a, 10);
         ASSERT_EQ(num_instances(b,1),1);
         ASSERT_EQ(num_instances(b,2),1);
         ASSERT_EQ(num_instances(b,42),0);        
