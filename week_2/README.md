@@ -568,7 +568,7 @@ Exercises (Due Friday 25 Jan at 11:59pm)
 
     TEST(HW2,PointMap) {
       Point a[] = { { 1,2,3 }, { 2,3,4 } };
-      Point * b = map_to_point_array(a,2,negate);
+      Point * b = map(a,2,negate);
       for(int i=0; i<2; i++) {
         ASSERT_EQ(b[i].x,-a[i].x);
         ASSERT_EQ(b[i].y,-a[i].y);
