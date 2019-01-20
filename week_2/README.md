@@ -551,7 +551,8 @@ Exercises (Due Friday 25 Jan at 11:59pm)
         ASSERT_EQ(n,6);
         ASSERT_EQ(num_instances(b,6,1),1);
         ASSERT_EQ(num_instances(b,6,2),1);
-        ASSERT_EQ(num_instances(b,6,42),0);        
+        ASSERT_EQ(num_instances(b,6,42),0);  
+        free(b);
       }
       ```
 1. Write a function called `map` which takes an array of Points, its length, and a function pointer that returns a newly allocated array whose values are the values of the function argument applied to the array argument. You should put the following `typedef` in your `solutions.h` file:
