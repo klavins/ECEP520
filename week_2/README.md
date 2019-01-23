@@ -615,7 +615,7 @@ Exercises (Due Friday 25 Jan at 11:59pm)
      ASSERT_EQUAL(rpn_error(), OK);
      rpn_push(DBL_MAX);
      rpn_push(DBL_MAX);
-     ASSERT_EQUAL(rpn_add(),0);
+     rpn_add();
      ASSERT_EQUAL(rpn_error(), OVERFLOW_ERROR);
      rpn_free();
    }
