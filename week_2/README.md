@@ -551,7 +551,8 @@ Exercises (Due Friday 25 Jan at 11:59pm)
         ASSERT_EQ(n,6);
         ASSERT_EQ(num_instances(b,6,1),1);
         ASSERT_EQ(num_instances(b,6,2),1);
-        ASSERT_EQ(num_instances(b,6,42),0);        
+        ASSERT_EQ(num_instances(b,6,42),0);  
+        free(b);
       }
       ```
 1. Write a function called `map` which takes an array of Points, its length, and a function pointer that returns a newly allocated array whose values are the values of the function argument applied to the array argument. You should put the following `typedef` in your `solutions.h` file:
@@ -568,7 +569,7 @@ Exercises (Due Friday 25 Jan at 11:59pm)
 
     TEST(HW2,PointMap) {
       Point a[] = { { 1,2,3 }, { 2,3,4 } };
-      Point * b = map_to_point_array(a,2,negate);
+      Point * b = map(a,2,negate);
       for(int i=0; i<2; i++) {
         ASSERT_EQ(b[i].x,-a[i].x);
         ASSERT_EQ(b[i].y,-a[i].y);
@@ -589,9 +590,10 @@ Exercises (Due Friday 25 Jan at 11:59pm)
    - The `rpn_pop` method pops the top value off the stack and returns it. 
    - The `rpn_error` method should return an enum value, either
    ```c
-   OK, POP_ERROR, NEGATE_ERROR, MULT_ERROR, ADD_ERROR, or OVERFLOW_ERROR
+   OK, NOT_INITIALIZED_ERROR, POP_ERROR, NEGATE_ERROR, MULT_ERROR, ADD_ERROR, or OVERFLOW_ERROR
    ```
-    if there have been errors since the last call to `init`. Errors include trying to `pop` or `negate` an empty stack, trying to apply `add` or `multiply` to a stack with fewer than two values on it, or having the result of a computation be greater than the maximum value a `double` can hold. `pop` should return 0 when the calculator is in an error mode.
+   - The `rpn_free` method should free the memory used by the rpn, and un-initialized it.
+    if there have been errors since the last call to `init`. Errors include trying to `pop` or `negate` an empty stack, trying to apply `add` or `multiply` to a stack with fewer than two values on it, or having the result of a computation be greater than the maximum value a `double` can hold. If the rpn has not been initialized before a called to one of the other operations, then rpn_error should become `NOT_INITIALIZED`. pop` should return 0 when the calculator is in an error mode.
 
    An example test that should pass is
    ```c
@@ -605,7 +607,7 @@ Exercises (Due Friday 25 Jan at 11:59pm)
      rpn_add();
      rpn_multiply();
      rpn_negate();
-     ASSERT_EQUAL(rpn_pop(),-2.5);
+     ASSERT_EQUAL(rpn_pop(),-1.5);
      ASSERT_EQUAL(rpn_error(), OK);
      ASSERT_EQUAL(rpn_pop(), 0);
      ASSERT_EQUAL(rpn_error(), POP_ERROR);
@@ -613,8 +615,10 @@ Exercises (Due Friday 25 Jan at 11:59pm)
      ASSERT_EQUAL(rpn_error(), OK);
      rpn_push(DBL_MAX);
      rpn_push(DBL_MAX);
-     ASSERT_EQUAL(rpn_add(),0);
+     rpn_add();
+     ASSERT_EQUAL(rpn_pop(), 0);
      ASSERT_EQUAL(rpn_error(), OVERFLOW_ERROR);
+     rpn_free();
    }
    ```
    Note that you will not know ahead of time how much space to reserve for your stack, so you should:
