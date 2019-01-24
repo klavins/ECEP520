@@ -498,11 +498,6 @@ The `ArbitraryArray` ADT described here is for pedagogical purposes only. It has
 - Users have to remember to cast results.
 - You have to create each element twice, one to construct it and then once to copy it into the array.
 
-Test Driven Development
-===
-
-The exercises below ask you to add methods to the ADTs defined above. 
-
 Exercises
 ===
 
@@ -510,7 +505,7 @@ Exercises
 
 > Note: The prototypes for these exercises are given in the header files in the `week_2/arrays` directory of the `ECEP520` repository.
 
-> Note: We highly recommend that you write tests for the methods ou are creating *before* you implement them. We also recommend that you compile your code with the example `unit_test.c` file that the TAs provide before you turn in your homework.
+> Note: We highly recommend that you write tests for a method you are creating *before* you implement it. We also recommend that you compile your code with the example `unit_test.c` file that the TAs provide before you turn in your homework.
 
 1. Implement the following mathematical operations for `DynamicArray`. They should all assert that the array is not empty.
     - `_min`: returns the minimum value in the array. 
