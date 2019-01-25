@@ -549,7 +549,7 @@ Exercises
         TEST(ArbitraryArray, ToString) {
             Point p = { 1,2,3 }, q = { 4,5,6 };
             DynamicArray * a = DynamicArray_new(sizeof(Point));
-            char * s = DynamicArray_to_string(a);
+            char * s = DynamicArray_to_string(a,point_to_string);
             ASSERT_STREQ(s, "{1.0,2.0,3.0},{4.0,5.0,6.0}");
             free(a);
             free(c);
