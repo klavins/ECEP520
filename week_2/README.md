@@ -607,17 +607,17 @@ Exercises (Due Friday 25 Jan at 11:59pm)
      rpn_add();
      rpn_multiply();
      rpn_negate();
-     ASSERT_EQUAL(rpn_pop(),-1.5);
-     ASSERT_EQUAL(rpn_error(), OK);
-     ASSERT_EQUAL(rpn_pop(), 0);
-     ASSERT_EQUAL(rpn_error(), POP_ERROR);
+     ASSERT_EQ(rpn_pop(),-1.5);
+     ASSERT_EQ(rpn_error(), OK);
+     ASSERT_EQ(rpn_pop(), 0);
+     ASSERT_EQ(rpn_error(), POP_ERROR);
      rpn_init();
-     ASSERT_EQUAL(rpn_error(), OK);
+     ASSERT_EQ(rpn_error(), OK);
      rpn_push(DBL_MAX);
      rpn_push(DBL_MAX);
      rpn_add();
-     ASSERT_EQUAL(rpn_pop(), 0);
-     ASSERT_EQUAL(rpn_error(), OVERFLOW_ERROR);
+     ASSERT_EQ(rpn_pop(), 0);
+     ASSERT_EQ(rpn_error(), OVERFLOW_ERROR);
      rpn_free();
    }
    ```
