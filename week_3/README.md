@@ -548,9 +548,10 @@ Exercises
     namespace {
         TEST(ArbitraryArray, ToString) {
             Point p = { 1,2,3 }, q = { 4,5,6 };
-            DynamicArray * a = DynamicArray_new(sizeof(Point));
-            char * s = DynamicArray_to_string(a,point_to_string);
+            ArbitraryArray * a = ArbitraryArray(sizeof(Point));
+            char * s = ArbitraryArray_to_string(a,point_to_string);
             ASSERT_STREQ(s, "{1.0,2.0,3.0},{4.0,5.0,6.0}");
+            ArbitraryArray_destroy(a);
             free(a);
             free(c);
         }
@@ -571,4 +572,7 @@ Exercises
     DynamicArray_destroy_all();
     ASSERT_EQ(DynamicArray_is_valid(a), 0);
     ASSERT_EQ(DynamicArray_num_arrays(), 0);
+    free(a);
+    free(b);
+    free(c);
     ```
