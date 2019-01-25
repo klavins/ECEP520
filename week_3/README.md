@@ -98,6 +98,7 @@ The user can thus write
 DynamicArray * da = DynamicArray_new();
 DynamicArray_push(da, 1);
 DynamicArray_destroy(da);
+free(da);
 ```
 Note the user has to do two things. First, tell the array to free its own internal memory. Second, the user has to free the struct associated with the array. If they just call `free(da)` with, then the pointer `da->buffer` will be deleted, but not the memory it points to! That would be a serious (but not uncommon) memory leak.
 
