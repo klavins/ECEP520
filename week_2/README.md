@@ -580,8 +580,8 @@ Exercises (Due Friday 25 Jan at 11:59pm)
     ```
 1. Write a reverse polish notation (RPN) calculator in C with functions `rpn_init`, `rpn_push`, `rpn_add`, `rpn_negate`, `rpn_multiply`, `rpn_pop`, `rpn_error`. The way an RPN calculator works is as follows.
 
-   - The `init` method creates a new stack (allocated using `calloc` and pointed to by
-     a static variable declared in `solutions.c`). If the `init` method has been called
+   - The `init` method creates a new array to implement the stack (allocated using `calloc` and pointed to by
+     a static variable declared in `solutions.c`). It also sets an index to the top of the stack to zero. If the `init` method has been called
      already, then it frees the old stack and creates a new stack. It should also clear errors.
    - The `rpn_push` method pushes its argument onto the stack.
    - The `rpn_negate` method negates the value on the top of the stack.
