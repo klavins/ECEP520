@@ -164,3 +164,22 @@ DynamicArray * DynamicArray_map(const DynamicArray * da, double (*f) (double)) {
     }
     return result;
 }
+
+DynamicArray * DynamicArray_subarray(DynamicArray * da, int a, int b) {
+
+  assert(da->buffer != NULL);
+
+  if ( b < a ) {
+      printf("DynamicArray_subarray called with invalid indices (b=%d<a%d)", b, a);
+      exit(1);
+  }
+
+  DynamicArray * result = DynamicArray_new();
+
+  for (int i=a; i<b; i++) {
+      DynamicArray_push(result,DynamicArray_get(da, i));
+  }
+
+  return result;
+
+}

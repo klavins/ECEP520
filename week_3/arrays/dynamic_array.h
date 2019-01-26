@@ -36,7 +36,7 @@ double DynamicArray_pop_front(DynamicArray *);
 
 DynamicArray * DynamicArray_map ( const DynamicArray *, double (*) (double) );
 
-/* EXERCISES: */
+/* EXERCISES: ********************************************************/
 
 /*! Return the first value in the given array. Throw a runtime error if the array is empty.
  *  \param da The array
@@ -86,5 +86,6 @@ int DynamicArray_num_arrays();
  */
 int DynamicArray_destroy_all();
 
+DynamicArray * DynamicArray_subarray(DynamicArray *, int, int);
 
 #endif
