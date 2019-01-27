@@ -58,7 +58,7 @@ DynamicArray * DynamicArray_copy ( const DynamicArray * da );
  *  \param b The second value
  *  \param step The different between consecutive elements.
  */
-DynamicArray * DynamicArray_range ( int a, int b, int step);
+DynamicArray * DynamicArray_range ( double a, double b, double step);
 
 /*! Return a new array that is the concatenation of the given arrays. 
  *  \param a The first array
