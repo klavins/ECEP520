@@ -20,11 +20,11 @@ Specifically, this course takes a detailed look at two programming languages, C+
 * Week 2: C syntax and data types
 * Week 3: Building APIs in C
 * Week 4: Fundamentals of C++ and object oriented programming
-* Week 5: Event loops, process control, and scheduling
-* Week 6: Programming sensors and effectors
-* Week 7: Networking
-* Week 8: Cloud computing
-* Week 9: Rust
+* Week 5: C++ Standard Template Library
+* Week 6: Event loops, process control, and scheduling
+* Week 7: Programming sensors and effectors
+* Week 8: Networking
+* Week 9: Cloud computing
 * Week 10: Projects
 
 ## Homework
