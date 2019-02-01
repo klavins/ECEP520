@@ -381,7 +381,7 @@ AribtraryArray * a = AribtraryArray_new(sizeof(Point));
 Point p;
 
 for ( int i=0; i<10; i++ ) {
-  p = { x, 0.5*x, 0.25*x };
+  p = { i, 0.5*i, 0.25*i };
   AribtraryArray_set_from_ptr( a, i, &p );
 }
 
@@ -493,6 +493,36 @@ void * ArbitraryArray_get_ptr(const ArbitraryArray * da, int index) {
 }
 ```
 The main difference here is that we return a `void *` pointer instead of a `double`, similar to how `malloc` and `calloc` work. This is because the `ArbitraryArray` ADT does not know what the type of the value being pointed to is. We also use pointer arithmetic instead of array indexing to determine the address of the requested element.
+
+As an example, here is how you could use `ArbitaryArray` to hold an array of pointers to `DynamicArray` elements.
+```c
+TEST(ArbitraryArray,OfPointers) {
+
+    // Create the array that will hold the pointers
+    ArbitraryArray * ptrs = ArbitraryArray_new(sizeof(DynamicArray *));
+
+    // Create a couple of dynamic arrays
+    DynamicArray * a = DynamicArray_new(),
+                            * b = DynamicArray_new();
+
+    // Add the dynamic arrays to the pointer array
+    ArbitraryArray_set_from_ptr(ptrs, 0, &a);
+    ArbitraryArray_set_from_ptr(ptrs, 1, &b);
+
+    // Get them back. Note that because the array contains pointers,
+    // and _get_ptr returns a pointer to a pointer, we need to cast
+    // its result as a pointer to a DynamicArray pointer.
+    DynamicArray ** ptr_a = (DynamicArray **) ArbitraryArray_get_ptr(ptrs,0);
+    DynamicArray ** ptr_b = (DynamicArray **) ArbitraryArray_get_ptr(ptrs,1);
+
+    // Check that the pointers are equal
+    ASSERT_EQ(*ptr_a, a);
+    ASSERT_EQ(*ptr_b, b);
+    ASSERT_NE(*ptr_a, b);
+    ASSERT_NE(*ptr_b, a);
+
+}
+```
 
 The `ArbitraryArray` ADT described here is for pedagogical purposes only. It has many problems, such as the following:
 - Users have to remember to cast results.
