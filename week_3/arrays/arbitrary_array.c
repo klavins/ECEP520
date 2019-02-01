@@ -29,8 +29,11 @@ static int out_of_buffer ( ArbitraryArray * da, int offset ) {
 static void extend_buffer ( ArbitraryArray * da ) {
 
     char * temp = (char *) calloc ( 2 * da->capacity, da->element_size );
-    int new_origin = da->element_size * ( da->capacity - (da->end - da->origin)/2 ),
-           new_end = new_origin + da->element_size * (da->end - da->origin);
+    // int new_origin = da->element_size * ( da->capacity - (da->end - da->origin)/2 ),
+    //        new_end = new_origin + da->element_size * (da->end - da->origin);
+
+    int new_origin = da->element_size * (da->capacity - (offset_to_index(da,da->end) - offset_to_index(da,da->origin))/2);
+    int new_end = new_origin + (da->end - da->origin);           
 
     for ( int i=0; i<ArbitraryArray_size(da); i++ ) {
         memcpy(temp + new_origin + i * da->element_size,

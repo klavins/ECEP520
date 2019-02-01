@@ -1,5 +1,6 @@
 #include <math.h>
 #include <float.h> /* defines DBL_EPSILON */
+#include <assert.h>
 #include "double_array.h"
 #include "typed_array.h"
 #include "gtest/gtest.h"
@@ -81,9 +82,9 @@ namespace {
     }
 
     TEST(Templates,Functions) {
-        compare(1,2);
-        compare(3.0, 4.0);
-        compare((Point){1,2,3}, (Point) {3,-4,2});
+        compare<int>(1,2);
+        compare<double>(3.0, 4.0);
+        compare<Point>((Point){1,2,3}, (Point) {3,-4,2});
     }
 
     TEST(Im,Im) {
@@ -166,6 +167,17 @@ namespace {
         ASSERT_EQ(b.get(0).x, 1);
         ASSERT_EQ(b.get(1).y, 3);
         ASSERT_EQ(b.get(20).z, 5);
+    }
+
+    TEST(Assert,Assert) {
+        // assert(0);
+        ASSERT_DEATH(int x = 1+1,"");
+        // try {
+        //     assert(0);
+        //     ASSERT_EQ(0,1);
+        // } catch (...) {
+        //     ASSERT_EQ(1,1);
+        // }
     }
 
     TEST(TypedArray, Matrix) {
