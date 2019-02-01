@@ -284,6 +284,7 @@ class Imaginary {
     private:
       double re, im;
 };
+```
 then you can simple make a new Imaginary number with
 ```c++
 Imaginary x;
@@ -293,7 +294,7 @@ You can add constructors that do different initializations. For example, the cod
 class Imaginary {
     public:
       Imaginary(double a, double b) : re(a), im(b) {};
-      Imaginary(double a) : re(a), im(b) {};
+      Imaginary(double a) : re(a), im(a) {};
     private:
       double re, im;
 };
