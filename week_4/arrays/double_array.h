@@ -8,11 +8,11 @@ class DoubleArray {
 public:
 
     // Constructors
-    DoubleArray();
-    DoubleArray(double a, double b, double step);
-    DoubleArray(const DoubleArray& other);
+    DoubleArray(); // Default constructor
+    DoubleArray(double a, double b, double step); // Range constructor
+    DoubleArray(const DoubleArray& other); // Copy constructor
 
-    // Copy constructor
+    // Assignment
     DoubleArray& operator=(const DoubleArray& other);
 
     // Destructor
