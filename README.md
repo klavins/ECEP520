@@ -31,8 +31,6 @@ Specifically, this course takes a detailed look at two programming languages, C+
 
 Homework will be assigned weekly, and will be due the following Wednesday. Homework will be submitted by pushing your code and other materials to a github repository. We will clone your code and attempt to run it and grade it based on functionality, completeness, and style. Code is expected to be documented and have associated unit tests. 
 
-Detailed assignments are listed on the [wiki](https://github.com/klavinslab/ECE90-f18/wiki).
-
 ## Resources
 
 * We will be using [Github](https://github.com/) for version controlling all of our code. 
