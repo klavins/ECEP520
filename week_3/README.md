@@ -532,7 +532,7 @@ The `ArbitraryArray` ADT described here is for pedagogical purposes only. It has
 - Users have to remember to cast results.
 - You have to create each element twice, one to construct it and then once to copy it into the array.
 
-Exercises
+Exercises (due Friday Feb 1, extended to Sunday Feb 3)
 ===
 
 > Note: You should copy the ECEP520/week_2/arrays directory to EE590/hw_3 to use as the starting point for your homework. All function prototypes for the methods you need to define are contained in the header files.

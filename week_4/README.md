@@ -667,7 +667,7 @@ It is important to understand that C++ is a huge, messy language with many ways 
 
 A good book on C++ is the "C++ Primer" by Stanley Lippman. Consider reading as much of this book as you can, especially if you expect to be writing C++ programs for your job. There is a lot more covered there than is covered in that class.
 
-Exercises
+Exercises (due Friday Sunday Feb 10)
 ===
 
 **Note**: Because this course is brand new, there may still be bugs in our example code (as there were last week) or homework assignments. Please spend some time writing a few tests for the example code to make sure it behaves as you expect. We will certainly take into accouint your being the first to find (and preferably fix) bugs when we determine overall grades for the course.
