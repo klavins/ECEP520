@@ -669,15 +669,40 @@ A good book on C++ is the "C++ Primer" by Stanley Lippman. Consider reading as m
 
 Exercises (DRAFT)
 ===
-1. Port the imaginary ADT you wrote to C++. Overload the `*` and `+` operators for your class.
-1. Port the fraction ADT you wrote to C++. Overload the `*` and `+` operators for your class.
-1. Create a `TypedMatrix` that uses `TypedArray` for its internal data. Since `TypedArray` does its own memory allocation, your class should not have to do so. Write the following methods
-- A default constructor that makes a 1x1 matrix.
-- A constructor that makes an mxn matrix.
-- A method `get(i,j)` that returns the element in the ith row and jth column.
-- A method `set(i,j,value)` that sets the element in the ith row and jth column.
-- A method `add(const TypedArray& M)` that adds the array `M` to `this` and returns a new array.
-- A method `multiply(const TypedArray& M)` that multiplies `this` and `M`, returning a new array.
-- Overload `<<` so you can print out the matrix nicely, with newlines after each row.
-All of your methods should throw exceptions if indices are out of range, or if `add` and/or `multiply` are aksed to operate on arrays of incompatible sizes. Test your method on `TypedMatrix<double>`, `TypedMatrix<Imaginary>`, and `TypedMatrix<Fraction>`. 
-1. One other problem, probably involving memory allocation, TBA.
+
+**Note**: Because this course is brand new, there may still be bugs in our example code (as there were last week) or homework assignments. Please spend some time writing a few tests for the example code to make sure it behaves as you expect. We will certainly take into accouint your being the first to find (and preferably fix) bugs when we determine overall grades for the course.
+
+1. Add methods `push`, `pop`, `push_front`, and `pop_front` to the `TypedArray` class. Write your tests first.
+1. Add a method
+    ```c++
+    TypedArray concat(const TypedArray& other);
+    ```
+    to the `TypedArray` class. It should return a new array that is a concatenation of the given and the argument (leaving both untouched). You should be able to do
+    ```c++
+    TypedArray<int> a;
+    a.set(0,0);
+    a.set(1,1);
+    TypedArray<int> b = a.concat(a).concat(a); // yields [0,1,0,1,0,1]
+    ```
+    for example. 
+1. Port the Imaginary ADT you wrote to C++. You should include the following methods.
+    - `Imaginary(double a, double b);` -- construct a new imaginary number.
+    - `double re();` -- returns the real part of the number. The actual datum storing the real part should be private.
+    - `double im();` -- returns the imaginary part of the number. The actual datum storing the imaginary part should be private.
+    - `double conjugate()` -- returns the complex conjugate of the number.
+    - `double magnitude()` -- returns the magnitide of the number.
+In addition, you should overload `+=`, `*=`, `==`, `*` and `+` operators for your class. For reference, see [here](https://en.cppreference.com/w/cpp/language/operators) for an example of how to overload operators for a similar problem. Note that overloading the `==` operator will make your class work with Google Test's `ASSERT_EQ` method. Don't forget to write tests first. Also, ask yourself why we don't need to overload the assigment operation `=` and why we do not need a destructor for this class. Finally, a hint: You should declare the overloaded binary operators in your `.h` file and implement them in your `.cc` file to avoid linker errors when compiling.
+1. Create a `TypedMatrix` that uses `TypedArray` for its internal data. Since `TypedArray` does its own memory allocation, your class should not have to do so. Include the following methods
+    - `TypedMatrix();` -- A default constructor that makes a 1x1 matrix with a zero in it.
+    - `TypedMatrix(int n, int m);` -- A constructor that makes an mxn matrix of all zeros.
+    - `TypedMatrix(int n);` -- A constructor that makes an nxn identory matrix (with ones on the diagonal and zeros elsewhere).
+    - `double get(int i,int j)` -- Return the element in the ith row and jth column.
+    - `double set(i,j,value)` -- Sets the element in the ith row and jth column.
+    - `=` -- The assignment operator. Since the C++ default assignment operator is not a "deep" copy of an object, you need to define your own.
+In addition, you should overload `+=`, `*=`, `==`, `*` and `+` operators for your class. Note that `*` should do matrix multiplication, not elementwise mutiplication. 
+    - You should also overload `<<` so you can print out the matrix nicely, with newlines after each row. For example, ``cout << m``` should print out something like the following:
+    ```c++
+    1.1234  3.456
+    -4.135  5.889
+    ```
+    We will not include tests for your `<<` operator. But you will find it useful in debugging. All of your methods should throw `std::range_error` exceptions if indices are out of range, or if any operators are aksed to operate on arrays of incompatible sizes. Test your new class with `TypedMatrix<double>` and `TypedMatrix<Imaginary>`.

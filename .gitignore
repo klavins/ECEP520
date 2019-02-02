@@ -3,5 +3,6 @@ bin/
 build/
 html/
 latex/
+tmp/
 docs.config
 ~*
