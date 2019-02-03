@@ -689,7 +689,7 @@ Exercises (due Friday Sunday Feb 10)
     - `Imaginary(double a, double b);` -- construct a new imaginary number.
     - `double re();` -- returns the real part of the number. The actual datum storing the real part should be private.
     - `double im();` -- returns the imaginary part of the number. The actual datum storing the imaginary part should be private.
-    - `double conjugate()` -- returns the complex conjugate of the number.
+    - `Imaginary conjugate()` -- returns the complex conjugate of the number.
     - `double magnitude()` -- returns the magnitide of the number.
 In addition, you should overload `+=`, `*=`, `==`, `*` and `+` operators for your class. For reference, see [here](https://en.cppreference.com/w/cpp/language/operators) for an example of how to overload operators for a similar problem. Note that overloading the `==` operator will make your class work with Google Test's `ASSERT_EQ` method. Don't forget to write tests first. Also, ask yourself why we don't need to overload the assigment operation `=` and why we do not need a destructor for this class. Finally, a hint: You should declare the overloaded binary operators in your `.h` file and implement them in your `.cc` file to avoid linker errors when compiling.
 1. Create a `TypedMatrix` that uses `TypedArray` for its internal data. Since `TypedArray` does its own memory allocation, your class should not have to do so. Include the following methods
