@@ -126,7 +126,7 @@ std::cout << "Hello world\n";
 This may look just like added `std_` to the beginning of everything, but you can open a namespace to use its methods for the duration of a function, as in
 ```c++
 void print_stuff() {
-    using std;
+    using namespace std;
     cout << "First line\n";
     cout << "Second line\n";
 }
@@ -136,7 +136,7 @@ cout
 ===
 By the way, `cout` is an *output stream* that sends a stream of charaters to the terminal (other streams can do to files, for example). The `<<` operator allows you to join a number of objects together to make a strea. For example,
 ```c++
-std::cout "The value of x is " << x << "\n";
+std::cout << "The value of x is " << x << "\n";
 ```
 Think of `<<` like a function that converts what comes after it to a string. Thus `<<(x)` should be a string representation of whatever `x` is. the `<iostream>` library defines `<<` for all the standard types, like `int` and `double`. If you create a new type, however, you have to define `<<` for it. Later in README we will show how to define `<<` for our array ADT.
 
