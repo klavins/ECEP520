@@ -693,13 +693,12 @@ Exercises (due Friday Sunday Feb 10)
     - `double magnitude()` -- returns the magnitide of the number.
 In addition, you should overload `+=`, `*=`, `==`, `*` and `+` operators for your class. For reference, see [here](https://en.cppreference.com/w/cpp/language/operators) for an example of how to overload operators for a similar problem. Note that overloading the `==` operator will make your class work with Google Test's `ASSERT_EQ` method. Don't forget to write tests first. Also, ask yourself why we don't need to overload the assigment operation `=` and why we do not need a destructor for this class. Finally, a hint: You should declare the overloaded binary operators in your `.h` file and implement them in your `.cc` file to avoid linker errors when compiling.
 1. Create a `TypedMatrix` that uses `TypedArray` for its internal data. Since `TypedArray` does its own memory allocation, your class should not have to do so. Include the following methods
-    - `TypedMatrix();` -- A default constructor that makes a 1x1 matrix with a zero in it.
-    - `TypedMatrix(int n, int m);` -- A constructor that makes an mxn matrix of all zeros.
-    - `TypedMatrix(int n);` -- A constructor that makes an nxn identory matrix (with ones on the diagonal and zeros elsewhere).
-    - `double get(int i,int j)` -- Return the element in the ith row and jth column.
-    - `double set(i,j,value)` -- Sets the element in the ith row and jth column.
+    - `TypedMatrix();` -- A default constructor that makes a 1x1 matrix with a default `ElementType` in it.
+    - `TypedMatrix(int n, int m);` -- A constructor that makes an mxn matrix of all default values of `ElementType`.
+    - `ElementType get(int i,int j)` -- Return the element in the ith row and jth column.
+    - `void set(i,j,value)` -- Sets the element in the ith row and jth column.
     - `=` -- The assignment operator. Since the C++ default assignment operator is not a "deep" copy of an object, you need to define your own.
-In addition, you should overload `+=`, `*=`, `==`, `*` and `+` operators for your class. Note that `*` should do matrix multiplication, not elementwise mutiplication. 
+In addition, you should overload `+=`, `*=`, `==`, `*` and `+` operators for your class. Note that `*` should do matrix multiplication, not elementwise mutiplication. For the quality operator, you should return `false` if the matrices have incompatible sizes. 
     - You should also overload `<<` so you can print out the matrix nicely, with newlines after each row. For example, ``cout << m``` should print out something like the following:
     ```c++
     1.1234  3.456
