@@ -1,7 +1,11 @@
 Week 5: The Standard Template Library
 ===
 
-Last time we introduced C++ data types, classes, and templates. This week, we introduce the C++ Standard Template Library (STL). It contains, among other things, a `vector` template that is just like our `TypedArray`, but scaled and optimized for production purposes. The library includes varitions on templated, dynamic, sequential containers such as queues, lists, and arrays. It also includes maps, sets, and a set of generic algoprithms you can use to operate on these objects. Most C++ programs make heavy use of these templates and algorithms, avoiding dynamic memory management as much possible. 
+So far in the course we have covered the basics of C and C++, and focused in particular on writing abstract data types and classes that encapsulate data structures and the algorithms that act upon them. In particular, last week we introduced C++ data types, classes, and templates. 
+
+This week, we introduce the C++ Standard Template Library (STL). It contains, among other things, a `vector` template that is just like our `TypedArray`, but scaled and optimized for production purposes. The library includes varitions on templated, dynamic, sequential containers such as queues, lists, and arrays. It also includes maps, sets, and a set of generic algoprithms you can use to operate on these objects. Most C++ programs make heavy use of these templates and algorithms, avoiding dynamic memory management as much possible. 
+
+Next week, we will begin to focus on the types and classes needed to represent common tasks in embedded systems. We will introduce classes for sensors, effectors, processes, a process manager, and a scheduler. Together, these classes will allow us to write complex, event driven, reactive systems that are at the heart of embedded systems code, robotics control systems, and similar systems. 
 
 Sequential Containers
 ===
