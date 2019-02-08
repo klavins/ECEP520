@@ -331,18 +331,18 @@ Learn to read and write files [here](http://www.cplusplus.com/reference/fstream/
 Exercises
 ===
 1. Write a function called `sort_by_magnitude` that takes a reference to a vector of doubles and sorts it with a comparison function that says that x < y if and only if the absolute value of x is less than the absoilute value of y. For example, -5 would be great than 4 because |-5| > |4|. Use the generic algorithm `sort` (which you can look up on the c++ reference we page) and a lambda expression for your comparison function.
-2. Rewrite the `TypedMatrix` class with `vector`s instead of `TypedArrays`. The interface to the user should be identical to what wS specifid in that previous homework.
-3. Write a method
+1. Rewrite the `TypedMatrix` class with `vector`s instead of `TypedArrays`. The interface to the user should be identical to what wS specifid in that previous homework.
+1. Write a method
     ```c++
     TypedMatrix<double> read_matrix_csv(const string path);
     ```
     that reads a comma separated value (CSV) file of doubles into a matrix and returns it. If there are any errors in the format of the CVS file, or missing values (so the CSV does not represent a matrix), throw an exception. Spaces and tabs should be ok in between commas, but newlines should only be used to terminate a row of the matrix.
-3. Write a method
+1. Write a method
     ```c++
     void write_matrix_csv(const TypedMatrix<double> &matrix);
     ```
     that writes a comma separated value (CSV) file of doubles from a matrix. Test that you can write and read a matrix and get the same matrix back.
-4. Write a method
+1. Write a method
     ```c++
     map<string, int> occurance_map(const string path);
     ```
@@ -362,3 +362,4 @@ Exercises
     double
     quotes'
     ```
+1. One more exercise, TBA.
