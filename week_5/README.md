@@ -3,23 +3,23 @@ Week 5: The Standard Template Library
 
 So far in the course we have covered the basics of C and C++, and focused in particular on writing abstract data types and classes that encapsulate data structures and the algorithms that act upon them. In particular, last week we introduced C++ data types, classes, and templates. 
 
-This week, we introduce the C++ Standard Template Library (STL). It contains, among other things, a `vector` template that is just like our `TypedArray`, but scaled and optimized for production purposes. The library includes varitions on templated, dynamic, sequential containers such as queues, lists, and arrays. It also includes maps, sets, and a set of generic algoprithms you can use to operate on these objects. Most C++ programs make heavy use of these templates and algorithms, avoiding dynamic memory management as much possible. 
+This week, we introduce the C++ Standard Template Library (STL). It contains, among other things, a `vector` template that is just like our `TypedArray`, but scaled and optimized for production applications. The library includes varitions on templated, dynamic, sequential containers such as queues, lists, and arrays. It also includes maps, sets, and a set of generic algoprithms you can use to operate on these objects. Most C++ programs make heavy use of these templates and algorithms, avoiding dynamic memory management as much possible. These week we will introduce these templates at a high level. The complete documentation for the STL can be found at [http://www.cplusplus.com/reference/stl/](http://www.cplusplus.com/reference/stl/).
 
-Next week, we will begin to focus on the types and classes needed to represent common tasks in embedded systems. We will introduce classes for sensors, effectors, processes, a process manager, and a scheduler. Together, these classes will allow us to write complex, event driven, reactive systems that are at the heart of embedded systems code, robotics control systems, and similar systems. 
+Next week, we will begin to focus on the types and classes needed to represent common tasks in embedded systems. We will introduce classes for sensors, effectors, processes, a process manager, and a scheduler. Together, these classes will allow us to write complex, event driven, reactive systems that are at the heart of embedded systems and robotics control systems. We will build the classes and modules we need to implement these ideas almost exclusively using the STL.
 
 Sequential Containers
 ===
 
-A *conainer class* is one that contains some other class. Our `TypedArray` class is an example. A *sequential* class is one in which the elements are stored and access sequentially, with indices 1, 2, ... and so on. The STL includes several templated sequential containers:
+A *container class* is one that contains some other class. Our `TypedArray` class is an example. A *sequential* class is one in which the elements are stored and access sequentially, with indices 1, 2, ... and so on. The STL includes several templated sequential containers:
 - `vector`: Like our `TypedArray` class, except you can't `get` elements at an index until something has been put at that index.
 - `string`: A vector of characters with some special operations for manipulating strings.
 - `array`: A fixed-size array whose size must be declared at compile time. No dynamic memory allocation, so possibly faster.
 - `deque`: A double ended queue. Like a `vector` but optimized for adding elements to both ends (like our `TypedArray`).
 - `list`: A doubly linked list.
 - `forward_list`: A singly linked list.
-The most commonly used containers are `vector` and `string`, which we will cover here. The rest of the containers have fairly specialized uses, and many guides and textbooks advise that you simply don't use them.
+The most commonly used containers are `vector` and `string`, which we will cover here. The rest of the containers have fairly specialized uses, and many guides and textbooks advise that you simply don't use them, or that you prototype with 'vector' and 'string' and only switch to one of the more specialized classes if you can show it improves performance.
 
-In the following notes, we will use `vector`s and `string`s for all of our examples. Many of the methods that act on these objects also act on the other ones. 
+In the following notes, we will use `vector` and `string` for all of our examples. Many of the methods that act on these objects also act on the other ones. 
 
 Constructors
 ---
@@ -42,7 +42,7 @@ vector<double> u(10,3.14);    // vector of 10 3.14s
 vector<double> v = u;         // copy constructor with assignment operator
 ```
 
-In the STL, `string`s are a bit more than just pointers to `char`s as with C. A string is a first class objects that is quite similar to a `vector`. Strings can be constructed and initialized similarly.
+In the STL, a `string` is a bit more than just a pointer to a `char` as with C. In fact, a `string` is a first class objects that is quite similar to a `vector`. Strings can be constructed and initialized similarly.
 ```c++
 string s;
 string t = "hello";
@@ -52,9 +52,9 @@ Note that the following code
 ```c++
 vector<string> v = { "embedded", "systems", "are", "cool" };
 ```
-involves the constructor for the `string` class, which takes a `char *` aw an argument. Thus, although it may look like this snippet makes an array of `char *` values, it actually builds a vector of strings.
+involves the constructor for the `string` class, which takes a `char *` as an argument. Thus, although it may look like this snippet makes an array of `char *` values, it actually builds a `vector` of strings.
 
-Vectors and Strings have many methods in common, since they are based on essentially the same code. You can test if they are empty, find their sizes, compare them, and get their individual elements. So for vectors, you can write:
+Vectors and strings have many methods in common, since they are based on essentially the same code. You can test if they are empty, find their sizes, compare them, and get their individual elements. So for vectors, you can write:
 ```c++
 vector<int> v = { 1, 2, 3 };
 v.push_back(4);
@@ -88,12 +88,12 @@ s.insert(s.begin()+1, 'x');   // insert an 'x' into position 1
 q.erase(5,2);                 // remove two elements starting at position 5, reindexing subsequent elements
 ```
 
-One method that can be useful is called `emplace`. It is use to construct new elements of the base type of, for example, a `vector`. This is needed because construct elements and then pushing them into the vector can be cumbersome. Thus, if you have a class `Imaginary` with a constructor that takes two arguments, the real part and the imaginary part, you can do
+One method that can be useful is called `emplace`. It is use to construct new elements of the base type of, for example, a `vector`. This is needed because constructing elements and then pushing them into the vector can be cumbersome. Thus, if you have a class `Imaginary` with a constructor that takes two arguments, the real part and the imaginary part, you can do
 ```c++
 vector<Imaginarey> r;
 r.emplace(r.begin(),2.0,3.0);
 ```
-which creates a vector whose first element is the imaginary numer `2+3i`.
+which creates a `vector` whose first element is the imaginary numer `2+3i`.
 
 A new for loop form is available in C++ as well, allowing you to interate over the elements in a sequential container easily. FOr example, to iterate over the characters in a string, you can do:
 ```c++
@@ -115,6 +115,7 @@ for (string &s : v ) {
     s.push_back('!');
 }
 ```
+The new `for` pattern uses the `:` operator. The sequential containers overload this operator to make this possible. If you define a new class, you can [overload this operator](https://stackoverflow.com/questions/8164567/how-to-make-my-custom-type-to-work-with-range-based-for-loops) for your new class as well.
 
 Because strings are made of characters, it is often helpful to know the methods that are availale for manipulating them.
 ```c++
@@ -143,13 +144,12 @@ for ( char &c : q ) {
 ```
 
 The string container also defines a number of string specific methods, such as `assert`, `append`, `replace`, `substr`, and `find` whose definitions are mainly self-explanatory. There are also a number of methods for converting between strings and numbers, such as `to_string` and `atoi`. 
-```
 
 Interestingly, since vectors and strings are dynamic classes much like the `TypedArray` class we built earily, they have a capacity, which you can find with a simple method
 ```c++
 v.capacity(); // some number bigger than v.size();
 ```
-Also, if you need to keepo the amount of space an sequential container takes up to a minimum, you can do:
+Also, if you need to keep the amount of space a sequential container takes up to a minimum, you can do:
 ```c++
 v.shrink_to_fit();
 ```
@@ -157,7 +157,7 @@ v.shrink_to_fit();
 Iterators
 ---
 
-Before the `for(x:v)` form was introduced, the way to iterate through containers like `vector`s and `string`s was to use `iterators`. For example, the following code also changes all the characters in a string to caps:
+Before the `for(x:v)` form was introduced, the way to iterate through containers like `vector` and `string` was to use an `iterator`. For example, the following code also changes all the characters in a string to caps:
 ```c++
 for ( string::iterator i = q.begin(); i != q.end(); i++ ) {
     *i = tolower(*i);
@@ -165,7 +165,7 @@ for ( string::iterator i = q.begin(); i != q.end(); i++ ) {
 ```
 Here, `q.begin()` returns an iterator that refers to the element at the beginning of the array, while `q.end()` refers to a non-element that is "one past" the end of the array. The notation `i++` is overloaded for iterators to mean "increment the iterator". Finally, the '*' operator is overloaded to return a reference to the element the iterator refers to. 
 
-Iterators are a good place to use the `auto` keyword. For example, an iterator to a `vector` of `vector`s of `double`s would be declared and initialized by 
+Iterators are a good place to use the `auto` keyword. For example, an iterator to a vector of vector of doubles would be declared and initialized by 
 ```c++
 vector<vector<double>>::iterator i = v.begin();
 ```
@@ -173,9 +173,9 @@ and it is a lot easier (and clearer) to write
 ```c++
 auto i = v.begin();
 ```
-I suspect that usages similar to this one were the reason the `auto` keyword was introduced in the first places.
+I suspect that usages similar to this one were the reason the `auto` keyword was introduced in the first place.
 
-Iterators can be manipulates like indices into normal C arrays, via overloaded operators for `+`, `-`, `<`, and so on. For example
+Iterators can be manipulated like indices into normal C arrays, via overloaded operators for `+`, `-`, `<`, and so on. For example
 ```c++
 auto i = v.begin();
 auto j = i + v.size() / 2;
@@ -183,7 +183,7 @@ i < j; // true
 ```
 It should be noted that iterators are *not* numbers. For example, if you do `cout << i`, you will get a compiler error because `i` is not some kind of number for which `<<` is defined, and furthermore, `<<` is not defined for iterators.
 
-*Notes:* If you would like to access the elements of a `vector` or `string` in reverse, you can use `v.rbegin()` and `v.rend()` methods. If a `vector` or `string` was declared `const`, you can use `v.cbegin()` and `v.cend()`, which return `const_iterators` instead of `iterators` (just use `auto` if you are unsure). 
+**Note:** If you would like to access the elements of a `vector` or `string` in reverse, you can use `v.rbegin()` and `v.rend()` methods. If a `vector` or `string` was declared `const`, you can use `v.cbegin()` and `v.cend()`, which return `const_iterators` instead of `iterators` (just use `auto` if you are unsure). 
 
 Generic Algorithms
 ---
@@ -205,7 +205,7 @@ cout << *f3; // 6
 ```
 In the first two cases, `find` is using the `begin` and `end` methods of the `vector` and `string` containers. In the last case, we use the global methods `begin` and `end` to construct new iterators for the C style array `a`, which doesn't have any methods of its own. 
 
-The `find` algorithm works on *any* object that defines `==`. Other algorithms, such as `sort` work on amy object that defines `<`. That's whjy they are called *generic*.
+The `find` algorithm works on *any* object that defines `==`. Other algorithms, such as `sort` work on any object that defines `<`. That's whjy they are called *generic*.
 
 Here are a few more *read only* algorithms (ones that do not change their arguments) like find:
 ```c++
@@ -227,6 +227,8 @@ fill_n(v.begin(), 3, 1);                  // replace three elements at the begin
 copy(v.begin(), v.end(), w.begin() + 3);  // copy v into w starting at position 3
 replace(v.begin(), v.end(), 3,-1);        // replace element at position 3 with -1
 ```
+
+Further documentation on generic algorithms can be found [here](http://www.cplusplus.com/reference/algorithm/).
 
 Lambda Expressions
 ===
@@ -284,11 +286,12 @@ void add_to_all(vector<int> &v, int x) {
     );
 }
 ```
+Further reading on lambda expressions can be found [here](https://docs.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=vs-2017).
 
 Associative Containers
 ===
 
-Associative containers are different than sequential containers in that they index the container with keys, kind of like a struct, dictionary, or database. The associative containers defined in the STL are 'map', 'set', 'multimap', and 'multiset'. We will focus here on 'map', which can be used to illustrate the main features.
+Associative containers are different from sequential containers in that they index the container with keys, kind of like a struct, dictionary, or database. The associative containers defined in the STL are 'map', 'set', 'multimap', and 'multiset'. We will focus here on 'map', which can be used to illustrate the main features.
 
  In a `map`, a set of keys are used to index a set of values. For example, you might define a `map` as follows:
  ```c++
@@ -311,7 +314,7 @@ a[0] = 123;
 a[5] = 34;
 int x = a[3]; // 0. Non-existent keys map to default values of the value type
 ```
-Some implementations of Javascript actually do this for arrays.
+Some implementations of Javascript actually look something like this for arrays.
 
 You can iterate through the keys and value of a `map` with iterators. The order in which the interators visit the elements of the map is not guaranteed, so do not depend on it. For example, using the definition of `m` above, 
 ```c++
@@ -326,6 +329,8 @@ You can erase key/value pairs from a map using either keys or iterators.
 m.erase("First");
 m.erase(m.begin());
 ```
+
+More information about map containers can be found [here](http://www.cplusplus.com/reference/map/map/).
 
 File I/O
 ===
@@ -366,4 +371,3 @@ Exercises
     double
     quotes'
     ```
-1. One more exercise, TBA.
