@@ -296,9 +296,9 @@ Associative containers are different from sequential containers in that they ind
  In a `map`, a set of keys are used to index a set of values. For example, you might define a `map` as follows:
  ```c++
     map<string,string> person;
-    m["First"] = "Alan";
-    m["Last"] = "Turing";
-    m["job"] = "Code breaker";
+    person["First"] = "Alan";
+    person["Last"] = "Turing";
+    person["job"] = "Code breaker";
  ```
 Note that the `map` template takes two types, the key type and the value type. They do not have to be the same:
 ```c++
@@ -318,8 +318,14 @@ Some implementations of Javascript actually look something like this for arrays.
 
 You can iterate through the keys and value of a `map` with iterators. The order in which the interators visit the elements of the map is not guaranteed, so do not depend on it. For example, using the definition of `m` above, 
 ```c++
-for(auto i = m.begin(); i != m.end(); i++) {
+for(auto i = person.begin(); i != person.end(); i++) {
     cout << (*i).first << ": " << (*i).second << "\n";
+}
+```
+which can also be written
+```c++
+for(auto i = person.begin(); i != person.end(); i++) {
+    cout << i->first << ": " << i->second << "\n";
 }
 ```
 When you dereference an iterator in a `map` you get a `pair` object (also defined by the STL). It will have the same types as the map. In the above example, `*i` as the type `pair<string,string>`. The pair object has a `first` and `second` field that references to the actual key and value of the map to which the iterator refers.
