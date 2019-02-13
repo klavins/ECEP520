@@ -1,67 +1,86 @@
+#include <stdexcept>
 #include <iostream>
-#include "manager.h"
+#include "elma.h"
 
-Manager::Manager() {
+namespace elma {
 
-}
+    Manager& Manager::schedule(
+        Process& process, 
+        high_resolution_clock::duration period) {
 
-Manager& Manager::schedule(
-    Process& process, 
-    high_resolution_clock::duration period) {
+            process._period = period;
+            _processes.push_back(&process); // note: without pointers, calling push_back would
+                                            // try to copy process, which was declared as a Process
+                                            // which is an abstract base class, and can't be constructed
+        process._manager_ptr = this;            
 
-        process._period = period;
-        _processes.push_back(&process); // note: without pointers, calling push_back would
-                                        // try to copy process, which was declared as a Process
-                                        // which is an abstract base class, and can't be constructed
+        return *this;
 
-    return *this;
-
-}
-
-Manager& Manager::drop(Process&) {
-
-}
-
-Manager& Manager::init() {
-
-    for(auto process_ptr : _processes) {
-        process_ptr->_last_update = high_resolution_clock::duration::zero();
-        process_ptr->_status = Process::INITIALIZED;
-        process_ptr->init();
     }
 
-    return *this;    
+    Manager& Manager::drop(Process&) {
 
-}
+    }
 
-void Manager::update(high_resolution_clock::duration elapsed) { 
+    Manager& Manager::add_channel(Channel& channel) {
+        _channels[channel.name()] = &channel;
+        return *this;
+    }
 
-    for(auto process_ptr : _processes) {
-
-        if ( elapsed > process_ptr->last_update() + process_ptr->period() ) {
-            process_ptr->update();
-            process_ptr->_last_update = elapsed;
+    Channel& Manager::channel(string name) {
+        if ( _channels.find(name) != _channels.end() ) {
+          return *(_channels[name]);
+        } else {
+            throw std::domain_error("Tried to access an unregistered or non-existant channel.");
         }
     }
 
-    return;
-
-}
-
-Manager& Manager::run(high_resolution_clock::duration duration) {
-
-    auto t0 = high_resolution_clock::now();
-    auto elapsed = high_resolution_clock::duration::zero();
-
-    // std::cout << elapsed.count() << "\n";
-    while ( elapsed < duration ) {
-
-        update(elapsed);
-        elapsed = high_resolution_clock::now() - t0;
-        // std::cout << elapsed.count() << "\n";
-
+    Manager& Manager::all(std::function< void(Process&) > f) {
+        for(auto process_ptr : _processes) {
+            f(*process_ptr);
+        }
+        return *this;
     }
 
-    return *this;
+    Manager& Manager::init() {
+        return all([](Process& p) {
+            p._init();
+        });
+    }
+
+    Manager& Manager::start() {
+        return all([this](Process& p) {
+            p._start(_elapsed);
+        });
+    }    
+
+    Manager& Manager::stop() {
+        return all([](Process& p) {
+            p._stop();
+        });
+    }    
+
+    Manager& Manager::update() { 
+        return all([this](Process& p) {
+            if ( _elapsed > p.last_update() + p.period() ) {
+                p._update(_elapsed);
+            }
+        });
+    }
+
+    Manager& Manager::run(high_resolution_clock::duration runtime) {
+
+        _start_time = high_resolution_clock::now();
+        _elapsed = high_resolution_clock::duration::zero();
+        start();        
+
+        while ( _elapsed < runtime ) {
+            update();
+            _elapsed = high_resolution_clock::now() - _start_time;
+        }
+
+        return *this;
+
+    }
 
 }

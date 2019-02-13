@@ -2,33 +2,56 @@
 #define MANAGER_H
 
 #include <vector>
+#include <map>
 #include <chrono>
+#include <functional>
 
-#include "process.h"
+#include "elma.h"
 
-using std::vector;
-using namespace std::chrono;
+namespace elma {
 
-class Manager {
+    using std::string;
+    using std::vector;
+    using std::map;
+    using namespace std::chrono;
 
-public:
+    class Channel;
+    class Process;
 
-    Manager();
+    class Manager {
 
-    Manager& schedule(
-        Process& process, 
-        high_resolution_clock::duration period);
-    
-    Manager& drop(Process&);
+        public: 
 
-    Manager& init();
-    void update(high_resolution_clock::duration elapsed);
-    Manager& run(high_resolution_clock::duration duration);
+        Manager() {}
 
-private:
+        Manager& add_channel(Channel&);
+        Manager& schedule(Process& process, high_resolution_clock::duration period);
 
-    vector<Process *> _processes;
+        Channel& channel(string);
 
-};
+        Manager& drop(Process&);
+        Manager& all(std::function<void(Process&)> f);
+
+        Manager& init();
+        Manager& start();
+        Manager& stop();
+        Manager& run(high_resolution_clock::duration);
+
+        // should this be private?
+        Manager& update();
+
+        inline high_resolution_clock::time_point start_time() { return _start_time; }
+        inline high_resolution_clock::duration elapsed() { return _elapsed; }
+
+        private:
+
+        vector<Process *> _processes;
+        map<string, Channel *> _channels;
+        high_resolution_clock::time_point _start_time;
+        high_resolution_clock::duration _elapsed;
+
+    };
+
+}
 
 #endif
