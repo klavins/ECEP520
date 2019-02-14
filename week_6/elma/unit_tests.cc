@@ -14,6 +14,44 @@ namespace {
 
     #define HRC_DUR high_resolution_clock::duration
 
+    TEST(RATIO,RATIO) {
+      typedef std::ratio<2,3> two_thirds;
+      std::cout << two_thirds::num << "/" <<two_thirds::den << "\n";
+      typedef std::chrono::duration<int,std::milli> milliseconds_type;
+
+      auto x = milliseconds_type(10);   
+      std::cout << "ten ms = " << x.count() << "ms\n";
+
+      typedef std::chrono::duration<double,std::ratio<1,1>> seconds_type;
+      auto y = seconds_type(x);
+      std::cout << "ten ms = " << y.count() << "s\n";
+
+      auto w = x+y;
+      auto z = y+y;
+      std::cout << "x+y = " << w.count() << "ms\n";
+      std::cout << "y+x = " << z.count() << "s\n";
+
+      auto zero = seconds_type::zero();
+      ASSERT_EQ(0, zero.count());
+
+    }
+
+    TEST(CLOCK,CLOCK) {
+      high_resolution_clock::time_point t = high_resolution_clock::now();
+      std::cout << t.time_since_epoch().count() << " ns since 1970\n";
+      typedef std::chrono::duration<double,std::ratio<3600*24*365,1>> years;
+      auto y = years(t.time_since_epoch());
+      std::cout << y.count() << " hours since 1970\n";
+    }
+
+    TEST(CLOCK,DIFF) {
+      high_resolution_clock::time_point t1, t2;
+      t1 = high_resolution_clock::now();
+      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+      t2 = high_resolution_clock::now();
+      std::cout << (t2 - t1).count() << " ns\n";      
+    }
+
     class MyProcess : public elma::Process {
       public:
         MyProcess(std::string name) : Process(name) {}
@@ -96,7 +134,6 @@ namespace {
         void init() {}
         void start() {}
         void update() {
-          double v;
           if ( channel("Velocity").nonempty() ) {
             speed = channel("Velocity").latest();
           }
@@ -109,22 +146,22 @@ namespace {
                      KP = 0.5;
     };   
 
-    TEST(Car,OpenLoop2) {
+    // TEST(Car,OpenLoop2) {
 
-      elma::Manager m;
+    //   elma::Manager m;
 
-      ControllableCar car("Car");
-      CruiseControl cc("Control");
-      elma::Channel throttle("Throttle");
-      elma::Channel velocity("Velocity");
+    //   ControllableCar car("Car");
+    //   CruiseControl cc("Control");
+    //   elma::Channel throttle("Throttle");
+    //   elma::Channel velocity("Velocity");
 
-      m.schedule(car, HRC_DUR(milliseconds(10)))
-       .schedule(cc, HRC_DUR(milliseconds(10)))
-       .add_channel(throttle)
-       .add_channel(velocity)
-       .init()
-       .run(HRC_DUR(milliseconds(10000)));
+    //   m.schedule(car, HRC_DUR(milliseconds(10)))
+    //    .schedule(cc, HRC_DUR(milliseconds(10)))
+    //    .add_channel(throttle)
+    //    .add_channel(velocity)
+    //    .init()
+    //    .run(HRC_DUR(milliseconds(10000)));
 
-    }          
+    // }          
 
 }
