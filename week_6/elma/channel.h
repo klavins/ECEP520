@@ -21,6 +21,7 @@ namespace elma {
         Channel& send(double);
         Channel& flush(double);
         double latest();
+        double earliest();
         inline int size() { return _queue.size(); }
         inline bool empty() { return _queue.size() == 0; }
         inline bool nonempty() { return _queue.size() > 0; }

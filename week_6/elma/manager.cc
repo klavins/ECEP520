@@ -8,10 +8,8 @@ namespace elma {
         Process& process, 
         high_resolution_clock::duration period) {
 
-            process._period = period;
-            _processes.push_back(&process); // note: without pointers, calling push_back would
-                                            // try to copy process, which was declared as a Process
-                                            // which is an abstract base class, and can't be constructed
+        process._period = period;
+        _processes.push_back(&process); 
         process._manager_ptr = this;            
 
         return *this;
@@ -43,21 +41,15 @@ namespace elma {
     }
 
     Manager& Manager::init() {
-        return all([](Process& p) {
-            p._init();
-        });
+        return all([](Process& p) { p._init();});
     }
 
     Manager& Manager::start() {
-        return all([this](Process& p) {
-            p._start(_elapsed);
-        });
+        return all([this](Process& p) { p._start(_elapsed) ;});
     }    
 
     Manager& Manager::stop() {
-        return all([](Process& p) {
-            p._stop();
-        });
+        return all([](Process& p) { p._stop(); });
     }    
 
     Manager& Manager::update() { 
@@ -78,6 +70,8 @@ namespace elma {
             update();
             _elapsed = high_resolution_clock::now() - _start_time;
         }
+
+        stop();
 
         return *this;
 

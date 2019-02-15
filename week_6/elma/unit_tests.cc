@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ratio>
 #include <thread>
+#include <vector>
 
 #include "elma.h"
 
@@ -11,8 +12,9 @@ namespace {
 
     using std::string;
     using namespace std::chrono;
+    using std::vector;
 
-    #define HRC_DUR high_resolution_clock::duration
+    #define MS(__ms__) high_resolution_clock::duration(milliseconds(__ms__))
 
     TEST(RATIO,RATIO) {
       typedef std::ratio<2,3> two_thirds;
@@ -47,7 +49,7 @@ namespace {
     TEST(CLOCK,DIFF) {
       high_resolution_clock::time_point t1, t2;
       t1 = high_resolution_clock::now();
-      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
       t2 = high_resolution_clock::now();
       std::cout << (t2 - t1).count() << " ns\n";      
     }
@@ -68,10 +70,10 @@ namespace {
     TEST(Manager,Schedule) {
       elma::Manager m;
       MyProcess p("A"), q("B");
-      m.schedule(p, HRC_DUR(milliseconds(1)))
-       .schedule(q, HRC_DUR(milliseconds(5)))
+      m.schedule(p, MS(1))
+       .schedule(q, MS(5))
        .init()
-       .run(HRC_DUR(milliseconds(11)));
+       .run(MS(11));
        ASSERT_EQ(p.num_updates(), 10);
        ASSERT_EQ(q.num_updates(), 2);
     }
@@ -95,12 +97,12 @@ namespace {
         const double m = 100;
     };
 
-    TEST(Car,OpenLoop1) {
+    TEST(Car,OpenLoop) {
       elma::Manager m;
       OpenLoopCar car("Toyota");
-      m.schedule(car, HRC_DUR(milliseconds(10)))
+      m.schedule(car, MS(10))
        .init()
-       .run(HRC_DUR(milliseconds(100)));
+       .run(MS(100));
     }    
 
     class ControllableCar : public elma::Process {
@@ -114,23 +116,23 @@ namespace {
           if ( channel("Throttle").nonempty() ) {
             force = channel("Throttle").latest();
           }
-          velocity += delta() * ( - k * velocity + force ) / m;
+          velocity += ( delta() / 1000 ) * ( - k * velocity + force ) / m;
           channel("Velocity").send(velocity);
-          std::cout << "t: " << milli_time() << " ms\t" 
-                    << " u: " << force << " m^2/s\t"
-                    << " v: " << velocity << " m/s\n";
+          std::cout << "t: "  << milli_time() << " ms\t" 
+                    << " u: " << force        << " N\t"
+                    << " v: " << velocity     << " m/s\n";
         }
         void stop() {}
       private:
         double velocity;
         double force;
         const double k = 0.02;
-        const double m = 100;
+        const double m = 1000;
     };  
 
     class CruiseControl : public elma::Process {
       public:
-        CruiseControl(std::string name) : Process(name) {}
+        CruiseControl(std::string name, vector<double> v) : Process(name), _v(v) {}
         void init() {}
         void start() {}
         void update() {
@@ -143,25 +145,26 @@ namespace {
       private:
         double speed = 0;
         const double desired_speed = 50.0,
-                     KP = 0.5;
+                     KP = 314.15;
+                     vector<double> _v;
     };   
 
-    // TEST(Car,OpenLoop2) {
+    TEST(Car,ClosedLoop) {
 
-    //   elma::Manager m;
+      elma::Manager m;
 
-    //   ControllableCar car("Car");
-    //   CruiseControl cc("Control");
-    //   elma::Channel throttle("Throttle");
-    //   elma::Channel velocity("Velocity");
+      ControllableCar car("Car");
+      CruiseControl cc("Control", { 1,2,3});
+      elma::Channel throttle("Throttle");
+      elma::Channel velocity("Velocity");
 
-    //   m.schedule(car, HRC_DUR(milliseconds(10)))
-    //    .schedule(cc, HRC_DUR(milliseconds(10)))
-    //    .add_channel(throttle)
-    //    .add_channel(velocity)
-    //    .init()
-    //    .run(HRC_DUR(milliseconds(10000)));
+      m.schedule(car, MS(10))
+       .schedule(cc, MS(10))
+       .add_channel(throttle)
+       .add_channel(velocity)
+       .init()
+       .run(MS(10));
 
-    // }          
+    }
 
 }
