@@ -14,7 +14,11 @@ namespace elma {
     using std::string;
     using namespace std::chrono;
 
-    class Process {
+     //! An abstract base class for processes
+     /*!
+     Derived classes should imlement the init, start, update, and stop methods.
+     */
+     class Process {
 
         public:
 
@@ -22,7 +26,13 @@ namespace elma {
 
         typedef enum { UNINITIALIZED, STOPPED, RUNNING } status_type;
 
+        //! Default constructor. Names process "no name"
         Process() : _name("no name"), _status(UNINITIALIZED) {}
+
+        //! Constructor that takes a name for the process
+        /*!
+          \param name The name of the process
+        */
         Process(std::string name) : _name(name), _status(UNINITIALIZED) {}
         virtual ~Process() = default;
 

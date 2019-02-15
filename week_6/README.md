@@ -685,6 +685,13 @@ t: 140.022 ms    u: 23.542 m^2/s         v: 3.15095 m/s
 ...
 ```
 
+Documentation
+===
+Documentation on `elma` is still sparce, but I will fill it in asap. You can view the documentation by running
+```bash
+make docs 
+```
+and then opening `html/index.html` in your browser. 
 
 Exercises
 ===

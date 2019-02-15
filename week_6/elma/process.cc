@@ -3,6 +3,12 @@
 
 namespace elma {
 
+    //! Access a channel with the given name
+    /*!
+      A more elaborate description of the constructor.
+      \param name The name of the channel
+      \return A reference to the process, for method chaining
+    */
     Channel& Process::channel(string name) {
         return _manager_ptr->channel(name);
     }
