@@ -359,7 +359,7 @@ Exercises
     that writes a comma separated value (CSV) file of doubles from a matrix. Test that you can write and read a matrix and get the same matrix back.
 1. Write a method
     ```c++
-    map<string, int> occurance_map(const string path);
+    map<string, int> occurrence_map(const string path);
     ```
     that reads in an ascii text file and returns an assocation where each key is a word in the text file and each value is the number of occurances of that word. Ignore punctuation and numbers. The method should be case-insensitive and should store the keys as lowercase. A word is definited by an string consisting entirely of alpha-numeric characters or apostrophes (single quote characteris). For example, if the file contained
     ```

@@ -22,7 +22,7 @@ Specifically, this course takes a detailed look at two programming languages, C+
 * Week 4: Fundamentals of C++ and object oriented programming
 * Week 5: C++ Standard Template Library
 * Week 6: Event loops, process control, and scheduling
-* Week 7: Programming sensors and effectors
+* Week 7: Events and finite state machines
 * Week 8: Networking
 * Week 9: Cloud computing
 * Week 10: Projects
