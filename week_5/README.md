@@ -345,36 +345,59 @@ Learn to read and write files [here](http://www.cplusplus.com/reference/fstream/
 
 Exercises
 ===
-1. Write a function called `sort_by_magnitude` that takes a reference to a vector of doubles and sorts it with a comparison function that says that x < y if and only if the absolute value of x is less than the absoilute value of y. For example, -5 would be great than 4 because |-5| > |4|. Use the generic algorithm `sort` (which you can look up on the c++ reference we page) and a lambda expression for your comparison function. Declare this method in `unitlities.h` as well, and implement it in `utilities.cc`. 
-1. Rewrite the `TypedMatrix` class with `vector`s instead of `TypedArrays`. The interface to the user should be identical to what wS specifid in that previous homework.
-1. Write a method
+1. Write a function called `sort_by_magnitude` that takes a reference to a vector of doubles and sorts it with a comparison function that says that x < y if and only if the absolute value of x is less than the absoilute value of y. For example, -5 would be great than 4 because |-5| > |4|. Use the generic algorithm `sort` (which you can look up on the c++ reference we page) and a lambda expression for your comparison function. Declare this method in `utilities.h` as well, and implement it in `utilities.cc`. 
+1. Rewrite the `TypedMatrix` class with `vector`s instead of `TypedArrays`. The interface to the user should be identical to what we specifid in that previous homework.
+1. Write a method in in `utilities.h` and `utilities.cc`
     ```c++
     TypedMatrix<double> read_matrix_csv(const string path);
     ```
     that reads a comma separated value (CSV) file of doubles into a matrix and returns it. If there are any errors in the format of the CVS file, or missing values (so the CSV does not represent a matrix), throw an exception. Spaces and tabs should be ok in between commas, but newlines should only be used to terminate a row of the matrix.
+    
+    Place this method in `utilities.h` and `utilities.cc`
 1. Write a method
     ```c++
-    void write_matrix_csv(const TypedMatrix<double> &matrix);
+    void write_matrix_csv(const TypedMatrix<double> &matrix, const string path);
     ```
     that writes a comma separated value (CSV) file of doubles from a matrix. Test that you can write and read a matrix and get the same matrix back.
+    
+    Place this method in `utilities.h` and `utilities.cc`
 1. Write a method
     ```c++
     map<string, int> occurrence_map(const string path);
     ```
-    that reads in an ascii text file and returns an assocation where each key is a word in the text file and each value is the number of occurances of that word. Ignore punctuation and numbers. The method should be case-insensitive and should store the keys as lowercase. A word is definited by an string consisting entirely of alpha-numeric characters or apostrophes (single quote characteris). For example, if the file contained
+    that reads in an ascii text file and returns an assocation where each key is a word in the text file and each value is the number of occurences of that word. Words consist entirely of either alpha-numeric characters (`a` through `z`, `A` through `Z`, `0` through `9`) or the single quote characters `'`. This constitutes only `26*2 + 10 + 1 = 63` valid characters. Valid words include `dont'` `10xgenomics` `bob`, etc. Invalid words are `$$f(x)$$` `Sh%6fh`, `not_a_word_because_of_underscores` The method should be case-insensitive and should store the keys as lowercase. Consider the following examples:
+    
+    **example 1: invalid word**
+    
     ```
     This is a sentence. Don't think of wier_d strings as words. Really, 123 is a nice number. 
     ```
-    you would include *sentence*, *don't*,  and *123* but not ., ,, or wier_d. Using single quotes as quotes, as in
+    *valid keys*: `this is a sentence don't think of strings as words really 123 is a nice number`
+    
+    *invalid strings*: `wier_d`
+    
+    **example 2: single quotes**
     ```
     'I should use double quotes'
     ```
-    is a user error and will catch the "words" 
+    
+    *valid keys*: `'I should use double quotes'`
+    
+    *invalid strings*: None
+    
+    **example 3: single and double quotes & punctuation**
     ```
-    'I
-    should
-    use
-    double
-    quotes'
+    George Mallory's famous quote: "My mind is in a state of constant rebellion."
     ```
-    Declare this method in `unitlities.h` as well, and implement it in `utilities.cc`. 
+    *valid keys*: `george mallory's famouse quote my mind is in a state of constant rebellion`
+    
+    *invalid strings*: None
+
+    **example 4: parentheses, quotes, punctuation**
+    ```
+    10XGenomics (a biotech company) is quoted as saying "blah blah blah."
+    ```
+    
+    *valid keys*: `10xgenomics a biotech company is quoted as saying blah`
+    
+    *invalid words*: None
