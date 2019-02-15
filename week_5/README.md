@@ -365,7 +365,7 @@ Exercises
     ```c++
     map<string, int> occurrence_map(const string path);
     ```
-    that reads in an ascii text file and returns an assocation where each key is a word in the text file and each value is the number of occurences of that word. Words consist entirely of either alpha-numeric characters (`a` through `z`, `A` through `Z`, `0` through `9`) or the single quote characters `'`. This constitutes only `26*2 + 10 + 1 = 63` valid characters. Valid words include `dont'` `10xgenomics` `bob`, etc. Invalid words are `$$f(x)$$` `Sh%6fh`, `not_a_word_because_of_underscores` The method should be case-insensitive and should store the keys as lowercase. Consider the following examples:
+    that reads in an ascii text file and returns an assocation where each key is a word in the text file and each value is the number of occurences of that word. Words consist entirely of either alpha-numeric characters (`a` through `z`, `A` through `Z`, `0` through `9`) or the single quote characters `'`. This constitutes only `26*2 + 10 + 1 = 63` valid characters. Valid words include `dont'` `10xgenomics` `bob`, etc. Invalid words are `$$f(x)$$` `Sh%6fh`, `not_a_word_because_of_underscores`. The method should be case-insensitive and should store the keys as lowercase. Ignore punctuation so that `I'm done!` results in keys `i'm` and `done`. Quotes should be handles as well so that `I'm so "done"` results in keys `i'm`, `so`, and `done`. Consider the following examples:
     
     **example 1: invalid word**
     
@@ -400,4 +400,12 @@ Exercises
     
     *valid keys*: `10xgenomics a biotech company is quoted as saying blah`
     
-    *invalid words*: None
+    *invalid strings*: None
+    
+    **example 5: invalid words**
+    ```
+    the)s are no%y6 wo!e4
+    ```
+    *valid keys*: `are`
+    
+    *invalid string*: `the)s no%y6 wo!e4`
