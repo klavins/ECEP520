@@ -132,7 +132,7 @@ namespace {
 
     class CruiseControl : public elma::Process {
       public:
-        CruiseControl(std::string name, vector<double> v) : Process(name), _v(v) {}
+        CruiseControl(std::string name) : Process(name) {}
         void init() {}
         void start() {}
         void update() {
@@ -154,7 +154,7 @@ namespace {
       elma::Manager m;
 
       ControllableCar car("Car");
-      CruiseControl cc("Control", { 1,2,3});
+      CruiseControl cc("Control");
       elma::Channel throttle("Throttle");
       elma::Channel velocity("Velocity");
 
@@ -163,7 +163,7 @@ namespace {
        .add_channel(throttle)
        .add_channel(velocity)
        .init()
-       .run(MS(10));
+       .run(MS(10000));
 
     }
 

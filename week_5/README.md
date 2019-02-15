@@ -345,7 +345,7 @@ Learn to read and write files [here](http://www.cplusplus.com/reference/fstream/
 
 Exercises
 ===
-1. Write a function called `sort_by_magnitude` that takes a reference to a vector of doubles and sorts it with a comparison function that says that x < y if and only if the absolute value of x is less than the absoilute value of y. For example, -5 would be great than 4 because |-5| > |4|. Use the generic algorithm `sort` (which you can look up on the c++ reference we page) and a lambda expression for your comparison function. Make the function available in a header file called `utilities.h`.
+1. Write a function called `sort_by_magnitude` that takes a reference to a vector of doubles and sorts it with a comparison function that says that x < y if and only if the absolute value of x is less than the absoilute value of y. For example, -5 would be great than 4 because |-5| > |4|. Use the generic algorithm `sort` (which you can look up on the c++ reference we page) and a lambda expression for your comparison function. Declare this method in `unitlities.h` as well, and implement it in `utilities.cc`. 
 1. Rewrite the `TypedMatrix` class with `vector`s instead of `TypedArrays`. The interface to the user should be identical to what wS specifid in that previous homework.
 1. Write a method
     ```c++
@@ -377,3 +377,4 @@ Exercises
     double
     quotes'
     ```
+    Declare this method in `unitlities.h` as well, and implement it in `utilities.cc`. 

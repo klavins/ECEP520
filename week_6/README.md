@@ -578,7 +578,7 @@ Example: Cruise Control
 
 As an example, we will develop a simple cruise control system in which we model a car with one process and a control system with another. The underlying mathematics look like this. Let `v` be the velocity of a car, `m` its mass, `k` the coefficient of rolling friction, and `u` the force being applied by the engine on the car. Then a very simplified model of the car's velocity comes from Newton's second law (`f = ma`):
 ```
-m dv/dt = k v - u
+m dv/dt = -k v + u
 ```
 This is a continuous model, but our processes are discrete. We can discretize the model using the definition of derivative:
 ```
@@ -591,7 +591,7 @@ dv/dt = (v(t) - v(t-h)) / h
 or 
 ```
 v(t) = v(t-h) + h dv/dt 
-     = v(t-h) + h (k v - u)
+     = v(t-h) - h (k v - u)
 ```
 In our case, `h` is given by the difference between the last update and the previous update, which is available to user processes via the `delta()` function. Thus, we can write
 ```c++
@@ -624,7 +624,7 @@ class Car : public elma::Process {
 ```
 A very simple controller uses proportional feedback. Basically, we set
 ```
-u = Kp ( v - vdes )
+u = - Kp ( v - vdes )
 ```
 where `Kp` is the proportional gain and `vdes` is the desired velocity. To make a control process, we write
 ```c++
@@ -668,20 +668,21 @@ Note that the order of the scheduling is important. We want the controller to ru
 
 The output of the system for the first few steps looks like:
 ```
-t: 10.0029 ms    u: 2.15007e-317 m^2/s   v: 2.15072e-319 m/s
-t: 20.0034 ms    u: 25 m^2/s             v: 0.250013 m/s
-t: 30.007 ms     u: 24.875 m^2/s         v: 0.498802 m/s
-t: 40.0107 ms    u: 24.7506 m^2/s        v: 0.7463 m/s
-t: 50.0109 ms    u: 24.6269 m^2/s        v: 0.992424 m/s
-t: 60.0139 ms    u: 24.5038 m^2/s        v: 1.23734 m/s
-t: 70.0157 ms    u: 24.3813 m^2/s        v: 1.48095 m/s
-t: 80.0162 ms    u: 24.2595 m^2/s        v: 1.72326 m/s
-t: 90.0168 ms    u: 24.1384 m^2/s        v: 1.96431 m/s
-t: 100.018 ms    u: 24.0178 m^2/s        v: 2.20412 m/s
-t: 110.019 ms    u: 23.8979 m^2/s        v: 2.44268 m/s
-t: 120.019 ms    u: 23.7787 m^2/s        v: 2.67999 m/s
-t: 130.02 ms     u: 23.66 m^2/s          v: 2.91608 m/s
-t: 140.022 ms    u: 23.542 m^2/s         v: 3.15095 m/s
+t: 20.0035 ms    u: 15707.5 N    v: 0.157106 m/s
+t: 30.0042 ms    u: 15658.1 N    v: 0.313699 m/s
+t: 40.0083 ms    u: 15609 N      v: 0.469852 m/s
+t: 50.0098 ms    u: 15559.9 N    v: 0.625474 m/s
+t: 60.0162 ms    u: 15511 N      v: 0.780684 m/s
+t: 70.0192 ms    u: 15462.2 N    v: 0.935352 m/s
+t: 80.021 ms     u: 15413.7 N    v: 1.08952 m/s
+t: 90.054 ms     u: 15365.2 N    v: 1.24368 m/s
+t: 100.056 ms    u: 15316.8 N    v: 1.39688 m/s
+t: 110.061 ms    u: 15268.7 N    v: 1.54963 m/s
+t: 120.064 ms    u: 15220.7 N    v: 1.70189 m/s
+t: 130.069 ms    u: 15172.9 N    v: 1.85369 m/s
+t: 140.073 ms    u: 15125.2 N    v: 2.00501 m/s
+t: 150.076 ms    u: 15077.6 N    v: 2.15583 m/s
+t: 160.079 ms    u: 15030.2 N    v: 2.30617 m/s
 ...
 ```
 
@@ -760,3 +761,5 @@ Exercises
     std::get<2>(info["car"]); // 10.014
     std::get<3>(info["car"]); // 123
     ```
+  1. Extra credit (street cred sort of credit): Add an integrator to the cruise controller.
+  1. Extra credit: Fix the main loop of the manager to sleep the appropriate amount of time.
