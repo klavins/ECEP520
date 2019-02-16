@@ -24,7 +24,7 @@ In our case, `h` is given by the difference between the last update and the prev
 
     class Car : public elma::Process {
     public:
-        ControllableCar(std::string name) : Process(name) {}
+        Car(std::string name) : Process(name) {}
         void init() {}
         void start() {
         velocity = 0;
