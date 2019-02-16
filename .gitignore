@@ -4,5 +4,10 @@ build/
 html/
 latex/
 tmp/
-docs.config
+week_1/*/docs.config
+week_2/*/docs.config
+week_3/*/docs.config
+week_4/*/docs.config
+week_5/*/docs.config
+week_6/*/docs.config
 ~*

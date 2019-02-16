@@ -1,8 +1,11 @@
 #include "dynamic_array.h"
+#include "arbitrary_array.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+
+static ArbitraryArray * ptrs = ArbitraryArray_new(sizeof(DynamicArray *));
 
 /* private functions *********************************************************/
 
@@ -53,6 +56,15 @@ DynamicArray * DynamicArray_new(void) {
     da->buffer = (double *) calloc ( da->capacity, sizeof(double) ); 
     da->origin = da->capacity / 2;
     da->end = da->origin;
+
+    int n = ArbitraryArray_size(ptrs);
+    ArbitraryArray_set_from_ptr(ptrs, n, &da);
+    DynamicArray ** ptr = (DynamicArray **) ArbitraryArray_get_ptr(ptrs,n);
+    printf("%x, %x\n", da, *ptr);
+    printf("%x, %x, %x\n", da, *ptr, ptr);
+    if ( da == *ptr ) {
+        printf("YAY\n");
+    }
     return da;
 }
 
