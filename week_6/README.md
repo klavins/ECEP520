@@ -727,9 +727,10 @@ Exercises
     ```
     To test your method, we will use assertions that test that `get_seconds` (for example) is approximately equal to the number of seconds that the stopwatch should have counted.
 1. Overload the `latest` method for `Channel` to return the `n` most recent values in a `vector` of values. If there are fewer than `n` values, return the most that can be retrieved. The vector returned should be new, and not a reference to the channel's `deque`. 
+1. Add a new method to `Channel` called `change_capacity(int)` that adjusts the capacity of the channel. Make sure that if the user decreases the capacity size, that you thrown out all the oldest values that no longer fit in the channel.
 1. Write a process called `Random` that sends random doubles between 0 and 1 (inclusive) to a channel called `link`. Write another process called `Filter` that reads from the `link` channel and computes a filtered version of the channel. The constructor to `Filter` should take an additional set of weights to apply. Suppose the latest `n` values retrieved from `link` are `v1` ... `vn` (with `v1` the latest value). Then the filter should compute
     ```
-    w1 * v1 + ... + vn * vn
+    w1 * v1 + ... + wn * vn
     ```
     Store the filtered value in an instance variable and make it available via a method `inline double value()`. The following code might be used to assemble the system:
     ```c++
@@ -747,6 +748,8 @@ Exercises
 
     // Then assert something about f.value();
     ```
+    Make sure that if the user requests a list of weights that is longer than the capacity of the channel, that you adjust the capacity. Do this in the `init()` method of `Filter`. 
+
     By the way, you can generate raundom numbers using the [rand](http://www.cplusplus.com/reference/cstdlib/rand/) function availale in `stdlib`. You will need to convert the integer to a double and scale it using `RAND_MAX`. 
 1. Read the documentation on the [tuple](http://www.cplusplus.com/reference/tuple/tuple/?kw=tuple) template in C++. The goal of this exercise to a method that lists information about the processes in the manager, much like the `ps waux` listing in UNIX. In particular, write a Manager method
     ```c++
@@ -761,5 +764,6 @@ Exercises
     std::get<2>(info["car"]); // 10.014
     std::get<3>(info["car"]); // 123
     ```
+  1. Go to the canvas discussions for the course and suggest a better name for Elma. 
   1. Extra credit (street cred sort of credit): Add an integrator to the cruise controller.
   1. Extra credit: Fix the main loop of the manager to sleep the appropriate amount of time.
