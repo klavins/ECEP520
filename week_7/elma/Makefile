@@ -38,6 +38,10 @@ directories:
 docs: $(SOURCES) $(HEADERS)
 	$(DGEN) $(DGENCONFIG)
 
+publish: 
+	rm -r ../../docs/
+	cp -r html ../../docs
+
 #Clean only Objects
 clean:
 	@$(RM) -rf $(BUILDDIR)/*.o

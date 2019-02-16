@@ -7,10 +7,18 @@
 
 var indexSectionsWithContent =
 {
+  0: "acdefilmnprsu",
+  1: "cmp",
+  2: "acdefilmnprsu",
+  3: "s"
 };
 
 var indexSectionNames =
 {
+  0: "all",
+  1: "classes",
+  2: "functions",
+  3: "enums"
 };
 
 function convertToId(search)
