@@ -3,18 +3,18 @@ CC          := g++ -std=c++14
 DGEN        := doxygen
 
 #The Target Binary Program
-TARGET      := libelma.a
+TARGET      := test
 
 #The Directories, Source, Includes, Objects, Binary and Resources
 SRCDIR      := .
-INCDIR      := .
+INCDIR      := ..
 BUILDDIR    := ./build
-TARGETDIR   := ./lib
+TARGETDIR   := ./bin
 SRCEXT      := cc
 
 #Flags, Libraries and Includes
 CFLAGS      := -fsanitize=address -ggdb
-LIB         := -lgtest -lpthread -lasan
+LIB         := -L../lib -lgtest -lpthread -lasan -lelma
 INC         := -I$(INCDIR)
 INCDEP      := -I$(INCDIR)
 
@@ -48,15 +48,15 @@ clean:
 
 #Full Clean, Objects and Binaries
 spotless: clean
-	@$(RM) -rf $(TARGETDIR)/$(TARGET) *.db
-	@$(RM) -rf build lib html latex
+	@$(RM) -rf $(TARGETDIR)/$(TARGET) $(DGENCONFIG) *.db
+	@$(RM) -rf build bin html latex
 
 #Link
 $(TARGETDIR)/$(TARGET): $(OBJECTS) $(HEADERS)
-	ar rvs $@ $(OBJECTS)
-	
+	$(CC) $(CFLAGS) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
 #Compile
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(HEADERS)
-	$(CC) $(CFLAGS) $(INC) -c -fPIC -o $@ $<
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 .PHONY: directories remake clean cleaner apidocs $(BUILDDIR) $(TARGETDIR)
