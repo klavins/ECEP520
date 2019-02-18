@@ -36,6 +36,20 @@ namespace elma {
         } else {
             throw std::domain_error("Tried to access an unregistered or non-existant channel.");
         }
+    }    
+
+    Manager& Manager::watch(string event_name, std::function<void(Event&)> handler) {
+        event_handlers["name"].push_back(handler);
+        return *this;
+    }
+
+    Manager& Manager::emit(string event_name, Event& event) {
+        if ( event_handlers.find(event_name) != event_handlers.end() ) {
+            for ( auto handler : event_handlers[event_name] ) {
+                handler(event);
+            }
+        }
+        return *this;
     }
 
     //! Apply a function to all processes.

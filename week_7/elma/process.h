@@ -3,6 +3,7 @@
 
 #include <string>
 #include <chrono>
+#include <functional>
 
 #include "elma.h"
 
@@ -98,6 +99,9 @@ namespace elma {
         Channel& channel(string name);
         double milli_time();
         double delta();
+
+        void watch(string event_name, std::function<void(Event&)> handler);
+        void emit(string event_name, Event& event);
 
         private:
 

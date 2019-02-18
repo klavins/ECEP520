@@ -25,12 +25,8 @@ namespace elma {
 
         //! Default constructor
         Manager() {}
-
-        Manager& add_channel(Channel&);
+        
         Manager& schedule(Process& process, high_resolution_clock::duration period);
-
-        Channel& channel(string);
-
         Manager& all(std::function<void(Process&)> f);
 
         Manager& init();
@@ -48,10 +44,18 @@ namespace elma {
         //! \return The duration of time since the manager was most recently started
         inline high_resolution_clock::duration elapsed() { return _elapsed; }
 
-        private:
+        // Channel Interface
+        Manager& add_channel(Channel&);
+        Channel& channel(string);
 
+        // Event Interface
+        Manager& watch(string event_name, std::function<void(Event&)> handler);
+        Manager& emit(string name, Event& event);
+
+        private:
         vector<Process *> _processes;
         map<string, Channel *> _channels;
+        map<string, vector<std::function<void(Event&)>>> event_handlers;
         high_resolution_clock::time_point _start_time;
         high_resolution_clock::duration _elapsed;
 

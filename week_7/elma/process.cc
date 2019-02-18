@@ -12,6 +12,14 @@ namespace elma {
         return _manager_ptr->channel(name);
     }
 
+    void Process::watch(string event_name, std::function<void(Event&)> handler) {
+        _manager_ptr->watch(event_name, handler);
+    }
+
+    void Process::emit(string event_name, Event& event) {
+        _manager_ptr->emit(event_name, event);
+    }
+
     //! The time since the last update in millisconds, as a double
     /*!
       \return The time since the last update, in milliseconds
