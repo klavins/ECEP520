@@ -24,7 +24,10 @@ namespace {
             ch.send("hello");
             ASSERT_EQ("hello", ch.latest());
             ASSERT_EQ(false, ch.empty());
-            ASSERT_EQ(true, ch.nonempty());            
+            ASSERT_EQ(true, ch.nonempty());     
+
+            ch.send(3.14159);
+            ASSERT_EQ(3.14159, ch.latest());                   
 
             ch.send(R"({ "num": 1.23, "name": "elma", "vals": [1,2,3] })"_json);
             auto j = ch.latest();

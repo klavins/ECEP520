@@ -100,8 +100,8 @@ namespace elma {
         double milli_time();
         double delta();
 
-        void watch(string event_name, std::function<void(Event&)> handler);
-        void emit(string event_name, Event& event);
+        void watch(string event_name, std::function<void(const Event&)> handler);
+        void emit(string event_name, const Event& event);
 
         private:
 

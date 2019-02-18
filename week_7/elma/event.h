@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <json/json.h>
 
 using std::string;
 using std::vector;
+using nlohmann::json; 
 
 namespace elma {
 
@@ -13,14 +15,11 @@ namespace elma {
     class Event {
 
         public:
-        Event(string sval) : _string_value(sval), _vector_value(1,0) {}
-        Event(string sval, vector<double> vval) : _string_value(sval), _vector_value(vval) {}
-        inline vector<double> vector_value() { return _vector_value; }
-        inline string string_value() { return _string_value; }
+        Event(json value) : _value(value) {}
+        inline json value() const { return _value; }
 
         private:
-        string _string_value;
-        vector<double> _vector_value;
+        json _value;
 
     };
 
