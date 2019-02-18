@@ -33,12 +33,13 @@ namespace {
         double x;
     };
 
-    TEST(Basic,Basic) {
+    TEST(Event,SendRecv) {
         TestProcess p("P");        
         Manager m;
-        m.schedule(p,MS(10))
+        m.schedule(p,10_ms)
           .init();
         p.update();
+
     }
 
 }

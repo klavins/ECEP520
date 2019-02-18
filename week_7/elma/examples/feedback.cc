@@ -4,8 +4,9 @@
 
 using namespace std::chrono;
 using std::vector;
+using namespace elma;
 
-class Car : public elma::Process {
+class Car : public Process {
     public:
     Car(std::string name) : Process(name) {}
     void init() {}
@@ -30,7 +31,7 @@ class Car : public elma::Process {
     const double m = 1000;
 };  
 
-class CruiseControl : public elma::Process {
+class CruiseControl : public Process {
     public:
     CruiseControl(std::string name) : Process(name) {}
     void init() {}
@@ -51,18 +52,18 @@ class CruiseControl : public elma::Process {
 
 int main() {
 
-    elma::Manager m;
+    Manager m;
 
     Car car("Car");
     CruiseControl cc("Control");
-    elma::Channel throttle("Throttle");
-    elma::Channel velocity("Velocity");
+    Channel throttle("Throttle");
+    Channel velocity("Velocity");
 
-    m.schedule(car, MS(10))
-    .schedule(cc, MS(10))
+    m.schedule(car, 10_ms)
+    .schedule(cc, 10_ms)
     .add_channel(throttle)
     .add_channel(velocity)
     .init()
-    .run(MS(10000));
+    .run(1000_ms);
 
 }

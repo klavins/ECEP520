@@ -27,7 +27,7 @@ namespace elma {
     //! \return A reference to the channel, for chaining
     json Channel::latest() {
         if ( _queue.size() == 0 ) {
-            throw std::range_error("Tried to get the latest value in an empty channel.");
+            throw Exception("Tried to get the latest value in an empty channel.");
         }
         return _queue.front();
     }
@@ -37,7 +37,7 @@ namespace elma {
     //! \return A reference to the channel, for chaining
     json Channel::earliest() {
         if ( _queue.size() == 0 ) {
-            throw std::range_error("Tried to get the earliest value in an empty channel.");
+            throw Exception("Tried to get the earliest value in an empty channel.");
         }
         return _queue.back();        
     }    

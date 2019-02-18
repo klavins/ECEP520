@@ -34,7 +34,7 @@ namespace elma {
         if ( _channels.find(name) != _channels.end() ) {
           return *(_channels[name]);
         } else {
-            throw std::domain_error("Tried to access an unregistered or non-existant channel.");
+            throw Exception("Tried to access an unregistered or non-existant channel.");
         }
     }    
 

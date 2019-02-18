@@ -13,20 +13,23 @@ INCLUDE		:= -I..
 LIBDIR		:= -L../lib
 
 #Files
-
+TARGETDIR	:= ./bin
 SOURCES     := $(wildcard *.cc)
 TARGETS		:= $(patsubst %.cc,%,$(wildcard *.cc))
 
-#Defauilt Make
-all: $(TARGETS)
+#Default Make
+all: dirs $(TARGETS) 
+
+dirs:
+	@mkdir -p $(TARGETDIR)
 
 #Clean only Objects
 clean:
 	@$(RM) -rf $(TARGETS)
 
 #Compile
-$(TARGETS): %: %.cc
-	$(CC) $(CFLAGS) $(INCLUDE) $<  $(LIBDIR) $(LIB) -o $@
+$(TARGETS): %: %.cc dirs
+	$(CC) $(CFLAGS) $(INCLUDE) $<  $(LIBDIR) $(LIB) -o $(TARGETDIR)/$@
 
 #Compile
 

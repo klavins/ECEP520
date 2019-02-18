@@ -49,7 +49,7 @@ namespace {
         Channel c("test channel");
         Manager m;
         m.add_channel(c)
-         .schedule(tp, MS(10));
+         .schedule(tp, 10_ms);
         tp.update();
     }
 

@@ -3,8 +3,9 @@
 #include "elma.h"
 
 using namespace std::chrono;
+using namespace elma;
 
-class MyProcess : public elma::Process {
+class MyProcess : public Process {
     public:
     MyProcess(std::string name) : Process(name) {}
     void init() {}
@@ -18,10 +19,10 @@ class MyProcess : public elma::Process {
 };
 
 int main() {
-    elma::Manager m;
+    Manager m;
     MyProcess p("A"), q("B");
-    m.schedule(p, MS(1))
-     .schedule(q, MS(5))
+    m.schedule(p, 1_ms)
+     .schedule(q, 5_ms)
      .init()
-     .run(MS(11));
+     .run(11_ms);
 }
