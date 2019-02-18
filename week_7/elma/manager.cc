@@ -39,7 +39,7 @@ namespace elma {
     }    
 
     Manager& Manager::watch(string event_name, std::function<void(Event&)> handler) {
-        event_handlers["name"].push_back(handler);
+        event_handlers[event_name].push_back(handler);
         return *this;
     }
 

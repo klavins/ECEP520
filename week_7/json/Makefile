@@ -3,13 +3,13 @@ CC          := g++ -std=c++14
 DGEN        := doxygen
 
 #The Target Binary Program
-TARGET      := libelma.a
+TARGET      := test
 
 #The Directories, Source, Includes, Objects, Binary and Resources
 SRCDIR      := .
 INCDIR      := .
 BUILDDIR    := ./build
-TARGETDIR   := ./lib
+TARGETDIR   := ./bin
 SRCEXT      := cc
 
 #Flags, Libraries and Includes
@@ -25,7 +25,7 @@ SOURCES     := $(wildcard *.cc)
 OBJECTS     := $(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
 
 #Defauilt Make
-all: directories $(TARGETDIR)/$(TARGET) tests example
+all: directories $(TARGETDIR)/$(TARGET) 
 
 #Remake
 remake: cleaner all
@@ -35,37 +35,28 @@ directories:
 	@mkdir -p $(TARGETDIR)
 	@mkdir -p $(BUILDDIR)
 
-tests:
-	cd test && $(MAKE)
+# Make the documentation
+$(DGENCONFIG):
+	$(DGEN) -g $(DGENCONFIG)
 
-example:
-	cd examples && $(MAKE)
-
-docs: $(SOURCES) $(HEADERS)
+docs: $(SOURCES) $(HEADERS) $(DGENCONFIG)
 	$(DGEN) $(DGENCONFIG)
-
-publish: 
-	rm -r ../../docs/
-	cp -r html ../../docs
 
 #Clean only Objects
 clean:
 	@$(RM) -rf $(BUILDDIR)/*.o
-	cd test && $(MAKE) clean
-	cd examples && $(MAKE) clean
 
 #Full Clean, Objects and Binaries
 spotless: clean
-	@$(RM) -rf $(TARGETDIR)/$(TARGET) *.db
-	@$(RM) -rf build lib html latex
-	cd test && $(MAKE) spotless
+	@$(RM) -rf $(TARGETDIR)/$(TARGET) $(DGENCONFIG) *.db
+	@$(RM) -rf build bin html latex
 
 #Link
 $(TARGETDIR)/$(TARGET): $(OBJECTS) $(HEADERS)
-	ar rvs $@ $(OBJECTS)
-	
+	$(CC) $(CFLAGS) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
+
 #Compile
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(HEADERS)
-	$(CC) $(CFLAGS) $(INC) -c -fPIC -o $@ $<
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 .PHONY: directories remake clean cleaner apidocs $(BUILDDIR) $(TARGETDIR)

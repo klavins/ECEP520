@@ -3,6 +3,7 @@
 
 #include <string>
 #include <deque>
+#include <json/json.h>
 
 #include "elma.h"
 
@@ -10,6 +11,7 @@ namespace elma {
 
     using std::string;
     using std::deque;
+    using nlohmann::json; 
 
     //! A channel for sending double values to and from Process objects
     class Channel {
@@ -25,10 +27,10 @@ namespace elma {
         //! \param capacity The maximum number of values to store in the channel
         Channel(string name, int capacity) : _name(name), _capacity(capacity) {}
 
-        Channel& send(double);
-        Channel& flush(double);
-        double latest();
-        double earliest();
+        Channel& send(json);
+        Channel& flush();
+        json latest();
+        json earliest();
 
         //! Getter
         //! \return The number of values in the channel
@@ -54,7 +56,7 @@ namespace elma {
 
         string _name;
         int _capacity;
-        deque<double> _queue;
+        deque<json> _queue;
 
     };
 

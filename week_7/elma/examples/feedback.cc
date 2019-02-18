@@ -5,8 +5,6 @@
 using namespace std::chrono;
 using std::vector;
 
-#define MS(__ms__) high_resolution_clock::duration(milliseconds(__ms__))
-
 class Car : public elma::Process {
     public:
     Car(std::string name) : Process(name) {}

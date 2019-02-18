@@ -19,7 +19,6 @@ INC         := -I$(INCDIR)
 INCDEP      := -I$(INCDIR)
 
 #Files
-DGENCONFIG  := docs.config
 HEADERS     := $(wildcard *.h)
 SOURCES     := $(wildcard *.cc)
 OBJECTS     := $(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
@@ -34,13 +33,6 @@ remake: cleaner all
 directories:
 	@mkdir -p $(TARGETDIR)
 	@mkdir -p $(BUILDDIR)
-
-docs: $(SOURCES) $(HEADERS)
-	$(DGEN) $(DGENCONFIG)
-
-publish: 
-	rm -r ../../docs/
-	cp -r html ../../docs
 
 #Clean only Objects
 clean:

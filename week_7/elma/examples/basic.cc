@@ -4,8 +4,6 @@
 
 using namespace std::chrono;
 
-#define MS(__ms__) high_resolution_clock::duration(milliseconds(__ms__))
-
 class MyProcess : public elma::Process {
     public:
     MyProcess(std::string name) : Process(name) {}

@@ -35,6 +35,9 @@ What is JSON?
 The JSON C++ Library
 ---
 
+Upgrading Channels
+===
+
 Events
 ===
 
