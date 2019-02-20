@@ -9,7 +9,7 @@ namespace elma {
     //! \return A reference to the channel, for chaining
     Channel& Channel::send(json value) {
         _queue.push_front(value);
-        while ( _queue.size() >= capacity() ) {
+        while ( _queue.size() > capacity() ) {
             _queue.pop_back();
         }
         return *this;

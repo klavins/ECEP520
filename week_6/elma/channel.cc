@@ -6,7 +6,7 @@ namespace elma {
     
     Channel& Channel::send(double value) {
         _queue.push_front(value);
-        while ( _queue.size() >= capacity() ) {
+        while ( _queue.size() > capacity() ) {
             _queue.pop_back();
         }
         return *this;

@@ -53,4 +53,14 @@ namespace {
         tp.update();
     }
 
+    TEST(Channel,Capacity) {
+        Channel c("test channel",50);
+        Manager m;
+        m.add_channel(c);
+        for ( int i=0; i<100; i++ ) {
+            m.channel("test channel").send(i);
+        }
+        ASSERT_EQ(50, m.channel("test channel").size());
+    }
+
 }
