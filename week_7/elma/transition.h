@@ -17,6 +17,10 @@ namespace elma {
           _to(to),
           _event_name(event_name) {}
 
+        inline State& from() const { return _from; }
+        inline State& to() const { return _from; }
+        inline string event_name() const { return _event_name; }
+
         private:
         State& _from;
         State& _to;
