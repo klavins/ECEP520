@@ -6,10 +6,10 @@
 namespace elma {
 
     //! States for finite state machines (FSM)
-    class State : public Process {
+    class State {
 
         public:
-        State() : Process("State") {}
+        State() {}
         virtual void entry() = 0;
         virtual void during() = 0;
         virtual void exit() = 0;
