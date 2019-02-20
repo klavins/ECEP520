@@ -13,6 +13,7 @@ namespace elma {
 
         StateMachine& set_initial(State& s);
         StateMachine& add_transition(std::string event_name, State& from, State& to);
+        inline StateMachine& set_propagate(bool val) { _propagate = val; }
 
         void init();
         void start();
@@ -23,6 +24,7 @@ namespace elma {
         vector<Transition> _transitions;
         State * _initial;
         State * _current;
+        bool _propagate;
 
     };
 

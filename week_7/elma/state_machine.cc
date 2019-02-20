@@ -1,6 +1,9 @@
+#include <iostream>
 #include "elma.h"
 
 namespace elma {
+
+    int State::_id_counter = 0;
 
     StateMachine& StateMachine::set_initial(State& s) {
         _initial = &s;
@@ -14,11 +17,14 @@ namespace elma {
 
     void StateMachine::init() {
         for (auto transition : _transitions ) {
-            watch(transition.event_name(), [this, transition](const Event& e) {
-                if ( _current == &transition.from() ) {
+            watch(transition.event_name(), [this, transition](Event& e) {
+                if ( _current->id() == transition.from().id() ) {
                     _current->exit();
                     _current = &transition.to();
                     _current->entry();
+                    if ( !_propagate ) {
+                      e.stop_propagation();
+                    }
                 }
             });
         }

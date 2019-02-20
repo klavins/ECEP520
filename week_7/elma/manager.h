@@ -49,15 +49,17 @@ namespace elma {
         Channel& channel(string);
 
         // Event Interface
-        Manager& watch(string event_name, std::function<void(const Event&)> handler);
+        Manager& watch(string event_name, std::function<void(Event&)> handler);
         Manager& emit(string name, const Event& event);
 
         private:
         vector<Process *> _processes;
         map<string, Channel *> _channels;
-        map<string, vector<std::function<void(const Event&)>>> event_handlers;
+        map<string, vector<std::function<void(Event&)>>> event_handlers;
         high_resolution_clock::time_point _start_time;
         high_resolution_clock::duration _elapsed;
+
+        Manager& reset_events();
 
     };
 

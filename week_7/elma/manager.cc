@@ -38,15 +38,18 @@ namespace elma {
         }
     }    
 
-    Manager& Manager::watch(string event_name, std::function<void(const Event&)> handler) {
+    Manager& Manager::watch(string event_name, std::function<void(Event&)> handler) {
         event_handlers[event_name].push_back(handler);
         return *this;
     }
 
     Manager& Manager::emit(string event_name, const Event& event) {
+        Event e = event; // make a copy so we can change propagation
         if ( event_handlers.find(event_name) != event_handlers.end() ) {
             for ( auto handler : event_handlers[event_name] ) {
-                handler(event);
+                if ( e.propagate() ) {
+                  handler(e);
+                }
             }
         }
         return *this;

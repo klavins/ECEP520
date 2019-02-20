@@ -12,7 +12,7 @@ namespace elma {
         return _manager_ptr->channel(name);
     }
 
-    void Process::watch(string event_name, std::function<void(const Event&)> handler) {
+    void Process::watch(string event_name, std::function<void(Event&)> handler) {
         _manager_ptr->watch(event_name, handler);
     }
 
