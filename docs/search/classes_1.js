@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['manager',['Manager',['../classelma_1_1Manager.html',1,'elma']]]
+  ['event',['Event',['../classelma_1_1Event.html',1,'elma']]],
+  ['exception',['Exception',['../classelma_1_1Exception.html',1,'elma']]]
 ];

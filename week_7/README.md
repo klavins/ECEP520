@@ -111,13 +111,212 @@ using nlohmann::json;
 The JSON C++ Library
 ---
 
-The main reason is that compilers cannot type check JSON values at compile time (since they do not know what they are until the applciations run).
+The JSON C++ library we will use is described in detail [here](https://github.com/nlohmann/json). For now, we will use a subset of the library's capabilties, mainly defining and accessing JSON values.
+
+To defining a JSON value, you can simply declare it with the json type and assign it to a C++ value. For example,
+```c++
+json j = 3.14,
+     k = "hello world",
+     l = { 1,2,3 };
+```
+defines three JSON values with raw types double, string, and integer array. Note that since C++ does not use [ and ] to define arrays, we have to use { and }. 
+
+Since C++ does not have built in hash-like objects, to define an object, you have to use a special notation that does not look much like JSON. For example,
+```c++
+json j = { { "x", 0 }, { "y", 1 } }; // { "x": 0, "y": 1 }
+```
+and if you want to define a nested object, you can write
+```c++
+json j = {
+    { 
+        "tas", {
+            {
+                { "first", "Justin" },
+                { "last", "Vrana" }
+            },
+            {
+                { "first", "Kung-Hung" },
+                { "last", "Lu" },
+                { "aka",  "Henry" }
+            }
+        },
+    },
+    { 
+        "weeks", { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } 
+    },
+    { 
+        "version", 2.0
+    }
+}
+```
+You can also serialize a string directly in a definition, as in
+```c++
+json x = R"('{ "a": 1, "b": [2,3], "k": { "c": { "d": true } } }')"_json;
+```
+This magical bit of code uses the C++ [raw string operator](http://www.cplusplus.com/forum/general/190123/). The `_json` bit at the end is using a [user defined literal](https://en.cppreference.com/w/cpp/language/user_literal) (defined in the JSON library). 
+
+You can also define json values from 
+
+To access parts of a json object, you use notation such as
+```c++
+int a = x["a"]; // 1
+bool d = x["k"]["c"]["d"]; // true
+```
+Note that the assignment operator `=` has been overloaded to convert any kind of json value into a C++ value (such as `int` and `bool` above). You will get a runtime error if the value cannot be converted. For example, if you do
+```c++
+double k = x["k"];
+```
+you will get
+```
+C++ exception with description "[json.exception.type_error.302] type must be number, but is object" thrown in the test body.
+```
+This brings up one of the downsides of using JSON. With C++ you normally cannot even compile code that tries to assign a value of one type to an incompatible value of another time. But with JSON you can. If you would like to be very explicit, you can instead do
+```c++
+double k = x["k"].get<double>();
+```
+which uses the templated `get` method of the library. However, this will still throw a runtime error, since the compiler can't keep track of what values `x` may take on without running the program.
 
 Upgrading Channels to use JSON
 ===
 
+The JSON library is incredibly easy to use. To modify the `Channel` object, we literally replace the keyword `double` with the type `json`. In the header file:
+```c++
+class Channel {
+
+    ...
+
+    public:
+    Channel& send(json);
+
+    ...
+
+    private:
+    deque<json> _queue;
+
+    ...
+
+};
+```
+and in the implementation file
+```c++
+Channel& Channel::send(json value) {
+    _queue.push_front(value);
+    while ( _queue.size() > capacity() ) {
+        _queue.pop_back();
+    }
+    return *this;
+}
+```
+And example of the use of the new channel can be found in `ECEP520/week_7/elma/examples/feedback.cc`, which is a rewrite of the cruise control example from last week.
+
+New Directory Structure
+===
+
+While we are on the subject of examples, we have changed the structure of the directories in the code base. We now have:
+```
+/elma
+    channel.cc
+    channel.h
+    ...
+    Makefile
+    ...
+    /examples
+        basic.cc
+        feedback.cc
+        Makefile
+        bin
+            basic
+            feedback
+    /test
+        channel.cc
+        event.cc
+        ...
+        main.cc
+        Makefile
+        bin
+            test
+```
+There is a `Makefile` in the examples directory and another in the test directory. The examples directory makes a separate executable for each example. The tests are named after the class they are intended to test. The main file runs every test defined in any of the test files.
+
 Events
 ===
+
+An *event* is a discrete occurrence that happens at a specific point in time. For example, a touch sensor might go from off to on, or a user might press a button. Events often have data associated with them. For example, how hard was the button pressed? To capture an event formally, we define a new class:
+```c++
+class Event {
+
+    public:
+
+    Event(json value) : _value(value) {}
+    inline json value() const { return _value; }
+
+    private:
+    json _value;
+
+};
+```
+We will expand upon this definition later, but for now, an event is little more than a container for a JSON value.
+
+To use an event, processes need to be able to 
+- **emit** an event, giving it a name in the process. The result should be that the manager broadcasts the occurence of the event to any other processes that are watching for it.
+- **watch** for events with a specific name, responding to them with user defined functions.
+
+Thus, to the `Manager` we add a private data member
+```c++
+// manager.h
+private:
+map<string, vector<std::function<void(Event&)>>> event_handlers;
+```
+Next we add a `watch` method to Manager and a wrapper for it to `Process`.
+```c++
+// manager.cc
+Manager& Manager::watch(string event_name, std::function<void(Event&)> handler) {
+    event_handlers[event_name].push_back(handler);
+    return *this;
+}
+
+// process.cc
+void Process::watch(string event_name, std::function<void(Event&)> handler) {
+    _manager_ptr->watch(event_name, handler);
+}
+```
+Typically, processes should set up event handlers in their `init` methods. For example, you could do
+```c++
+// Cruise control process watching for desired speed events from the driver
+void init() {
+    watch("desired speed", [this](Event& e) {
+        desired_speed = e.value();
+    });
+}
+```
+See `examples/driving.cc` for a worked out example. A plot of the velocity over time from that example is here:
+
+![Cruise Control with Driver](images/cruise-control-output.png)
+
+To emit an event, we define a `Manager` method and a `Process` wrapper that searches the event handler list for handlers that correspond to the emitted event.
+```c++
+// Manager.cc
+Manager& Manager::emit(string event_name, const Event& event) {
+    if ( event_handlers.find(event_name) != event_handlers.end() ) {
+        for ( auto handler : event_handlers[event_name] ) {
+            handler(e);
+        }
+    }
+    return *this;
+}
+
+// Process.cc
+void Process::emit(string event_name, const Event& event) {
+    _manager_ptr->emit(event_name, event);
+}
+```
+
+A process would typically emit an event in its `start`, `update`, or `stop` method. For example,
+```c++
+void update() {
+    emit("desired speed", Event(desired_speed));
+}
+```
 
 Finite State Machines
 ===
@@ -128,14 +327,16 @@ States
 Transitions
 ---
 
+State Machines
+---
+
 Example
 ---
 
 Elevator: https://courses.cs.washington.edu/courses/cse466/02au/Lectures/State-models.pdf
 
-New Directory Structure
-===
+Documentation with Doxygen
+---
 
 Exercises
 ===
-

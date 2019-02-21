@@ -43,7 +43,7 @@ namespace elma {
     //! init() method. For example,
     //! @code
     //!     watch("velocity", [this](Event& e) {
-    //!         std::cout << "got velocity " << e.value() << std::nl;
+    //!         std::cout << "got velocity " << e.value() << std::endl;
     //!     })
     //! @endcode
     //! \param event_name The name of the event
