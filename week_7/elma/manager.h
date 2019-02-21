@@ -59,8 +59,6 @@ namespace elma {
         high_resolution_clock::time_point _start_time;
         high_resolution_clock::duration _elapsed;
 
-        Manager& reset_events();
-
     };
 
 }

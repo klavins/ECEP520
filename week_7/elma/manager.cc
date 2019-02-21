@@ -38,11 +38,34 @@ namespace elma {
         }
     }    
 
+    //! Watch for an event associated with the given name.
+    //! For watching events, you would typically register event handlers in your process'
+    //! init() method. For example,
+    //! @code
+    //!     watch("velocity", [this](Event& e) {
+    //!         std::cout << "got velocity " << e.value() << std::nl;
+    //!     })
+    //! @endcode
+    //! \param event_name The name of the event
+    //! \handler A function or lambda that takes an event and returns nothing.
     Manager& Manager::watch(string event_name, std::function<void(Event&)> handler) {
         event_handlers[event_name].push_back(handler);
         return *this;
     }
 
+    //! Emit an event associated with a name.
+    //! Typically, a process would emit events in its update() method using something like
+    //! the following code"
+    //! @code
+    //!     emit("event name", Event(value));
+    //! @endcode
+    //! where value is any jsonable value. For example, you can write
+    //! @code
+    //!     emit("velocity", Event(3.41));
+    //! @endcode
+    //! \param event_name The name of the event
+    //! \param event The Event to be emitted
+    //! \return A reference to the manager for chaining.
     Manager& Manager::emit(string event_name, const Event& event) {
         Event e = event; // make a copy so we can change propagation
         if ( event_handlers.find(event_name) != event_handlers.end() ) {

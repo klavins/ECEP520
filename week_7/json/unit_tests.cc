@@ -23,8 +23,6 @@ namespace {
         )"_json;
 
         ASSERT_EQ(0, k["x"][2]["y"]);
-
-        double x;
         ASSERT_ANY_THROW(x = k); // Should throw a json type error
 
         std::cout << "k = " << k << "\n";
