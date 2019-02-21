@@ -67,7 +67,7 @@ class Driver : public Process {
         } else {
             desired_speed = 50;
         }
-        emit("desired speed", Event(desired_speed));
+        emit(Event("desired speed", desired_speed));
     }
     void stop() {}
     private:

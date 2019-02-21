@@ -12,6 +12,8 @@ namespace elma {
 
     StateMachine& StateMachine::add_transition(string event_name, State& from, State& to) {
         _transitions.push_back(Transition(event_name, from, to));
+        to._state_machine_ptr = this;
+        from._state_machine_ptr = this;
         return *this;
     }
 
@@ -19,9 +21,9 @@ namespace elma {
         for (auto transition : _transitions ) {
             watch(transition.event_name(), [this, transition](Event& e) {
                 if ( _current->id() == transition.from().id() ) {
-                    _current->exit();
+                    _current->exit(e);
                     _current = &transition.to();
-                    _current->entry();
+                    _current->entry(e);
                     if ( !_propagate ) {
                       e.stop_propagation();
                     }
@@ -32,7 +34,8 @@ namespace elma {
 
     void StateMachine::start() {
         _current = _initial;
-        _current->entry();
+        Event start("start");
+        _current->entry(start);
     }
 
     void StateMachine::update() {

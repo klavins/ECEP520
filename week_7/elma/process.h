@@ -30,7 +30,7 @@ namespace elma {
         typedef enum { UNINITIALIZED, STOPPED, RUNNING } status_type;
 
         //! Default constructor. Names process "no name"
-        Process() : _name("no name"), _status(UNINITIALIZED) {}
+        Process() : _name("unnamed process"), _status(UNINITIALIZED) {}
 
         //! Constructor that takes a name for the process
         /*!
@@ -101,7 +101,7 @@ namespace elma {
         double delta();
 
         void watch(string event_name, std::function<void(Event&)> handler);
-        void emit(string event_name, const Event& event);
+        void emit(const Event& event);
 
         private:
 

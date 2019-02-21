@@ -50,7 +50,7 @@ namespace elma {
 
         // Event Interface
         Manager& watch(string event_name, std::function<void(Event&)> handler);
-        Manager& emit(string name, const Event& event);
+        Manager& emit(const Event& event);
 
         private:
         vector<Process *> _processes;

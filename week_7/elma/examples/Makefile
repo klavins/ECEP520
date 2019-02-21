@@ -8,7 +8,7 @@ SRCEXT      := cc
 
 #Flags, Libraries and Includes
 CFLAGS      := -fsanitize=address -ggdb
-LIB         := -lpthread -lasan -lelma
+LIB         := -lgtest -lpthread -lasan -lelma
 INCLUDE		:= -I..
 LIBDIR		:= -L../lib
 

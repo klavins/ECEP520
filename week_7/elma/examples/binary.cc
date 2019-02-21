@@ -12,7 +12,7 @@ class Trigger : public Process {
     void start() {}
     void update() { 
         std::cout << "switch at " << milli_time() << "\n";
-        emit("switch", Event(0));
+        emit(Event("switch", 0));
     }
     void stop() {}
 };
@@ -20,11 +20,11 @@ class Trigger : public Process {
 class Mode : public State {
     public:
     Mode(std::string name) : State(name) {}
-    void entry() {
+    void entry(Event& e) {
         std::cout << "entering " + name() << "\n";
     }
     void during() {}
-    void exit() {}
+    void exit(Event&) {}
 
 };
 

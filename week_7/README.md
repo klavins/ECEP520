@@ -330,10 +330,11 @@ Transitions
 State Machines
 ---
 
-Example
+Example: Binaray Counter
 ---
 
-Elevator: https://courses.cs.washington.edu/courses/cse466/02au/Lectures/State-models.pdf
+Example: Microwave Oven
+
 
 Documentation with Doxygen
 ---

@@ -16,8 +16,8 @@ namespace elma {
         _manager_ptr->watch(event_name, handler);
     }
 
-    void Process::emit(string event_name, const Event& event) {
-        _manager_ptr->emit(event_name, event);
+    void Process::emit(const Event& event) {
+        _manager_ptr->emit(event);
     }
 
     //! The time since the last update in millisconds, as a double

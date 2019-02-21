@@ -1,15 +1,20 @@
 #ifndef _STATE_H
 #define _STATE_H
 
+#include <string>
 #include "elma.h"
 
 namespace elma {
 
+    class StateMachine;
+
     //! States for finite state machines (FSM)
     class State {
 
+        friend class StateMachine;
+
         public:
-        State() : _name("unamed state"){
+        State() : _name("unnamed state"){
             _id = _id_counter++;
         }
         State(std::string name) : _name(name){
@@ -17,14 +22,17 @@ namespace elma {
         }
         inline std::string name() { return _name; }
         inline int id() { return _id; }
-        virtual void entry() = 0;
+        virtual void entry(Event& e) = 0;
         virtual void during() = 0;
-        virtual void exit() = 0;
+        virtual void exit(Event& e) = 0;
+
+        void emit(const Event& e);
 
         private:
         std::string _name;
         int _id;
         static int _id_counter;
+        StateMachine * _state_machine_ptr;
 
     };
 

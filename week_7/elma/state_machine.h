@@ -10,10 +10,13 @@ namespace elma {
 
         public:
         StateMachine(std::string name) : Process(name) {}
+        StateMachine() : Process("unnamed state machine") {}
 
         StateMachine& set_initial(State& s);
         StateMachine& add_transition(std::string event_name, State& from, State& to);
         inline StateMachine& set_propagate(bool val) { _propagate = val; }
+
+        State& current() { return *_current; }
 
         void init();
         void start();

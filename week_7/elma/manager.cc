@@ -48,7 +48,7 @@ namespace elma {
     //! @endcode
     //! \param event_name The name of the event
     //! \handler A function or lambda that takes an event and returns nothing.
-    Manager& Manager::watch(string event_name, std::function<void(Event&)> handler) {
+    Manager& Manager::watch(std::string event_name, std::function<void(Event&)> handler) {
         event_handlers[event_name].push_back(handler);
         return *this;
     }
@@ -57,19 +57,18 @@ namespace elma {
     //! Typically, a process would emit events in its update() method using something like
     //! the following code"
     //! @code
-    //!     emit("event name", Event(value));
+    //!     emit(Event("name", value));
     //! @endcode
     //! where value is any jsonable value. For example, you can write
     //! @code
-    //!     emit("velocity", Event(3.41));
+    //!     emit(Event("velocity", 3.41));
     //! @endcode
-    //! \param event_name The name of the event
     //! \param event The Event to be emitted
     //! \return A reference to the manager for chaining.
-    Manager& Manager::emit(string event_name, const Event& event) {
+    Manager& Manager::emit(const Event& event) {
         Event e = event; // make a copy so we can change propagation
-        if ( event_handlers.find(event_name) != event_handlers.end() ) {
-            for ( auto handler : event_handlers[event_name] ) {
+        if ( event_handlers.find(event.name()) != event_handlers.end() ) {
+            for ( auto handler : event_handlers[event.name()] ) {
                 if ( e.propagate() ) {
                   handler(e);
                 }
