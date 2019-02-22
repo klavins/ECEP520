@@ -22,9 +22,9 @@ namespace {
         }
         void start() {}
         void update() { 
-            emit("hello", Event("world"));
+            emit(Event("hello","world"));
             ASSERT_EQ("world", str);
-            emit("pi", Event(3.14));
+            emit(Event("pi",3.14));
             ASSERT_EQ(3.14, x);
         }
         void stop() {}
