@@ -20,15 +20,9 @@ namespace elma {
 
     //! The Process Manager class. 
 
-    //! Example usage in which a custom process, MyProcess, is scheduled every 1 ms and
-    //! run for 1 s.
-    //! @code
-    //! Manager m;
-    //! MyProcess p; // See Process
-    //! m.schedule(p, 1_ms)
-    //!  .init() 
-    //!  .run(1_s)
-    //! @endcode
+    //! Example usage:
+    //! \include examples/basic.cc
+
     class Manager {
 
         public: 

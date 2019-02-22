@@ -1,0 +1,6 @@
+<map id="elma::State" name="elma::State">
+<area shape="rect" id="node2" href="$classDoorClosedOff.html" title="DoorClosedOff" alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node3" href="$classDoorClosedOn.html" title="DoorClosedOn" alt="" coords="144,80,259,107"/>
+<area shape="rect" id="node4" href="$classDoorOpen.html" title="DoorOpen" alt="" coords="283,80,370,107"/>
+<area shape="rect" id="node5" href="$classMode.html" title="Mode" alt="" coords="394,80,451,107"/>
+</map>

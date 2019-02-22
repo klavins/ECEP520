@@ -14,6 +14,10 @@ namespace elma {
     using nlohmann::json; 
 
     //! A channel for sending double values to and from Process objects
+
+    //! Here is an example that uses channels that enables a model of a car and
+    //! a simple cruise controller to communicate.
+    //! \include examples/feedback.cc
     class Channel {
 
         public:

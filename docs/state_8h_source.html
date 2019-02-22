@@ -114,23 +114,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#a6915b655c0975dd488e4e32a4ab62a03">entry</a>(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) = 0;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#aa4ff01f2cd8c6e78d90461f6a5d914c4">during</a>() = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#ad0dcc51dbc4dfdfd0704a939389d289d">exit</a>(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) = 0;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#a2c1d2a5be2fc2635d3c055584bc1ff70">emit</a>(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        std::string _name;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">int</span> _id;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> _id_counter;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classelma_1_1StateMachine.html">StateMachine</a> * _state_machine_ptr;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    };</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#aa4ff01f2cd8c6e78d90461f6a5d914c4">during</a>() = 0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#ad0dcc51dbc4dfdfd0704a939389d289d">exit</a>(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) = 0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#a2c1d2a5be2fc2635d3c055584bc1ff70">emit</a>(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::string _name;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">int</span> _id;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> _id_counter;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classelma_1_1StateMachine.html">StateMachine</a> * _state_machine_ptr;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    };</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classelma_1_1State_html_a1f0bad1c45494c2c3793b286ea201347"><div class="ttname"><a href="classelma_1_1State.html#a1f0bad1c45494c2c3793b286ea201347">elma::State::id</a></div><div class="ttdeci">int id()</div><div class="ttdef"><b>Definition:</b> <a href="state_8h_source.html#l00034">state.h:34</a></div></div>
 <div class="ttc" id="classelma_1_1State_html_a6915b655c0975dd488e4e32a4ab62a03"><div class="ttname"><a href="classelma_1_1State.html#a6915b655c0975dd488e4e32a4ab62a03">elma::State::entry</a></div><div class="ttdeci">virtual void entry(const Event &amp;e)=0</div></div>
 <div class="ttc" id="classelma_1_1State_html_ae000f7958ee38e7aee2543f31d9ee04e"><div class="ttname"><a href="classelma_1_1State.html#ae000f7958ee38e7aee2543f31d9ee04e">elma::State::State</a></div><div class="ttdeci">State()</div><div class="ttdoc">Construct an unnamed State. </div><div class="ttdef"><b>Definition:</b> <a href="state_8h_source.html#l00021">state.h:21</a></div></div>
@@ -141,12 +141,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classelma_1_1State_html_ab3833541e06ecf4018f5a9a1d66bbe6e"><div class="ttname"><a href="classelma_1_1State.html#ab3833541e06ecf4018f5a9a1d66bbe6e">elma::State::State</a></div><div class="ttdeci">State(std::string name)</div><div class="ttdoc">Construct a state with the given name. </div><div class="ttdef"><b>Definition:</b> <a href="state_8h_source.html#l00026">state.h:26</a></div></div>
 <div class="ttc" id="classelma_1_1State_html_a2c1d2a5be2fc2635d3c055584bc1ff70"><div class="ttname"><a href="classelma_1_1State.html#a2c1d2a5be2fc2635d3c055584bc1ff70">elma::State::emit</a></div><div class="ttdeci">void emit(const Event &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="state_8cc_source.html#l00005">state.cc:5</a></div></div>
 <div class="ttc" id="classelma_1_1State_html_aa4ff01f2cd8c6e78d90461f6a5d914c4"><div class="ttname"><a href="classelma_1_1State.html#aa4ff01f2cd8c6e78d90461f6a5d914c4">elma::State::during</a></div><div class="ttdeci">virtual void during()=0</div></div>
-<div class="ttc" id="classelma_1_1StateMachine_html"><div class="ttname"><a href="classelma_1_1StateMachine.html">elma::StateMachine</a></div><div class="ttdoc">A finite state machine class. </div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8h_source.html#l00040">state_machine.h:40</a></div></div>
+<div class="ttc" id="classelma_1_1StateMachine_html"><div class="ttname"><a href="classelma_1_1StateMachine.html">elma::StateMachine</a></div><div class="ttdoc">A finite state machine class. </div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8h_source.html#l00013">state_machine.h:13</a></div></div>
 <div class="ttc" id="namespaceelma_html"><div class="ttname"><a href="namespaceelma.html">elma</a></div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00011">manager.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 18:07:26 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

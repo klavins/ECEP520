@@ -126,8 +126,78 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A channel for sending double values to and from <a class="el" href="classelma_1_1Process.html" title="An abstract base class for processes. ">Process</a> objects. </p>
-
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00017">17</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Here is an example that uses channels that enables a model of a car and a simple cruise controller to communicate. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;elma.h&quot;</span></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd_1_1chrono.html">std::chrono</a>;</div>
+<div class="line"><span class="keyword">using</span> std::vector;</div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceelma.html">elma</a>;</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">class </span>Car : <span class="keyword">public</span> <a class="code" href="classelma_1_1Process.html">Process</a> {</div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">    Car(std::string <a class="code" href="classelma_1_1Channel.html#acb13251d4dfd40980e2d73f24d8900ee">name</a>) : <a class="code" href="classelma_1_1Process.html">Process</a>(name) {}</div>
+<div class="line">    <span class="keywordtype">void</span> init() {}</div>
+<div class="line">    <span class="keywordtype">void</span> start() {</div>
+<div class="line">        velocity = 0;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> update() {</div>
+<div class="line">        <span class="keywordflow">if</span> ( channel(<span class="stringliteral">&quot;Throttle&quot;</span>).<a class="code" href="classelma_1_1Channel.html#abe80362963b8fb50c05b52f7fe299fb0">nonempty</a>() ) {</div>
+<div class="line">            force = channel(<span class="stringliteral">&quot;Throttle&quot;</span>).latest();</div>
+<div class="line">        }</div>
+<div class="line">        velocity += ( delta() / 1000 ) * ( - k * velocity + force ) / m;</div>
+<div class="line">        channel(<span class="stringliteral">&quot;Velocity&quot;</span>).send(velocity);</div>
+<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;t: &quot;</span>  &lt;&lt; milli_time() &lt;&lt; <span class="stringliteral">&quot; ms\t&quot;</span> </div>
+<div class="line">                &lt;&lt; <span class="stringliteral">&quot; u: &quot;</span> &lt;&lt; force        &lt;&lt; <span class="stringliteral">&quot; N\t&quot;</span></div>
+<div class="line">                &lt;&lt; <span class="stringliteral">&quot; v: &quot;</span> &lt;&lt; velocity     &lt;&lt; <span class="stringliteral">&quot; m/s\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> stop() {}</div>
+<div class="line">    <span class="keyword">private</span>:</div>
+<div class="line">    <span class="keywordtype">double</span> velocity;</div>
+<div class="line">    <span class="keywordtype">double</span> force;</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">double</span> k = 0.02;</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">double</span> m = 1000;</div>
+<div class="line">};  </div>
+<div class="line"></div>
+<div class="line"><span class="keyword">class </span>CruiseControl : <span class="keyword">public</span> <a class="code" href="classelma_1_1Process.html">Process</a> {</div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">    CruiseControl(std::string <a class="code" href="classelma_1_1Channel.html#acb13251d4dfd40980e2d73f24d8900ee">name</a>) : <a class="code" href="classelma_1_1Process.html">Process</a>(name) {}</div>
+<div class="line">    <span class="keywordtype">void</span> init() {}</div>
+<div class="line">    <span class="keywordtype">void</span> start() {}</div>
+<div class="line">    <span class="keywordtype">void</span> update() {</div>
+<div class="line">        <span class="keywordflow">if</span> ( channel(<span class="stringliteral">&quot;Velocity&quot;</span>).<a class="code" href="classelma_1_1Channel.html#abe80362963b8fb50c05b52f7fe299fb0">nonempty</a>() ) {</div>
+<div class="line">            speed = channel(<span class="stringliteral">&quot;Velocity&quot;</span>).latest();</div>
+<div class="line">        }</div>
+<div class="line">        channel(<span class="stringliteral">&quot;Throttle&quot;</span>).send(-KP*(speed - desired_speed));</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> stop() {}</div>
+<div class="line">    <span class="keyword">private</span>:</div>
+<div class="line">    <span class="keywordtype">double</span> speed = 0;</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">double</span> desired_speed = 50.0,</div>
+<div class="line">                    KP = 314.15;</div>
+<div class="line">                    vector&lt;double&gt; _v;</div>
+<div class="line">};   </div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="classelma_1_1Manager.html">Manager</a> m;</div>
+<div class="line"></div>
+<div class="line">    Car car(<span class="stringliteral">&quot;Car&quot;</span>);</div>
+<div class="line">    CruiseControl cc(<span class="stringliteral">&quot;Control&quot;</span>);</div>
+<div class="line">    <a class="code" href="classelma_1_1Channel.html">Channel</a> throttle(<span class="stringliteral">&quot;Throttle&quot;</span>);</div>
+<div class="line">    <a class="code" href="classelma_1_1Channel.html">Channel</a> velocity(<span class="stringliteral">&quot;Velocity&quot;</span>);</div>
+<div class="line"></div>
+<div class="line">    m.<a class="code" href="classelma_1_1Manager.html#aff7ec0e7409420c8d92a59443066738c">schedule</a>(car, 10_ms)</div>
+<div class="line">    .<a class="code" href="classelma_1_1Manager.html#aff7ec0e7409420c8d92a59443066738c">schedule</a>(cc, 10_ms)</div>
+<div class="line">    .<a class="code" href="classelma_1_1Manager.html#aa75af3cacc2e77ba4781b09353b8c2ad">add_channel</a>(throttle)</div>
+<div class="line">    .<a class="code" href="classelma_1_1Manager.html#aa75af3cacc2e77ba4781b09353b8c2ad">add_channel</a>(velocity)</div>
+<div class="line">    .<a class="code" href="classelma_1_1Manager.html#a457cd75094c043632a1443758f041090">init</a>()</div>
+<div class="line">    .<a class="code" href="classelma_1_1Manager.html#ad5df7316416ac9697d62e68e21f04758">run</a>(1000_ms);</div>
+<div class="line"></div>
+<div class="line">}</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00021">21</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab7c59200d6449e4634ee6d58c2a8a795"></a>
 <div class="memitem">
@@ -157,7 +227,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00023">23</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00027">27</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -200,7 +270,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00028">28</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00032">32</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -227,7 +297,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The capacity of the channel </dd></dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00053">53</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00057">57</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +341,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>Whether the channel is empty </dd></dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00041">41</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00045">45</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -333,7 +403,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The name of the channel </dd></dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00049">49</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00053">53</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -359,7 +429,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>Whether the channel is not empty </dd></dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00045">45</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00049">49</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +480,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The number of values in the channel </dd></dl>
 
-<p>Definition at line <a class="el" href="channel_8h_source.html#l00037">37</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
+<p>Definition at line <a class="el" href="channel_8h_source.html#l00041">41</a> of file <a class="el" href="channel_8h_source.html">channel.h</a>.</p>
 
 </div>
 </div>
@@ -421,7 +491,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 18:07:26 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -196,34 +196,56 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A finite state machine class. </p>
-<p>Together with the <a class="el" href="classelma_1_1State.html" title="States for the StateMachine class. ">State</a> and <a class="el" href="classelma_1_1Transition.html" title="States for finite state machines (FSM) ">Transition</a> classes, this class is used to make a finite state machine process. For example, here is a toggle switch machine </p><div class="fragment"><div class="line"><span class="keyword">class </span>Mode : <span class="keyword">public</span> State {</div>
+<p>Together with the <a class="el" href="classelma_1_1State.html" title="States for the StateMachine class. ">State</a> and <a class="el" href="classelma_1_1Transition.html" title="States for finite state machines (FSM) ">Transition</a> classes, this class is used to make a finite state machine process. For example, here is a toggle switch machine </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;elma.h&quot;</span></div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd_1_1chrono.html">std::chrono</a>;</div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceelma.html">elma</a>;</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">class </span>Trigger : <span class="keyword">public</span> <a class="code" href="classelma_1_1Process.html">Process</a> {</div>
 <div class="line">    <span class="keyword">public</span>:</div>
-<div class="line">    Mode(std::string <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>) : State(name) {}</div>
-<div class="line">    <span class="keywordtype">void</span> entry(<span class="keyword">const</span> Event&amp; e) {</div>
+<div class="line">    Trigger() : <a class="code" href="classelma_1_1Process.html">Process</a>(<span class="stringliteral">&quot;trigger&quot;</span>) {}</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">init</a>() {}</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">start</a>() {}</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">update</a>() { </div>
+<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;switch at &quot;</span> &lt;&lt; <a class="code" href="classelma_1_1Process.html#a713075c26ec23e09576ec966fb4be6ea">milli_time</a>() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">        emit(<a class="code" href="classelma_1_1Event.html">Event</a>(<span class="stringliteral">&quot;switch&quot;</span>));</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">stop</a>() {}</div>
+<div class="line">};</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">class </span>Mode : <span class="keyword">public</span> <a class="code" href="classelma_1_1State.html">State</a> {</div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">    Mode(std::string <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>) : <a class="code" href="classelma_1_1State.html">State</a>(name) {}</div>
+<div class="line">    <span class="keywordtype">void</span> entry(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) {</div>
 <div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;entering &quot;</span> + <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordtype">void</span> during() {}</div>
-<div class="line">    <span class="keywordtype">void</span> exit(<span class="keyword">const</span> Event&amp;) {}</div>
+<div class="line">    <span class="keywordtype">void</span> exit(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp;) {}</div>
 <div class="line">};</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line"></div>
-<div class="line">    Manager m;</div>
+<div class="line">    <a class="code" href="classelma_1_1Manager.html">Manager</a> m;</div>
+<div class="line">    Trigger trigger;</div>
 <div class="line">    Mode off(<span class="stringliteral">&quot;off&quot;</span>), on(<span class="stringliteral">&quot;on&quot;</span>);</div>
-<div class="line">    <a class="code" href="classelma_1_1StateMachine.html#a5c87ed7618118edd5485365638ca6207">StateMachine</a> fsm(<span class="stringliteral">&quot;toggle switch&quot;</span>);</div>
+<div class="line">    <a class="code" href="classelma_1_1StateMachine.html">StateMachine</a> fsm(<span class="stringliteral">&quot;toggle switch&quot;</span>);</div>
 <div class="line"></div>
 <div class="line">    fsm.set_initial(off)</div>
 <div class="line">       .set_propagate(<span class="keyword">true</span>)</div>
 <div class="line">       .add_transition(<span class="stringliteral">&quot;switch&quot;</span>, off, on)</div>
 <div class="line">       .add_transition(<span class="stringliteral">&quot;switch&quot;</span>, on, off);</div>
 <div class="line"></div>
-<div class="line">    m.schedule(fsm, 10_ms)</div>
-<div class="line">     .init()</div>
-<div class="line">     .run(1_s);</div>
-<div class="line"></div>
+<div class="line">    m.<a class="code" href="classelma_1_1Manager.html#aff7ec0e7409420c8d92a59443066738c">schedule</a>(trigger, 1_ms)</div>
+<div class="line">     .<a class="code" href="classelma_1_1Manager.html#aff7ec0e7409420c8d92a59443066738c">schedule</a>(fsm, 5_ms) <span class="comment">// Doesn&#39;t matter since mode has empty update()</span></div>
+<div class="line">     .<a class="code" href="classelma_1_1Manager.html#a457cd75094c043632a1443758f041090">init</a>()</div>
+<div class="line">     .<a class="code" href="classelma_1_1Manager.html#ad5df7316416ac9697d62e68e21f04758">run</a>(11_ms);</div>
+<div class="line">     </div>
 <div class="line">}</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00040">40</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
+<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00013">13</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae6bdbc3e505b0282d6b22f4501ba4342"></a>
 <div class="memitem">
@@ -290,7 +312,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>The current state </dd></dl>
 
-<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00068">68</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
+<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00041">41</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +370,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the state machine, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00065">65</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
+<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00038">38</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
 
 </div>
 </div>
@@ -359,7 +381,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 18:07:27 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

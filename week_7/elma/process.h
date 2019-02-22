@@ -20,20 +20,7 @@ namespace elma {
      //! Derived classes should imlement the init, start, update, and stop methods.
      //! For example, here is a process that prints out a message every time its
      //! update method is called.
-     //! @code
-     //! class MyProcess : public Process {
-     //!     public:
-     //!     MyProcess(std::string name) : Process(name) {}
-     //!     void init() {}
-     //!     void start() {}
-     //!     void update() { 
-     //!         std::cout << name() << ": " 
-     //!                   << milli_time()
-     //!                   << "ms\n";
-     //!     }
-     //!     void stop() {}
-     //! };
-     //! @endcode
+     //! \include examples/basic.cc
      class Process {
 
         public:

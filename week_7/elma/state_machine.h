@@ -9,34 +9,7 @@ namespace elma {
 
     //! Together with the State and Transition classes, this class is used to make a finite state machine process.
     //! For example, here is a toggle switch machine
-    //! @code
-    //! class Mode : public State {
-    //!     public:
-    //!     Mode(std::string name) : State(name) {}
-    //!     void entry(const Event& e) {
-    //!         std::cout << "entering " + name() << "\n";
-    //!     }
-    //!     void during() {}
-    //!     void exit(const Event&) {}
-    //! };
-    //! 
-    //! int main() {
-    //!
-    //!     Manager m;
-    //!     Mode off("off"), on("on");
-    //!     StateMachine fsm("toggle switch");
-    //! 
-    //!     fsm.set_initial(off)
-    //!        .set_propagate(true)
-    //!        .add_transition("switch", off, on)
-    //!        .add_transition("switch", on, off);
-    //!
-    //!     m.schedule(fsm, 10_ms)
-    //!      .init()
-    //!      .run(1_s);
-    //! 
-    //! }
-    //! @endcode
+    //! \include examples/toggle-switch.cc
     class StateMachine : public Process { 
 
         public:

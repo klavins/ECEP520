@@ -2,6 +2,8 @@
 #include <chrono>
 #include "elma.h"
 
+//! \file
+
 using namespace std::chrono;
 using namespace elma;
 

@@ -78,78 +78,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Elma Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Elma is an event loop and process manager for embedded systems. It keeps track of processes, executes them at specified frequencies, and enables interprocess communication.</p>
-<h2>Example </h2>
-<p>As an example, we will develop a simple cruise control system in which we model a car with one process and a control system with another. The underlying mathematics look like this. Let <code>v</code> be the velocity of a car, <code>m</code> its mass, <code>k</code> the coefficient of rolling friction, and <code>u</code> the force being applied by the engine on the car. Then a very simplified model of the car's velocity comes from Newton's second law (<code>f = ma</code>): </p><pre class="fragment">m dv/dt = -k v + u
-</pre><p>This is a continuous model, but our processes are discrete. We can discretize the model using the definition of derivative: </p><pre class="fragment">dv/dt = lim(h-&gt;0) (v(t) - v(t-h)) / h 
-</pre><p>For <code>h</code> small, <code>dv/dt</code> is thus approximately </p><pre class="fragment">dv/dt = (v(t) - v(t-h)) / h
-</pre><p>or </p><pre class="fragment">v(t) = v(t-h) + h dv/dt 
-     = v(t-h) - h (k v - u)
-</pre><p>In our case, <code>h</code> is given by the difference between the last update and the previous update, which is available to user processes via the <code>delta()</code> function. Thus, we can write </p><pre class="fragment">class Car : public elma::Process {
-public:
-    Car(std::string name) : Process(name) {}
-    void init() {}
-    void start() {
-    velocity = 0;
-    force = 0;
-    }
-    void update() {
-    if ( channel("Throttle").nonempty() ) {
-        force = channel("Throttle").latest();
-    }
-    velocity += ( delta() / 1000 ) * ( - k * velocity + force ) / m;
-        velocity += ( delta() / 1000 ) * ( - k * velocity + force ) / m;
-        channel("Velocity").send(velocity);
-        std::cout &lt;&lt; "t: "  &lt;&lt; milli_time() &lt;&lt; " ms\t" 
-                    &lt;&lt; " u: " &lt;&lt; force        &lt;&lt; " N\t"
-                    &lt;&lt; " v: " &lt;&lt; velocity     &lt;&lt; " m/s\n";  
-    }
-    void stop() {}
-private:
-    double velocity;
-    double force;
-    const double k = 0.02;
-    const double m = 1000;
-}; 
-</pre><p>A very simple controller uses proportional feedback. Basically, we set </p><pre class="fragment">u = - Kp ( v - vdes )
-</pre><p>where <code>Kp</code> is the proportional gain and <code>vdes</code> is the desired velocity. To make a control process, we write </p><pre class="fragment">class CruiseControl : public elma::Process {
-public:
-    CruiseControl(std::string name) : Process(name) {}
-    void init() {}
-    void start() {
-    speed = 0;
-    }
-    void update() {
-    if ( channel("Velocity").nonempty() ) {
-        speed = channel("Velocity").latest();
-    }
-    channel("Throttle").send(-KP*(speed - desired_speed));
-    }
-    void stop() {}
-private:
-    double speed;
-    const double desired_speed = 50.0,
-                KP = 250.0;
-}; 
-</pre><p>To set everything up, we add the two processes and the two channels to the manager, initialize everything, and run the system. </p><pre class="fragment">elma::Manager m;
-
-Car car("Car");
-CruiseControl cc("Control");
-elma::Channel throttle("Throttle");
-elma::Channel velocity("Velocity");
-
-m.schedule(car, MS(10))
-.schedule(cc, MS(10))
-.add_channel(throttle)
-.add_channel(velocity)
-.init()
-.run(MS(10000));
-</pre><p>Note that the order of the scheduling is important. We want the controller to run right after the car. If we reversed the order, the controller would be using an older sensor value.</p>
-<p>The output of the system for the first few steps looks like: </p>
+<div class="textblock"><p>Elma is an event loop and process manager for embedded systems. It keeps track of processes, executes them at specified frequencies, and enables interprocess communication. It includes interprocess communications, event management, and finite state machines.</p>
+<p>For examples of how to use Elma, see the files in the examples directory. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 18:07:27 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
