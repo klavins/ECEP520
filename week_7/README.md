@@ -247,11 +247,13 @@ class Event {
 
     public:
 
-    Event(json value) : _value(value) {}
-    inline json value() const { return _value; }
+        Event(std::string name, json value) : _name(name), _value(value), _empty(false) {}
+        Event(std::string name) : _name(name), _value(0), _empty(true) {}
 
     private:
+    std::string _name;    
     json _value;
+    bool _empty; // used when no value is needed or provided
 
 };
 ```
@@ -289,9 +291,6 @@ void init() {
     });
 }
 ```
-See `examples/driving.cc` for a worked out example. A plot of the velocity over time from that example is here:
-
-![Cruise Control with Driver](images/cruise-control-output.png)
 
 To emit an event, we define a `Manager` method and a `Process` wrapper that searches the event handler list for handlers that correspond to the emitted event.
 ```c++
@@ -314,30 +313,258 @@ void Process::emit(string event_name, const Event& event) {
 A process would typically emit an event in its `start`, `update`, or `stop` method. For example,
 ```c++
 void update() {
-    emit("desired speed", Event(desired_speed));
+    emit(Event("desired speed", 40));
 }
 ```
+
+See `examples/driving.cc` for a worked out example. A plot of the velocity over time from that example is here:
+
+![Cruise Control with Driver](images/cruise-control-output.png)
+
+Event Propagation
+---
+
+The way we currently have event manager defined, every handler that watches for events with a particular name will get run every time an event with that name is emitted. This may not be desired in some cases. For example, you may want that certain events take priority and prevent other handlers from being run. To get this behavior, we introduce *event propagation*. 
+
+To the event class, we add a Boolean value to keep track of whether the event should be propagated.
+```c++
+// event.h
+private:
+bool _propagate;
+```
+as well as the methods:
+```c++
+// event.h
+inline bool propagate() const { return _propagate; }
+inline void stop_propagation() { _propagate = false; }
+inline void reset() { _propagate = true; }
+```
+In the manager, we can then prevent events from propagating if the-r `_propgate` instance variable is set to true as follows:
+```c++
+Manager& Manager::emit(const Event& event) {
+    Event e = event; // new: make a copy so we can change propagation
+    if ( event_handlers.find(event.name()) != event_handlers.end() ) {
+        for ( auto handler : event_handlers[event.name()] ) {
+            if ( e.propagate() ) { // new
+                handler(e);
+            }
+        }
+    }
+    return *this;
+}
+```
+This capability will become particularly useful in the next section.
 
 Finite State Machines
 ===
 
+A finite state machine, or FSM, is a fundamental object in embedded systems. They consist of a set of states and a set of labelede transitions between states. Here is a simple example.
+
+![toggle switch](images/toggle-switch.png)
+
+There are two states, `Off` and `On`. The FSM moves from one state to the other, every time a 'switch' input is recieved. 
+
+Another example is a microwave oven controller, which is designed to accept user input and keep the user from doing something bad (like tuning on the microwave when the door is open).
+
+![microwave](images/microwave.png)
+
+To implement FSMs in Elma, we will add three new classes: `State`, `Transition`, and `StateMachine`. The first is an abstract base class that users will override with their own state definitions. Transition is a container class that holds a source and desintation state and an event name. StateMachine will inherit from `Process` and will manager transitions.
+
 States
 ---
+
+To represent states, we add the new class:
+```c++
+class State {
+
+    friend class StateMachine;
+
+    public:
+    State();
+    State(std::string name);
+
+    inline std::string name() { return _name; }
+    virtual void entry(Event& e) = 0;
+    virtual void during() = 0;
+    virtual void exit(Event& e) = 0;
+
+    void emit(const Event& e);
+
+    private:
+    std::string _name;
+    StateMachine * _state_machine_ptr;
+
+};
+```
 
 Transitions
 ---
 
+To represent transitions, we add the new class:
+```c++
+class Transition {
+
+    public:
+    Transition(std::string event_name, State& from, State& to) : 
+        _from(from),
+        _to(to),
+        _event_name(event_name) {}
+
+    inline State& from() const { return _from; }
+    inline State& to() const { return _to; }
+    inline string event_name() const { return _event_name; }
+
+    private:
+    State& _from;
+    State& _to;
+    string _event_name;
+
+};
+```
+
 State Machines
 ---
+
+To represent state machines, we add the new class
+```c++
+class StateMachine : public Process {
+
+    public:
+    StateMachine(std::string name) : Process(name) {}
+    StateMachine() : Process("unnamed state machine") {}
+
+    StateMachine& set_initial(State& s);
+    StateMachine& add_transition(std::string event_name, State& from, State& to);
+    inline StateMachine& set_propagate(bool val) { _propagate = val; }
+
+    State& current() { return *_current; }
+
+    void init();
+    void start();
+    void update();
+    void stop();
+
+    private:
+    vector<Transition> _transitions;
+    State * _initial;
+    State * _current;
+    bool _propagate;
+
+};
+```
+
+The class keeps track of the initial and current states as well as keeping a list of transitions. Since it inherits from `Process` and needs its `init`, `start`, `update`, and `stop` methods defined. The `init` method loops through all transitions and watches for events that trigger them.
+```c++
+void StateMachine::init() {
+    for (auto transition : _transitions ) {
+        watch(transition.event_name(), [this, transition](Event& e) {
+            if ( _current->id() == transition.from().id() ) {
+                _current->exit(e);
+                _current = &transition.to();
+                _current->entry(e);
+                if ( !_propagate ) { // StateMachine has a wrapper flag for
+                                     // whether it should propagate
+                    e.stop_propagation();
+                }
+            }
+        });
+    }
+}
+```
+The start method sets the current state to the initial state
+```c++
+void StateMachine::start() {
+    _current = _initial;
+    _current->entry(Event("start"));
+}
+```
+and the update method calls the current state's during method.
+```c++
+void StateMachine::update() {
+    _current->during();
+}
+```
 
 Example: Binaray Counter
 ---
 
-Example: Microwave Oven
+See `examples/binary.cc` for how to implement the toggle switch above.
 
+Example: Microwave Oven
+---
+
+See `examples/microwave.cc` for how to implement the toggle switch above.
 
 Documentation with Doxygen
 ---
 
+The documentation for Elma is current at [https://klavins.github.io/ECEP520/index.html](https://klavins.github.io/ECEP520/index.html). It is automatically generated by first running Doxygen with
+```bash
+make docs
+```
+and then copying the contents of the resulting `html` directory to `ECEP520/docs`. Github has a feature called *Github Pages* that allows you to serve web pages from a repository. To set it up, I went to the ECEP520 repository, clicked settings, scrolled down to *Github Pages*, and chose `/docs` as the source directory.
+
+To document a class, you add comments to the code with the special syntax
+```c++
+//! My new class
+
+//! Some details about my class
+class MyClass {
+
+};
+```
+To document a method, you do something like
+```c++
+//! Compute something important
+//! \param x A desription of the first argument
+//! \param s A description of the second argument
+//! \return The value of the important thing computed
+int f(int x, std::string s);
+```
+
+To add a code example to a comment, do
+```c++
+//! @code
+//! int x = 1;
+//! @endcode
+```
+
+See, for example, the comments in `event.h` and `manager.cc`. 
+
 Exercises
 ===
+
+1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method that get's the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. Put all of your code `examples/stop_watch.cc`.     So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
+    ```c++
+    // INSERT GRADING TESTS HERE
+    ```
+    we will add tests such as those in the microwave example at that point in your code. 
+1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. The order of the elements does not matter.
+    ```json
+    {
+        "name": "binary counter",
+        "states": { "on", "off" },
+        "transitions": [
+            {
+                "from": "on",
+                "to": "off",
+                "when": "switch"
+            },
+            {
+                "from": "off",
+                "to": "on",
+                "when": "switch"
+            }
+        ]
+    }
+    ```
+1. Define a `StateMachine` called 'Robot' that models the following diagram:
+
+    ![robot fsm]()
+
+    So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
+    ```c++
+    // INSERT GRADING TESTS HERE
+    ```
+    we will add tests such as those in the microwave example at that point in your code.
+1. 

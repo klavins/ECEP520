@@ -20,12 +20,11 @@ class Trigger : public Process {
 class Mode : public State {
     public:
     Mode(std::string name) : State(name) {}
-    void entry(Event& e) {
+    void entry(const Event& e) {
         std::cout << "entering " + name() << "\n";
     }
     void during() {}
-    void exit(Event&) {}
-
+    void exit(const Event&) {}
 };
 
 int main() {

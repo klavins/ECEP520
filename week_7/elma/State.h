@@ -14,7 +14,7 @@ namespace elma {
         friend class StateMachine;
 
         public:
-        State() : _name("unnamed state"){
+        State() : _name("unnamed state") {
             _id = _id_counter++;
         }
         State(std::string name) : _name(name){
@@ -22,9 +22,9 @@ namespace elma {
         }
         inline std::string name() { return _name; }
         inline int id() { return _id; }
-        virtual void entry(Event& e) = 0;
+        virtual void entry(const Event& e) = 0;
         virtual void during() = 0;
-        virtual void exit(Event& e) = 0;
+        virtual void exit(const Event& e) = 0;
 
         void emit(const Event& e);
 
