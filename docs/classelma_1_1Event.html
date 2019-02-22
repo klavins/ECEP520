@@ -101,10 +101,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab1d2a9774e489391c3b5d656b9420595"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#ab1d2a9774e489391c3b5d656b9420595">Event</a> (json <a class="el" href="classelma_1_1Event.html#a06e4e5f55834e214aa0fb93911ab7508">value</a>)</td></tr>
-<tr class="separator:ab1d2a9774e489391c3b5d656b9420595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b1b7657420bbbebb81f1c59cc8fda96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#a2b1b7657420bbbebb81f1c59cc8fda96">Event</a> (std::string <a class="el" href="classelma_1_1Event.html#ab2c45181f4eeabc04eaaadf242effca6">name</a>, json <a class="el" href="classelma_1_1Event.html#a06e4e5f55834e214aa0fb93911ab7508">value</a>)</td></tr>
+<tr class="separator:a2b1b7657420bbbebb81f1c59cc8fda96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13f10d8b664290c993446dcbe63007e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13f10d8b664290c993446dcbe63007e5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Event</b> (std::string <a class="el" href="classelma_1_1Event.html#ab2c45181f4eeabc04eaaadf242effca6">name</a>)</td></tr>
+<tr class="separator:a13f10d8b664290c993446dcbe63007e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06e4e5f55834e214aa0fb93911ab7508"><td class="memItemLeft" align="right" valign="top">json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#a06e4e5f55834e214aa0fb93911ab7508">value</a> () const </td></tr>
 <tr class="separator:a06e4e5f55834e214aa0fb93911ab7508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ba4c7ae6bc121f8ea42a3fde09ae0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#a73ba4c7ae6bc121f8ea42a3fde09ae0d">empty</a> () const </td></tr>
+<tr class="separator:a73ba4c7ae6bc121f8ea42a3fde09ae0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c45181f4eeabc04eaaadf242effca6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2c45181f4eeabc04eaaadf242effca6"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#ab2c45181f4eeabc04eaaadf242effca6">name</a> () const </td></tr>
+<tr class="memdesc:ab2c45181f4eeabc04eaaadf242effca6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the event has no data <br /></td></tr>
+<tr class="separator:ab2c45181f4eeabc04eaaadf242effca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a364b6689f55bb21a71cd934e06913"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#a25a364b6689f55bb21a71cd934e06913">propagate</a> () const </td></tr>
 <tr class="separator:a25a364b6689f55bb21a71cd934e06913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad295377175f67b7de6db68ab6a68827b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Event.html#ad295377175f67b7de6db68ab6a68827b">stop_propagation</a> ()</td></tr>
@@ -116,14 +125,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Events that can be emitted, watched, and responded to with event handlers. </p>
-<p>Events are constructed with a jsonable value, as in </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Event.html#ab1d2a9774e489391c3b5d656b9420595">Event</a>(3.14);</div>
-<div class="line"><a class="code" href="classelma_1_1Event.html#ab1d2a9774e489391c3b5d656b9420595">Event</a>(<span class="stringliteral">&quot;hello world&quot;</span>);</div>
-<div class="line"><a class="code" href="classelma_1_1Event.html#ab1d2a9774e489391c3b5d656b9420595">Event</a>({1,2,3});</div>
+<p>Events are constructed with a jsonable value, as in </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Event.html#a2b1b7657420bbbebb81f1c59cc8fda96">Event</a>(3.14);</div>
+<div class="line"><a class="code" href="classelma_1_1Event.html#a2b1b7657420bbbebb81f1c59cc8fda96">Event</a>(<span class="stringliteral">&quot;hello world&quot;</span>);</div>
+<div class="line"><a class="code" href="classelma_1_1Event.html#a2b1b7657420bbbebb81f1c59cc8fda96">Event</a>({1,2,3});</div>
 </div><!-- fragment --><p> See <a href="https://github.com/nlohmann/json">https://github.com/nlohmann/json</a> for details about how to define and manipulated json values. </p>
 
 <p>Definition at line <a class="el" href="event_8h_source.html#l00023">23</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab1d2a9774e489391c3b5d656b9420595"></a>
+<a class="anchor" id="a2b1b7657420bbbebb81f1c59cc8fda96"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -133,9 +142,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">elma::Event::Event </td>
           <td>(</td>
-          <td class="paramtype">json&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">json&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -156,6 +175,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a73ba4c7ae6bc121f8ea42a3fde09ae0d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool elma::Event::empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Determine whether the event has no data  Whether the event has no data </p>
+
+<p>Definition at line <a class="el" href="event_8h_source.html#l00038">38</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a25a364b6689f55bb21a71cd934e06913"></a>
 <div class="memitem">
 <div class="memproto">
@@ -178,7 +223,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 <p>Determine whether the event will propagate to the next event handler </p><dl class="section return"><dt>Returns</dt><dd>True or false </dd></dl>
 
-<p>Definition at line <a class="el" href="event_8h_source.html#l00037">37</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+<p>Definition at line <a class="el" href="event_8h_source.html#l00045">45</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +249,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 <p>Prevent the event from propagating to the next event handler. Typically called within an event handler to prevent an subsequent events that are watching the same event from firing. See the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> methods emit() and watch(). </p>
 
-<p>Definition at line <a class="el" href="event_8h_source.html#l00042">42</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+<p>Definition at line <a class="el" href="event_8h_source.html#l00050">50</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
 
 </div>
 </div>
@@ -230,7 +275,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 <p>Get the data value associated with an event </p><dl class="section return"><dt>Returns</dt><dd>The value </dd></dl>
 
-<p>Definition at line <a class="el" href="event_8h_source.html#l00033">33</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+<p>Definition at line <a class="el" href="event_8h_source.html#l00034">34</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
 
 </div>
 </div>
@@ -240,7 +285,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 21 2019 16:16:43 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

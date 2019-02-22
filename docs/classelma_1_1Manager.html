@@ -129,8 +129,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ace725510fd2bd626e9011e33d8ea92a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb3c31759ad46b171a406447ff1be640"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1Manager.html">Manager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Manager.html#acb3c31759ad46b171a406447ff1be640">watch</a> (string event_name, std::function&lt; void(<a class="el" href="classelma_1_1Event.html">Event</a> &amp;)&gt; handler)</td></tr>
 <tr class="separator:acb3c31759ad46b171a406447ff1be640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a304a57ed61b1db9a1596bfeb8e7b0108"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1Manager.html">Manager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Manager.html#a304a57ed61b1db9a1596bfeb8e7b0108">emit</a> (string name, const <a class="el" href="classelma_1_1Event.html">Event</a> &amp;event)</td></tr>
-<tr class="separator:a304a57ed61b1db9a1596bfeb8e7b0108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd4bc0f5774f6ac6c2dcf6c802d2418"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1Manager.html">Manager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1Manager.html#a7dd4bc0f5774f6ac6c2dcf6c802d2418">emit</a> (const <a class="el" href="classelma_1_1Event.html">Event</a> &amp;event)</td></tr>
+<tr class="separator:a7dd4bc0f5774f6ac6c2dcf6c802d2418"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classelma_1_1Process.html" title="An abstract base class for processes. ">Process</a> <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> class. </p>
@@ -183,7 +183,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the manager, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00084">84</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00083">83</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -232,41 +232,30 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a304a57ed61b1db9a1596bfeb8e7b0108"></a>
+<a class="anchor" id="a7dd4bc0f5774f6ac6c2dcf6c802d2418"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classelma_1_1Manager.html">Manager</a> &amp; elma::Manager::emit </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>event_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const <a class="el" href="classelma_1_1Event.html">Event</a> &amp;&#160;</td>
-          <td class="paramname"><em>event</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>event</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Emit an event associated with a name. Typically, a process would emit events in its <a class="el" href="classelma_1_1Manager.html#a16f0db2f3f19b6c6493735b4d25f55c8">update()</a> method using something like the following code" </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Manager.html#a304a57ed61b1db9a1596bfeb8e7b0108">emit</a>(<span class="stringliteral">&quot;event name&quot;</span>, Event(value));</div>
-</div><!-- fragment --><p> where value is any jsonable value. For example, you can write </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Manager.html#a304a57ed61b1db9a1596bfeb8e7b0108">emit</a>(<span class="stringliteral">&quot;velocity&quot;</span>, Event(3.41));</div>
+<p>Emit an event associated with a name. Typically, a process would emit events in its <a class="el" href="classelma_1_1Manager.html#a16f0db2f3f19b6c6493735b4d25f55c8">update()</a> method using something like the following code" </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Manager.html#a7dd4bc0f5774f6ac6c2dcf6c802d2418">emit</a>(Event(<span class="stringliteral">&quot;name&quot;</span>, value));</div>
+</div><!-- fragment --><p> where value is any jsonable value. For example, you can write </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Manager.html#a7dd4bc0f5774f6ac6c2dcf6c802d2418">emit</a>(Event(<span class="stringliteral">&quot;velocity&quot;</span>, 3.41));</div>
 </div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">event_name</td><td>The name of the event </td></tr>
     <tr><td class="paramname">event</td><td>The <a class="el" href="classelma_1_1Event.html" title="Events that can be emitted, watched, and responded to with event handlers. ">Event</a> to be emitted </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the manager for chaining. </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00069">69</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00068">68</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -284,7 +273,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Initialize all processes. Usually called before <a class="el" href="classelma_1_1Manager.html#ad5df7316416ac9697d62e68e21f04758">run()</a> </p><dl class="section return"><dt>Returns</dt><dd>A reference to the manager, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00093">93</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00092">92</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -309,7 +298,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the manager, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00122">122</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00121">121</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -363,7 +352,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Start all processes. Usually not called directly. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the manager, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00099">99</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00098">98</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -407,7 +396,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Stop all processes. Usually not called directly. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the manager, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00105">105</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00104">104</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -425,7 +414,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Update all processes if enough time has passed. Usually not called directly. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the manager, for chaining </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8cc_source.html#l00111">111</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
+<p>Definition at line <a class="el" href="manager_8cc_source.html#l00110">110</a> of file <a class="el" href="manager_8cc_source.html">manager.cc</a>.</p>
 
 </div>
 </div>
@@ -473,7 +462,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 21 2019 16:16:43 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

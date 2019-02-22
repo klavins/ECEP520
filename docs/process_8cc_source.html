@@ -97,8 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        _manager_ptr-&gt;<a class="code" href="classelma_1_1Manager.html#acb3c31759ad46b171a406447ff1be640">watch</a>(event_name, handler);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> Process::emit(<span class="keywordtype">string</span> event_name, <span class="keyword">const</span> Event&amp; event) {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        _manager_ptr-&gt;<a class="code" href="classelma_1_1Manager.html#a304a57ed61b1db9a1596bfeb8e7b0108">emit</a>(event_name, event);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> Process::emit(<span class="keyword">const</span> Event&amp; event) {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        _manager_ptr-&gt;<a class="code" href="classelma_1_1Manager.html#a7dd4bc0f5774f6ac6c2dcf6c802d2418">emit</a>(event);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
@@ -143,7 +143,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
 <div class="ttc" id="classelma_1_1Process_html_ab392ade636276d047634df7605970164"><div class="ttname"><a href="classelma_1_1Process.html#ab392ade636276d047634df7605970164">elma::Process::channel</a></div><div class="ttdeci">Channel &amp; channel(string name)</div><div class="ttdoc">Access a channel with the given name. </div><div class="ttdef"><b>Definition:</b> <a href="process_8cc_source.html#l00011">process.cc:11</a></div></div>
-<div class="ttc" id="classelma_1_1Manager_html_a304a57ed61b1db9a1596bfeb8e7b0108"><div class="ttname"><a href="classelma_1_1Manager.html#a304a57ed61b1db9a1596bfeb8e7b0108">elma::Manager::emit</a></div><div class="ttdeci">Manager &amp; emit(string name, const Event &amp;event)</div><div class="ttdef"><b>Definition:</b> <a href="manager_8cc_source.html#l00069">manager.cc:69</a></div></div>
 <div class="ttc" id="classelma_1_1Process_html_aeaf53c300dbde2444bf7a5948b70a9f6"><div class="ttname"><a href="classelma_1_1Process.html#aeaf53c300dbde2444bf7a5948b70a9f6">elma::Process::init</a></div><div class="ttdeci">virtual void init()=0</div></div>
 <div class="ttc" id="classelma_1_1Process_html_ae3ffee069f55704617740bdc0142aecc"><div class="ttname"><a href="classelma_1_1Process.html#ae3ffee069f55704617740bdc0142aecc">elma::Process::start</a></div><div class="ttdeci">virtual void start()=0</div></div>
 <div class="ttc" id="classelma_1_1Process_html_a2252f8767f4f437297c8a342b60b484e"><div class="ttname"><a href="classelma_1_1Process.html#a2252f8767f4f437297c8a342b60b484e">elma::Process::previous_update</a></div><div class="ttdeci">high_resolution_clock::duration previous_update()</div><div class="ttdef"><b>Definition:</b> <a href="process_8h_source.html#l00096">process.h:96</a></div></div>
@@ -156,11 +155,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classelma_1_1Process_html_a9731a2218270c49af835c606c09bd6c5"><div class="ttname"><a href="classelma_1_1Process.html#a9731a2218270c49af835c606c09bd6c5">elma::Process::update</a></div><div class="ttdeci">virtual void update()=0</div></div>
 <div class="ttc" id="classelma_1_1Process_html_ae2c6efe05132c558fe44c0cf301113e2"><div class="ttname"><a href="classelma_1_1Process.html#ae2c6efe05132c558fe44c0cf301113e2">elma::Process::delta</a></div><div class="ttdeci">double delta()</div><div class="ttdoc">The most recent amount of time between updates. </div><div class="ttdef"><b>Definition:</b> <a href="process_8cc_source.html#l00038">process.cc:38</a></div></div>
 <div class="ttc" id="classelma_1_1Channel_html"><div class="ttname"><a href="classelma_1_1Channel.html">elma::Channel</a></div><div class="ttdoc">A channel for sending double values to and from Process objects. </div><div class="ttdef"><b>Definition:</b> <a href="channel_8h_source.html#l00017">channel.h:17</a></div></div>
+<div class="ttc" id="classelma_1_1Manager_html_a7dd4bc0f5774f6ac6c2dcf6c802d2418"><div class="ttname"><a href="classelma_1_1Manager.html#a7dd4bc0f5774f6ac6c2dcf6c802d2418">elma::Manager::emit</a></div><div class="ttdeci">Manager &amp; emit(const Event &amp;event)</div><div class="ttdef"><b>Definition:</b> <a href="manager_8cc_source.html#l00068">manager.cc:68</a></div></div>
 <div class="ttc" id="namespaceelma_html"><div class="ttname"><a href="namespaceelma.html">elma</a></div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00011">manager.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 21 2019 16:16:43 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

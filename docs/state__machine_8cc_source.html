@@ -97,46 +97,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    StateMachine&amp; StateMachine::add_transition(<span class="keywordtype">string</span> event_name, State&amp; from, State&amp; to) {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        _transitions.push_back(Transition(event_name, from, to));</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">   18</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">StateMachine::init</a>() {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> transition : _transitions ) {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            watch(transition.event_name(), [<span class="keyword">this</span>, transition](<a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordflow">if</span> ( _current-&gt;id() == transition.from().id() ) {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                    _current-&gt;exit();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                    _current = &amp;transition.to();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                    _current-&gt;entry();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                    <span class="keywordflow">if</span> ( !_propagate ) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                      e.stop_propagation();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            });</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">   33</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">StateMachine::start</a>() {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        _current = _initial;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        _current-&gt;entry();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">   38</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">StateMachine::update</a>() {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        _current-&gt;during();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">   42</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">StateMachine::stop</a>() {}</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        to._state_machine_ptr = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        from._state_machine_ptr = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">   20</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">StateMachine::init</a>() {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> transition : _transitions ) {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            watch(transition.event_name(), [<span class="keyword">this</span>, transition](<a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">if</span> ( _current-&gt;id() == transition.from().id() ) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                    _current-&gt;exit(e);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                    _current = &amp;transition.to();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                    _current-&gt;entry(e);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    <span class="keywordflow">if</span> ( !_propagate ) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                      e.stop_propagation();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            });</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">   35</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">StateMachine::start</a>() {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        _current = _initial;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _current-&gt;entry(<a class="code" href="classelma_1_1Event.html">Event</a>(<span class="stringliteral">&quot;start&quot;</span>));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">   40</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">StateMachine::update</a>() {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        _current-&gt;during();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="ttc" id="classelma_1_1StateMachine_html_a302e89347b025e658b806be343cd532a"><div class="ttname"><a href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">elma::StateMachine::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00033">state_machine.cc:33</a></div></div>
-<div class="ttc" id="classelma_1_1StateMachine_html_ac319b67fdd0c1997e6807dbc5e310aef"><div class="ttname"><a href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">elma::StateMachine::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00038">state_machine.cc:38</a></div></div>
-<div class="ttc" id="classelma_1_1StateMachine_html_a4c03e19874ce1a4bed123120d31bf7ed"><div class="ttname"><a href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">elma::StateMachine::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00018">state_machine.cc:18</a></div></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">   44</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">StateMachine::stop</a>() {}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="ttc" id="classelma_1_1StateMachine_html_a302e89347b025e658b806be343cd532a"><div class="ttname"><a href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">elma::StateMachine::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00035">state_machine.cc:35</a></div></div>
+<div class="ttc" id="classelma_1_1StateMachine_html_ac319b67fdd0c1997e6807dbc5e310aef"><div class="ttname"><a href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">elma::StateMachine::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00040">state_machine.cc:40</a></div></div>
+<div class="ttc" id="classelma_1_1StateMachine_html_a4c03e19874ce1a4bed123120d31bf7ed"><div class="ttname"><a href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">elma::StateMachine::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00020">state_machine.cc:20</a></div></div>
 <div class="ttc" id="classelma_1_1Event_html"><div class="ttname"><a href="classelma_1_1Event.html">elma::Event</a></div><div class="ttdoc">Events that can be emitted, watched, and responded to with event handlers. </div><div class="ttdef"><b>Definition:</b> <a href="event_8h_source.html#l00023">event.h:23</a></div></div>
-<div class="ttc" id="classelma_1_1StateMachine_html_a57d866797c065ffe8ddfedd541bb77e1"><div class="ttname"><a href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">elma::StateMachine::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00042">state_machine.cc:42</a></div></div>
+<div class="ttc" id="classelma_1_1StateMachine_html_a57d866797c065ffe8ddfedd541bb77e1"><div class="ttname"><a href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">elma::StateMachine::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="state__machine_8cc_source.html#l00044">state_machine.cc:44</a></div></div>
 <div class="ttc" id="namespaceelma_html"><div class="ttname"><a href="namespaceelma.html">elma</a></div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00011">manager.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 21 2019 16:16:43 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

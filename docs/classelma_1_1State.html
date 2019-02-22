@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classelma_1_1State-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">elma::State Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -110,20 +111,29 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> ()</t
 <tr class="memitem:a1f0bad1c45494c2c3793b286ea201347"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f0bad1c45494c2c3793b286ea201347"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> ()</td></tr>
 <tr class="separator:a1f0bad1c45494c2c3793b286ea201347"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac75b9615add4ad81ab29d51f139b7480"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac75b9615add4ad81ab29d51f139b7480"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>entry</b> ()=0</td></tr>
-<tr class="separator:ac75b9615add4ad81ab29d51f139b7480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6915b655c0975dd488e4e32a4ab62a03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6915b655c0975dd488e4e32a4ab62a03"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>entry</b> (const <a class="el" href="classelma_1_1Event.html">Event</a> &amp;e)=0</td></tr>
+<tr class="separator:a6915b655c0975dd488e4e32a4ab62a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4ff01f2cd8c6e78d90461f6a5d914c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4ff01f2cd8c6e78d90461f6a5d914c4"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>during</b> ()=0</td></tr>
 <tr class="separator:aa4ff01f2cd8c6e78d90461f6a5d914c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bc63a73cdff91d29a5d5a6399ae4de3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bc63a73cdff91d29a5d5a6399ae4de3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>exit</b> ()=0</td></tr>
-<tr class="separator:a9bc63a73cdff91d29a5d5a6399ae4de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0dcc51dbc4dfdfd0704a939389d289d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0dcc51dbc4dfdfd0704a939389d289d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>exit</b> (const <a class="el" href="classelma_1_1Event.html">Event</a> &amp;e)=0</td></tr>
+<tr class="separator:ad0dcc51dbc4dfdfd0704a939389d289d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c1d2a5be2fc2635d3c055584bc1ff70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c1d2a5be2fc2635d3c055584bc1ff70"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>emit</b> (const <a class="el" href="classelma_1_1Event.html">Event</a> &amp;e)</td></tr>
+<tr class="separator:a2c1d2a5be2fc2635d3c055584bc1ff70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a97c30032fa6c28eaf8a40b6df6ea97ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97c30032fa6c28eaf8a40b6df6ea97ed"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>StateMachine</b></td></tr>
+<tr class="separator:a97c30032fa6c28eaf8a40b6df6ea97ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>States for finite state machines (FSM) </p>
 
-<p>Definition at line <a class="el" href="state_8h_source.html#l00009">9</a> of file <a class="el" href="state_8h_source.html">state.h</a>.</p>
+<p>Definition at line <a class="el" href="state_8h_source.html#l00012">12</a> of file <a class="el" href="state_8h_source.html">state.h</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="state_8h_source.html">state.h</a></li>
 <li><a class="el" href="state__machine_8cc_source.html">state_machine.cc</a></li>
@@ -131,7 +141,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>exit</b> ()=0
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Feb 21 2019 16:16:43 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
