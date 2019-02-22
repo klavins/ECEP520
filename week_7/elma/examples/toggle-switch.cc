@@ -12,7 +12,7 @@ class Trigger : public Process {
     void start() {}
     void update() { 
         std::cout << "switch at " << milli_time() << "\n";
-        emit(Event("switch", 0));
+        emit(Event("switch"));
     }
     void stop() {}
 };
@@ -35,7 +35,7 @@ int main() {
     StateMachine fsm("toggle switch");
 
     fsm.set_initial(off)
-       .set_propagate(false)
+       .set_propagate(true)
        .add_transition("switch", off, on)
        .add_transition("switch", on, off);
 

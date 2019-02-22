@@ -34,7 +34,9 @@ namespace elma {
 
     void StateMachine::start() {
         _current = _initial;
-        _current->entry(Event("start"));
+        if ( _current != NULL ) {
+            _current->entry(Event("start"));
+        }
     }
 
     void StateMachine::update() {

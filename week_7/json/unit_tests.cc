@@ -13,6 +13,8 @@ namespace {
         j["fib"] = { 1, 1, 2, 3, 5, 8, 13 };
         j["me"] = { { "first", "eric" }, { "last", "klavins"} };
 
+        double x = (double) j["fib"][0] + (double) j["fib"][1];
+
         ASSERT_EQ(3.14, j["pi"]);
 
         auto k = R"(
