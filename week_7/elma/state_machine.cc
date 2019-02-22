@@ -33,10 +33,11 @@ namespace elma {
     }
 
     void StateMachine::start() {
-        _current = _initial;
-        if ( _current != NULL ) {
-            _current->entry(Event("start"));
+        if ( _initial == NULL ) { 
+            throw(Exception("State machine started without an initial state (call set_initial(...) first)"));
         }
+        _current = _initial;
+        _current->entry(Event("start"));
     }
 
     void StateMachine::update() {

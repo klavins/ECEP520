@@ -9,8 +9,8 @@ namespace elma {
     class StateMachine : public Process {
 
         public:
-        StateMachine(std::string name) : Process(name) {}
-        StateMachine() : Process("unnamed state machine") {}
+        StateMachine(std::string name) : Process(name), _initial(NULL), _current(NULL) {}
+        StateMachine() : Process("unnamed state machine"), _initial(NULL), _current(NULL) {}
 
         StateMachine& set_initial(State& s);
         StateMachine& add_transition(std::string event_name, State& from, State& to);
