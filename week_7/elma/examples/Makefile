@@ -11,26 +11,29 @@ CFLAGS      := -fsanitize=address -ggdb
 LIB         := -lgtest -lpthread -lasan -lelma
 INCLUDE		:= -I..
 LIBDIR		:= -L../lib
+ELMALIB		:= ../lib/libelma.a
 
 #Files
-TARGETDIR	:= ./bin
-SOURCES     := $(wildcard *.cc)
-TARGETS		:= $(patsubst %.cc,%,$(wildcard *.cc))
+TARGETDIR	 := ./bin
+SOURCES      := $(wildcard *.cc)
+TARGETS		 := $(patsubst %.cc,%,$(wildcard *.cc))
+FULL_TARGETS := $(addprefix $(TARGETDIR)/, $(TARGETS))
 
 #Default Make
-all: dirs $(TARGETS) 
+all: dirs $(FULL_TARGETS)
 
-dirs:
+dirs: $(TARGETDIR)
 	@mkdir -p $(TARGETDIR)
 
 #Clean only Objects
 clean:
-	@$(RM) -rf $(TARGETS)
+	@$(RM) -rf $(TARGETDIR)
 
-#Compile
-$(TARGETS): %: %.cc dirs
-	$(CC) $(CFLAGS) $(INCLUDE) $<  $(LIBDIR) $(LIB) -o $(TARGETDIR)/$@
+# Compile
+$(TARGETDIR)/%: %.cc $(ELMALIB)
+	$(CC) $(CFLAGS) $(INCLUDE) $< $(LIBDIR) $(LIB) -o $@
 
-#Compile
+# bin/basic: basic.cc
+# 	$(CC) $(CFLAGS) $(INCLUDE) $<  $(LIBDIR) $(LIB) -o $@
 
-.PHONY: directories remake clean cleaner apidocs $(BUILDDIR) $(TARGETDIR)
+.PHONY: directories remake clean cleaner $(BUILDDIR) $(TARGETDIR)

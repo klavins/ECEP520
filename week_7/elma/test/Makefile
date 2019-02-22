@@ -17,6 +17,7 @@ CFLAGS      := -fsanitize=address -ggdb
 LIB         := -L../lib -lgtest -lpthread -lasan -lelma
 INC         := -I$(INCDIR)
 INCDEP      := -I$(INCDIR)
+ELMALIB		:= ../lib/libelma.a
 
 #Files
 HEADERS     := $(wildcard *.h)
@@ -24,7 +25,7 @@ SOURCES     := $(wildcard *.cc)
 OBJECTS     := $(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
 
 #Defauilt Make
-all: directories $(TARGETDIR)/$(TARGET) 
+all: directories $(TARGETDIR)/$(TARGET)
 
 #Remake
 remake: cleaner all
@@ -48,7 +49,7 @@ $(TARGETDIR)/$(TARGET): $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) -o $(TARGETDIR)/$(TARGET) $^ $(LIB)
 
 #Compile
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(HEADERS)
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) $(HEADERS) $(ELMALIB)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 .PHONY: directories remake clean cleaner apidocs $(BUILDDIR) $(TARGETDIR)
