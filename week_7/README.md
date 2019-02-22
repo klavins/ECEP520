@@ -534,7 +534,7 @@ See, for example, the comments in `event.h` and `manager.cc`.
 Exercises
 ===
 
-1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method that get's the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. Put all of your code `examples/stop_watch.cc`.     So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
+1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method that get's the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. Put all of your code `examples/stop_watch.cc`. So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
     ```c++
     // INSERT GRADING TESTS HERE
     ```
@@ -568,4 +568,8 @@ Exercises
     }
     ```
     The order of the elements does not matter.
-1. One more problem, TBA.
+1. Add an optional, positive integer values priority to the manager's watch method:
+```c++
+Manager& watch(string event_name, std::function<void(Event&)> handler, int priority=0);
+```
+Note, this version of watch should replace the existing version. It uses a [default argument value](https://en.cppreference.com/w/cpp/language/default_arguments). Make it so that event handlers with higher priority are guaranteed to be run before event handlers with lower priority. Handlers with equal priority run in an unspecified order.
