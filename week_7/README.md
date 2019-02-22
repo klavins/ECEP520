@@ -360,13 +360,13 @@ Finite State Machines
 
 A finite state machine, or FSM, is a fundamental object in embedded systems. They consist of a set of states and a set of labelede transitions between states. Here is a simple example.
 
-<img src="images/toggle-switch.png" style="width: 50%"></image>
+<img src="images/toggle-switch.png" style="max-width: 50%"></image>
 
 There are two states, `Off` and `On`. The FSM moves from one state to the other, every time a 'switch' input is recieved. 
 
 Another example is a microwave oven controller, which is designed to accept user input and keep the user from doing something bad (like tuning on the microwave when the door is open).
 
-<img src="images/microwave.png" style="width: 64%"></image>
+<img src="images/microwave.png" style="max-width: 64%"></image>
 
 To implement FSMs in Elma, we will add three new classes: `State`, `Transition`, and `StateMachine`. The first is an abstract base class that users will override with their own state definitions. Transition is a container class that holds a source and desintation state and an event name. StateMachine will inherit from `Process` and will manager transitions.
 
@@ -541,7 +541,7 @@ Exercises
     we will add tests such as those in the microwave example at that point in your code. 
 1. Define a `StateMachine` called 'Robot' that models the following diagram:
 
-    <img src="images/robot.png" width=70%></image>
+    <img src="images/robot.png" style="max-width=70%"></image>
 
     So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
     ```c++
