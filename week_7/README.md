@@ -295,9 +295,9 @@ void init() {
 To emit an event, we define a `Manager` method and a `Process` wrapper that searches the event handler list for handlers that correspond to the emitted event.
 ```c++
 // Manager.cc
-Manager& Manager::emit(string event_name, const Event& event) {
-    if ( event_handlers.find(event_name) != event_handlers.end() ) {
-        for ( auto handler : event_handlers[event_name] ) {
+Manager& Manager::emit(const Event& event) {
+    if ( event_handlers.find(event.name()) != event_handlers.end() ) {
+        for ( auto handler : event_handlers[event.name()] ) {
             handler(e);
         }
     }
@@ -534,20 +534,12 @@ See, for example, the comments in `event.h` and `manager.cc`.
 Exercises
 ===
 
-1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method that get's the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. Put all of your code `examples/stop_watch.cc`. So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
-    ```c++
-    // INSERT GRADING TESTS HERE
-    ```
-    we will add tests such as those in the microwave example at that point in your code. 
+1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method that get's the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. We will describe where you should put your code so we can test it asap.
 1. Define a `StateMachine` called 'Robot' that models the following diagram:
 
     <img src="images/robot.png" width="620"></image>
 
-    So that we can test your machine, put all your code in `examples/robot.cc` with a comment 
-    ```c++
-    // INSERT GRADING TESTS HERE
-    ```
-    we will add tests such as those in the microwave example at that point in your code.
+    We will describe where you should put your code so we can test it asap.
 1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. 
     ```json
     {
