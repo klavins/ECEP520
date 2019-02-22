@@ -94,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>States for finite state machines (FSM)  
+<p>A finite state machine class.  
  <a href="classelma_1_1StateMachine.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="state__machine_8h_source.html">state_machine.h</a>&gt;</code></p>
@@ -116,27 +116,36 @@ Collaboration diagram for elma::StateMachine:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ada25438e9f52bc60ade1f7fac0431033"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada25438e9f52bc60ade1f7fac0431033"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>StateMachine</b> (std::string <a class="el" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#ada25438e9f52bc60ade1f7fac0431033">StateMachine</a> (std::string <a class="el" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>)</td></tr>
+<tr class="memdesc:ada25438e9f52bc60ade1f7fac0431033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classelma_1_1StateMachine.html" title="A finite state machine class. ">StateMachine</a> with the given name. <br /></td></tr>
 <tr class="separator:ada25438e9f52bc60ade1f7fac0431033"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18d33cfc9d1f730df1e30e5b800b1d40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18d33cfc9d1f730df1e30e5b800b1d40"></a>
-<a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set_initial</b> (<a class="el" href="classelma_1_1State.html">State</a> &amp;s)</td></tr>
+<tr class="memitem:a5c87ed7618118edd5485365638ca6207"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c87ed7618118edd5485365638ca6207"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a5c87ed7618118edd5485365638ca6207">StateMachine</a> ()</td></tr>
+<tr class="memdesc:a5c87ed7618118edd5485365638ca6207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an unnamed <a class="el" href="classelma_1_1StateMachine.html" title="A finite state machine class. ">StateMachine</a>. <br /></td></tr>
+<tr class="separator:a5c87ed7618118edd5485365638ca6207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d33cfc9d1f730df1e30e5b800b1d40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a18d33cfc9d1f730df1e30e5b800b1d40">set_initial</a> (<a class="el" href="classelma_1_1State.html">State</a> &amp;s)</td></tr>
 <tr class="separator:a18d33cfc9d1f730df1e30e5b800b1d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6bdbc3e505b0282d6b22f4501ba4342"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6bdbc3e505b0282d6b22f4501ba4342"></a>
-<a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>add_transition</b> (std::string event_name, <a class="el" href="classelma_1_1State.html">State</a> &amp;from, <a class="el" href="classelma_1_1State.html">State</a> &amp;to)</td></tr>
+<tr class="memitem:ae6bdbc3e505b0282d6b22f4501ba4342"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#ae6bdbc3e505b0282d6b22f4501ba4342">add_transition</a> (std::string event_name, <a class="el" href="classelma_1_1State.html">State</a> &amp;from, <a class="el" href="classelma_1_1State.html">State</a> &amp;to)</td></tr>
 <tr class="separator:ae6bdbc3e505b0282d6b22f4501ba4342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3a81bdfea40dcc353df1c19d212a2d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3a81bdfea40dcc353df1c19d212a2d0"></a>
-<a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>set_propagate</b> (bool val)</td></tr>
+<tr class="memitem:af3a81bdfea40dcc353df1c19d212a2d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#af3a81bdfea40dcc353df1c19d212a2d0">set_propagate</a> (bool val)</td></tr>
 <tr class="separator:af3a81bdfea40dcc353df1c19d212a2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0793bb63c6a6290b44d578b1ef08cbb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0793bb63c6a6290b44d578b1ef08cbb8"></a>
-<a class="el" href="classelma_1_1State.html">State</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>current</b> ()</td></tr>
+<tr class="memitem:a0793bb63c6a6290b44d578b1ef08cbb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classelma_1_1State.html">State</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a0793bb63c6a6290b44d578b1ef08cbb8">current</a> ()</td></tr>
 <tr class="separator:a0793bb63c6a6290b44d578b1ef08cbb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c03e19874ce1a4bed123120d31bf7ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">init</a> ()</td></tr>
+<tr class="memitem:a4c03e19874ce1a4bed123120d31bf7ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c03e19874ce1a4bed123120d31bf7ed"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed">init</a> ()</td></tr>
+<tr class="memdesc:a4c03e19874ce1a4bed123120d31bf7ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not override <a class="el" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed" title="Do not override init() for a state machine. ">init()</a> for a state machine. <br /></td></tr>
 <tr class="separator:a4c03e19874ce1a4bed123120d31bf7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a302e89347b025e658b806be343cd532a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">start</a> ()</td></tr>
+<tr class="memitem:a302e89347b025e658b806be343cd532a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a302e89347b025e658b806be343cd532a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a302e89347b025e658b806be343cd532a">start</a> ()</td></tr>
+<tr class="memdesc:a302e89347b025e658b806be343cd532a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not override <a class="el" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed" title="Do not override init() for a state machine. ">init()</a> for a state machine. <br /></td></tr>
 <tr class="separator:a302e89347b025e658b806be343cd532a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac319b67fdd0c1997e6807dbc5e310aef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">update</a> ()</td></tr>
+<tr class="memitem:ac319b67fdd0c1997e6807dbc5e310aef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac319b67fdd0c1997e6807dbc5e310aef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#ac319b67fdd0c1997e6807dbc5e310aef">update</a> ()</td></tr>
+<tr class="memdesc:ac319b67fdd0c1997e6807dbc5e310aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not override <a class="el" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed" title="Do not override init() for a state machine. ">init()</a> for a state machine. <br /></td></tr>
 <tr class="separator:ac319b67fdd0c1997e6807dbc5e310aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57d866797c065ffe8ddfedd541bb77e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">stop</a> ()</td></tr>
+<tr class="memitem:a57d866797c065ffe8ddfedd541bb77e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57d866797c065ffe8ddfedd541bb77e1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classelma_1_1StateMachine.html#a57d866797c065ffe8ddfedd541bb77e1">stop</a> ()</td></tr>
+<tr class="memdesc:a57d866797c065ffe8ddfedd541bb77e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not override <a class="el" href="classelma_1_1StateMachine.html#a4c03e19874ce1a4bed123120d31bf7ed" title="Do not override init() for a state machine. ">init()</a> for a state machine. <br /></td></tr>
 <tr class="separator:a57d866797c065ffe8ddfedd541bb77e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classelma_1_1Process"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classelma_1_1Process')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classelma_1_1Process.html">elma::Process</a></td></tr>
 <tr class="memitem:ae3b98871432794ea262f4a26dfeab3f7 inherit pub_methods_classelma_1_1Process"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3b98871432794ea262f4a26dfeab3f7"></a>
@@ -186,11 +195,80 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a355d4150a5de734fcb8ff654b7eabf3e inherit pub_types_classelma_1_1Process"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>States for finite state machines (FSM) </p>
-
-<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00009">9</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
+<div class="textblock"><p>A finite state machine class. </p>
+<p>Together with the <a class="el" href="classelma_1_1State.html" title="States for the StateMachine class. ">State</a> and <a class="el" href="classelma_1_1Transition.html" title="States for finite state machines (FSM) ">Transition</a> classes, this class is used to make a finite state machine process. For example, here is a toggle switch machine </p><div class="fragment"><div class="line"><span class="keyword">class </span>Mode : <span class="keyword">public</span> State {</div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">    Mode(std::string <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>) : State(name) {}</div>
+<div class="line">    <span class="keywordtype">void</span> entry(<span class="keyword">const</span> Event&amp; e) {</div>
+<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;entering &quot;</span> + <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> during() {}</div>
+<div class="line">    <span class="keywordtype">void</span> exit(<span class="keyword">const</span> Event&amp;) {}</div>
+<div class="line">};</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"></div>
+<div class="line">    Manager m;</div>
+<div class="line">    Mode off(<span class="stringliteral">&quot;off&quot;</span>), on(<span class="stringliteral">&quot;on&quot;</span>);</div>
+<div class="line">    <a class="code" href="classelma_1_1StateMachine.html#a5c87ed7618118edd5485365638ca6207">StateMachine</a> fsm(<span class="stringliteral">&quot;toggle switch&quot;</span>);</div>
+<div class="line"></div>
+<div class="line">    fsm.set_initial(off)</div>
+<div class="line">       .set_propagate(<span class="keyword">true</span>)</div>
+<div class="line">       .add_transition(<span class="stringliteral">&quot;switch&quot;</span>, off, on)</div>
+<div class="line">       .add_transition(<span class="stringliteral">&quot;switch&quot;</span>, on, off);</div>
+<div class="line"></div>
+<div class="line">    m.schedule(fsm, 10_ms)</div>
+<div class="line">     .init()</div>
+<div class="line">     .run(1_s);</div>
+<div class="line"></div>
+<div class="line">}</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00040">40</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a4c03e19874ce1a4bed123120d31bf7ed"></a>
+<a class="anchor" id="ae6bdbc3e505b0282d6b22f4501ba4342"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp; elma::StateMachine::add_transition </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>event_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classelma_1_1State.html">State</a> &amp;&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classelma_1_1State.html">State</a> &amp;&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Add a transition to the state machine </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event_name</td><td>Events with this name will trigger the transition </td></tr>
+    <tr><td class="paramname">from</td><td>The state the machine must be in to take the transition </td></tr>
+    <tr><td class="paramname">to</td><td>The state the machine will go to upon taking the transition </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the state machine, for chaining </dd></dl>
+
+<p>Definition at line <a class="el" href="state__machine_8cc_source.html#l00013">13</a> of file <a class="el" href="state__machine_8cc_source.html">state_machine.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0793bb63c6a6290b44d578b1ef08cbb8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -198,7 +276,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void elma::StateMachine::init </td>
+          <td class="memname"><a class="el" href="classelma_1_1State.html">State</a>&amp; elma::StateMachine::current </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -206,19 +284,42 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Initialization method. This method should be overridden by derived classes. It will usually be called once, after all processes and communication objects have been added to the manager, but before the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> starts running. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current state </dd></dl>
 
-<p>Implements <a class="el" href="classelma_1_1Process.html#aeaf53c300dbde2444bf7a5948b70a9f6">elma::Process</a>.</p>
-
-<p>Definition at line <a class="el" href="state__machine_8cc_source.html#l00020">20</a> of file <a class="el" href="state__machine_8cc_source.html">state_machine.cc</a>.</p>
+<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00068">68</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a302e89347b025e658b806be343cd532a"></a>
+<a class="anchor" id="a18d33cfc9d1f730df1e30e5b800b1d40"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classelma_1_1StateMachine.html">StateMachine</a> &amp; elma::StateMachine::set_initial </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classelma_1_1State.html">State</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the initial state of the state machine </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>An instantiation of a class derived from <a class="el" href="classelma_1_1State.html" title="States for the StateMachine class. ">State</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the state machine, for chaining </dd></dl>
+
+<p>Definition at line <a class="el" href="state__machine_8cc_source.html#l00008">8</a> of file <a class="el" href="state__machine_8cc_source.html">state_machine.cc</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af3a81bdfea40dcc353df1c19d212a2d0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -226,79 +327,28 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void elma::StateMachine::start </td>
+          <td class="memname"><a class="el" href="classelma_1_1StateMachine.html">StateMachine</a>&amp; elma::StateMachine::set_propagate </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Start method. This method should be overridden by derived classes. It will be called just before the manager starts running. It may be called multiple times, if the manager is started and stopped. </p>
+<p>Set whether the state machine should propagate transitions (default = false) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>True or false </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the state machine, for chaining </dd></dl>
 
-<p>Implements <a class="el" href="classelma_1_1Process.html#ae3ffee069f55704617740bdc0142aecc">elma::Process</a>.</p>
-
-<p>Definition at line <a class="el" href="state__machine_8cc_source.html#l00035">35</a> of file <a class="el" href="state__machine_8cc_source.html">state_machine.cc</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a57d866797c065ffe8ddfedd541bb77e1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void elma::StateMachine::stop </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Stop method. This method should be overridden by derived classes. It will be called just after the manager stops running. It may be called multiple times, if the manager is started and stopped. </p>
-
-<p>Implements <a class="el" href="classelma_1_1Process.html#a5aed57974a5acbe0d1f298584c91528e">elma::Process</a>.</p>
-
-<p>Definition at line <a class="el" href="state__machine_8cc_source.html#l00044">44</a> of file <a class="el" href="state__machine_8cc_source.html">state_machine.cc</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac319b67fdd0c1997e6807dbc5e310aef"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void elma::StateMachine::update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Update method. This method should be overridden by derived classes. It will be called repeatedly by the manager at a frequency determined by the period used when the process is scheduled with the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> (see <a class="el" href="classelma_1_1Manager.html#aff7ec0e7409420c8d92a59443066738c">Manager::schedule</a>). </p>
-
-<p>Implements <a class="el" href="classelma_1_1Process.html#a9731a2218270c49af835c606c09bd6c5">elma::Process</a>.</p>
-
-<p>Definition at line <a class="el" href="state__machine_8cc_source.html#l00040">40</a> of file <a class="el" href="state__machine_8cc_source.html">state_machine.cc</a>.</p>
+<p>Definition at line <a class="el" href="state__machine_8h_source.html#l00065">65</a> of file <a class="el" href="state__machine_8h_source.html">state_machine.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +359,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

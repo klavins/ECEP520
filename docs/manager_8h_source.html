@@ -103,59 +103,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">class </span>Channel;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">class </span>Process;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classelma_1_1Manager.html">Manager</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">public</span>: </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">   27</a></span>&#160;        <a class="code" href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">Manager</a>() {}</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; schedule(<a class="code" href="classelma_1_1Process.html">Process</a>&amp; process, high_resolution_clock::duration period);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; all(std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="classelma_1_1Process.html">Process</a>&amp;)&gt; f);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; init();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; start();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; update();        </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; stop();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; run(high_resolution_clock::duration);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">   41</a></span>&#160;        <span class="keyword">inline</span> high_resolution_clock::time_point <a class="code" href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">start_time</a>() { <span class="keywordflow">return</span> _start_time; }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">   45</a></span>&#160;        <span class="keyword">inline</span> high_resolution_clock::duration <a class="code" href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">elapsed</a>() { <span class="keywordflow">return</span> _elapsed; }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html">   32</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classelma_1_1Manager.html">Manager</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">public</span>: </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">   37</a></span>&#160;        <a class="code" href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">Manager</a>() {}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; schedule(<a class="code" href="classelma_1_1Process.html">Process</a>&amp; process, high_resolution_clock::duration period);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; all(std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="classelma_1_1Process.html">Process</a>&amp;)&gt; f);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; init();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; start();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; update();        </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; stop();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// Channel Interface</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; add_channel(<a class="code" href="classelma_1_1Channel.html">Channel</a>&amp;);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classelma_1_1Channel.html">Channel</a>&amp; channel(<span class="keywordtype">string</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Event Interface</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; watch(<span class="keywordtype">string</span> event_name, std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="classelma_1_1Event.html">Event</a>&amp;)&gt; handler);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; emit(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; event);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        vector&lt;Process *&gt; _processes;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        map&lt;string, Channel *&gt; _channels;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        map&lt;string, vector&lt;std::function&lt;void(Event&amp;)&gt;&gt;&gt; event_handlers;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        high_resolution_clock::time_point _start_time;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        high_resolution_clock::duration _elapsed;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    };</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classelma_1_1Manager_html"><div class="ttname"><a href="classelma_1_1Manager.html">elma::Manager</a></div><div class="ttdoc">The Process Manager class. </div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00022">manager.h:22</a></div></div>
-<div class="ttc" id="classelma_1_1Manager_html_ae6498164a8e790e474510f02618981d0"><div class="ttname"><a href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">elma::Manager::elapsed</a></div><div class="ttdeci">high_resolution_clock::duration elapsed()</div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00045">manager.h:45</a></div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; run(high_resolution_clock::duration);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">   51</a></span>&#160;        <span class="keyword">inline</span> high_resolution_clock::time_point <a class="code" href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">start_time</a>() { <span class="keywordflow">return</span> _start_time; }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">   55</a></span>&#160;        <span class="keyword">inline</span> high_resolution_clock::duration <a class="code" href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">elapsed</a>() { <span class="keywordflow">return</span> _elapsed; }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// Channel Interface</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; add_channel(<a class="code" href="classelma_1_1Channel.html">Channel</a>&amp;);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classelma_1_1Channel.html">Channel</a>&amp; channel(<span class="keywordtype">string</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Event Interface</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; watch(<span class="keywordtype">string</span> event_name, std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="classelma_1_1Event.html">Event</a>&amp;)&gt; handler);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; emit(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; event);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        vector&lt;Process *&gt; _processes;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        map&lt;string, Channel *&gt; _channels;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        map&lt;string, vector&lt;std::function&lt;void(Event&amp;)&gt;&gt;&gt; event_handlers;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        high_resolution_clock::time_point _start_time;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        high_resolution_clock::duration _elapsed;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    };</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classelma_1_1Manager_html"><div class="ttname"><a href="classelma_1_1Manager.html">elma::Manager</a></div><div class="ttdoc">The Process Manager class. </div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00032">manager.h:32</a></div></div>
+<div class="ttc" id="classelma_1_1Manager_html_ae6498164a8e790e474510f02618981d0"><div class="ttname"><a href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">elma::Manager::elapsed</a></div><div class="ttdeci">high_resolution_clock::duration elapsed()</div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00055">manager.h:55</a></div></div>
 <div class="ttc" id="classelma_1_1Event_html"><div class="ttname"><a href="classelma_1_1Event.html">elma::Event</a></div><div class="ttdoc">Events that can be emitted, watched, and responded to with event handlers. </div><div class="ttdef"><b>Definition:</b> <a href="event_8h_source.html#l00023">event.h:23</a></div></div>
 <div class="ttc" id="namespacestd_1_1chrono_html"><div class="ttname"><a href="namespacestd_1_1chrono.html">chrono</a></div></div>
-<div class="ttc" id="classelma_1_1Manager_html_af3bdf1e96abe8a4a24d8acdb4350ba3e"><div class="ttname"><a href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">elma::Manager::start_time</a></div><div class="ttdeci">high_resolution_clock::time_point start_time()</div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00041">manager.h:41</a></div></div>
+<div class="ttc" id="classelma_1_1Manager_html_af3bdf1e96abe8a4a24d8acdb4350ba3e"><div class="ttname"><a href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">elma::Manager::start_time</a></div><div class="ttdeci">high_resolution_clock::time_point start_time()</div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00051">manager.h:51</a></div></div>
 <div class="ttc" id="classelma_1_1Channel_html"><div class="ttname"><a href="classelma_1_1Channel.html">elma::Channel</a></div><div class="ttdoc">A channel for sending double values to and from Process objects. </div><div class="ttdef"><b>Definition:</b> <a href="channel_8h_source.html#l00017">channel.h:17</a></div></div>
-<div class="ttc" id="classelma_1_1Manager_html_acab31d0187990cf28cc4d56ef3e63e28"><div class="ttname"><a href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">elma::Manager::Manager</a></div><div class="ttdeci">Manager()</div><div class="ttdoc">Default constructor. </div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00027">manager.h:27</a></div></div>
+<div class="ttc" id="classelma_1_1Manager_html_acab31d0187990cf28cc4d56ef3e63e28"><div class="ttname"><a href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">elma::Manager::Manager</a></div><div class="ttdeci">Manager()</div><div class="ttdoc">Default constructor. </div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00037">manager.h:37</a></div></div>
 <div class="ttc" id="namespaceelma_html"><div class="ttname"><a href="namespaceelma.html">elma</a></div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00011">manager.h:11</a></div></div>
-<div class="ttc" id="classelma_1_1Process_html"><div class="ttname"><a href="classelma_1_1Process.html">elma::Process</a></div><div class="ttdoc">An abstract base class for processes. </div><div class="ttdef"><b>Definition:</b> <a href="process_8h_source.html#l00022">process.h:22</a></div></div>
+<div class="ttc" id="classelma_1_1Process_html"><div class="ttname"><a href="classelma_1_1Process.html">elma::Process</a></div><div class="ttdoc">An abstract base class for processes. </div><div class="ttdef"><b>Definition:</b> <a href="process_8h_source.html#l00037">process.h:37</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

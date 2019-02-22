@@ -134,8 +134,13 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classelma_1_1Process.html" title="An abstract base class for processes. ">Process</a> <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> class. </p>
-
-<p>Definition at line <a class="el" href="manager_8h_source.html#l00022">22</a> of file <a class="el" href="manager_8h_source.html">manager.h</a>.</p>
+<p>Example usage in which a custom process, MyProcess, is scheduled every 1 ms and run for 1 s. </p><div class="fragment"><div class="line"><a class="code" href="classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28">Manager</a> m;</div>
+<div class="line">MyProcess p; <span class="comment">// See Process</span></div>
+<div class="line">m.schedule(p, 1_ms)</div>
+<div class="line"> .init() </div>
+<div class="line"> .run(1_s)</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="manager_8h_source.html#l00032">32</a> of file <a class="el" href="manager_8h_source.html">manager.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aa75af3cacc2e77ba4781b09353b8c2ad"></a>
 <div class="memitem">
@@ -228,7 +233,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The duration of time since the manager was most recently started </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8h_source.html#l00045">45</a> of file <a class="el" href="manager_8h_source.html">manager.h</a>.</p>
+<p>Definition at line <a class="el" href="manager_8h_source.html#l00055">55</a> of file <a class="el" href="manager_8h_source.html">manager.h</a>.</p>
 
 </div>
 </div>
@@ -378,7 +383,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The time the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> was most recently started </dd></dl>
 
-<p>Definition at line <a class="el" href="manager_8h_source.html#l00041">41</a> of file <a class="el" href="manager_8h_source.html">manager.h</a>.</p>
+<p>Definition at line <a class="el" href="manager_8h_source.html#l00051">51</a> of file <a class="el" href="manager_8h_source.html">manager.h</a>.</p>
 
 </div>
 </div>
@@ -462,7 +467,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

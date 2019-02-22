@@ -105,7 +105,7 @@ Inheritance diagram for elma::Process:</div>
 <div class="dyncontent">
 <div class="center"><img src="classelma_1_1Process__inherit__graph.png" border="0" usemap="#elma_1_1Process_inherit__map" alt="Inheritance graph"/></div>
 <map name="elma_1_1Process_inherit__map" id="elma_1_1Process_inherit__map">
-<area shape="rect" id="node2" href="classelma_1_1StateMachine.html" title="States for finite state machines (FSM) " alt="" coords="5,80,156,107"/></map>
+<area shape="rect" id="node2" href="classelma_1_1StateMachine.html" title="A finite state machine class. " alt="" coords="5,80,156,107"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -171,9 +171,20 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract base class for processes. </p>
-<p>Derived classes should imlement the init, start, update, and stop methods. </p>
-
-<p>Definition at line <a class="el" href="process_8h_source.html#l00022">22</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Derived classes should imlement the init, start, update, and stop methods. For example, here is a process that prints out a message every time its update method is called. </p><div class="fragment"><div class="line"><span class="keyword">class </span>MyProcess : <span class="keyword">public</span> <a class="code" href="classelma_1_1Process.html#ae3b98871432794ea262f4a26dfeab3f7">Process</a> {</div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">    MyProcess(std::string <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>) : <a class="code" href="classelma_1_1Process.html#ae3b98871432794ea262f4a26dfeab3f7">Process</a>(name) {}</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1Process.html#aeaf53c300dbde2444bf7a5948b70a9f6">init</a>() {}</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1Process.html#ae3ffee069f55704617740bdc0142aecc">start</a>() {}</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1Process.html#a9731a2218270c49af835c606c09bd6c5">update</a>() { </div>
+<div class="line">        std::cout &lt;&lt; <a class="code" href="classelma_1_1Process.html#a7ce946a55e71578bc1d33cf0a826c0de">name</a>() &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> </div>
+<div class="line">                  &lt;&lt; <a class="code" href="classelma_1_1Process.html#a713075c26ec23e09576ec966fb4be6ea">milli_time</a>()</div>
+<div class="line">                  &lt;&lt; <span class="stringliteral">&quot;ms\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1Process.html#a5aed57974a5acbe0d1f298584c91528e">stop</a>() {}</div>
+<div class="line">};</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="process_8h_source.html#l00037">37</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a355d4150a5de734fcb8ff654b7eabf3e"></a>
 <div class="memitem">
@@ -186,7 +197,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Status of the process, as managed by a <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a>. Get the status using the <a class="el" href="classelma_1_1Process.html#ae43200bae94b94df1ec5cc10ff6b191b">status()</a> getter. </p>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00030">30</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00045">45</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -221,7 +232,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00039">39</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00054">54</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +332,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The duration of time between the start time and the most recent time the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> called the <a class="el" href="classelma_1_1Process.html#a9731a2218270c49af835c606c09bd6c5">update()</a> method. </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00091">91</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00106">106</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -367,7 +378,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The name of the process. </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00070">70</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00085">85</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -393,7 +404,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The number of updates since the process was last started by the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00082">82</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00097">97</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -419,7 +430,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The period of the process. </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00078">78</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00093">93</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -445,7 +456,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The duration of time between the start time and the second most recent time the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a> called the <a class="el" href="classelma_1_1Process.html#a9731a2218270c49af835c606c09bd6c5">update()</a> method. </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00096">96</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00111">111</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -497,7 +508,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The time the process was last started by the <a class="el" href="classelma_1_1Manager.html" title="The Process Manager class. ">Manager</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00086">86</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00101">101</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +534,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><div class="memdoc">
 <p>Getter </p><dl class="section return"><dt>Returns</dt><dd>The status of the process </dd></dl>
 
-<p>Definition at line <a class="el" href="process_8h_source.html#l00074">74</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
+<p>Definition at line <a class="el" href="process_8h_source.html#l00089">89</a> of file <a class="el" href="process_8h_source.html">process.h</a>.</p>
 
 </div>
 </div>
@@ -586,7 +597,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 00:41:25 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Feb 22 2019 17:35:23 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

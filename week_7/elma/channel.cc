@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "elma.h"
 
-namespace elma {
+namespace elma { 
     
     //! Send a value
     //! \param value The value to send into the channel
