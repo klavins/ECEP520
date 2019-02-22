@@ -24,7 +24,7 @@ namespace elma {
 
         public:
 
-        //! Cpnstruct a new event
+        //! Construct a new event
         //! \param value A json object 
         Event(std::string name, json value) : _name(name), _value(value), _empty(false), _propagate(true) {}
         Event(std::string name) : _name(name), _value(0), _empty(true), _propagate(true) {}
@@ -34,10 +34,10 @@ namespace elma {
         inline json value() const { return _value; }
 
         //! Determine whether the event has no data
-        //! \retrun Whether the event has no data
+        //! \return Whether the event has no data
         inline bool empty() const { return _empty; }        
 
-        //! \retrun Whether the event has no data
+        //! \return Whether the event has no data
         inline std::string name() const { return _name; }        
 
         //! Determine whether the event will propagate to the next event handler
