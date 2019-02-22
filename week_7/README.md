@@ -358,7 +358,7 @@ This capability will become particularly useful in the next section.
 Finite State Machines
 ===
 
-A finite state machine, or FSM, is a fundamental object in embedded systems. They consist of a set of states and a set of labelede transitions between states. Here is a simple example.
+A finite state machine, or FSM, is a fundamental object in embedded systems. They consist of a set of states and a set of labelede transitions between states. Here is a simple example of a toggle switch.
 
 <img src="images/toggle-switch.png" width="400"></image>
 
@@ -485,10 +485,10 @@ void StateMachine::update() {
 }
 ```
 
-Example: Binaray Counter
+Example: Binary Counter
 ---
 
-See `examples/binary.cc` for how to implement the toggle switch above.
+See `examples/toggle-switch.cc` for how to implement the toggle switch above.
 
 Example: Microwave Oven
 ---
@@ -548,7 +548,7 @@ Exercises
     // INSERT GRADING TESTS HERE
     ```
     we will add tests such as those in the microwave example at that point in your code.
-1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. The order of the elements does not matter.
+1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. 
     ```json
     {
         "name": "binary counter",
@@ -567,4 +567,5 @@ Exercises
         ]
     }
     ```
-1. 
+    The order of the elements does not matter.
+1. One more problem, TBA.

@@ -32,7 +32,7 @@ int main() {
     Manager m;
     Trigger trigger;
     Mode off("off"), on("on");
-    StateMachine fsm("binary counter");
+    StateMachine fsm("toggle switch");
 
     fsm.set_initial(off)
        .set_propagate(false)
