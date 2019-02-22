@@ -544,7 +544,7 @@ Exercises
     ```json
     {
         "name": "binary counter",
-        "states": { "on", "off" },
+        "states": { "on": "off" },
         "transitions": [
             {
                 "from": "on",
