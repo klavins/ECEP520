@@ -360,7 +360,7 @@ Finite State Machines
 
 A finite state machine, or FSM, is a fundamental object in embedded systems. They consist of a set of states and a set of labelede transitions between states. Here is a simple example.
 
-<img src="images/toggle-switch.png" style="max-width: 50%"></image>
+![toggle switch](images/toggle-switch.png | width=50)
 
 There are two states, `Off` and `On`. The FSM moves from one state to the other, every time a 'switch' input is recieved. 
 
