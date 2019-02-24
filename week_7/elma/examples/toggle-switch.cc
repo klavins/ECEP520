@@ -37,7 +37,7 @@ int main() {
     StateMachine fsm("toggle switch");
 
     fsm.set_initial(off)
-       .set_propagate(true)
+       .set_propagate(false)
        .add_transition("switch", off, on)
        .add_transition("switch", on, off);
 
