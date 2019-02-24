@@ -63,4 +63,24 @@ namespace {
         ASSERT_EQ(50, m.channel("test channel").size());
     }
 
+
+    class BadProcess : public Process {
+        public:
+        BadProcess(string name) : Process(name) {
+            // You can't access channels from the constructor since
+            // neither the process or the channel have been added to the
+            // manager yet.
+            double x = channel("test").size();
+        }
+        void init() {}
+        void start() {}
+        void update() {}
+        void stop() {}
+    };  
+
+    TEST(Channel,Errors) {
+        Channel c("test");
+        ASSERT_THROW(BadProcess p("bad"),Exception);
+    }
+
 }

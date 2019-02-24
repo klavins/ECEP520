@@ -32,13 +32,13 @@ namespace elma {
         typedef enum { UNINITIALIZED, STOPPED, RUNNING } status_type;
 
         //! Default constructor. Names process "no name"
-        Process() : _name("unnamed process"), _status(UNINITIALIZED) {}
+        Process() : _name("unnamed process"), _status(UNINITIALIZED), _manager_ptr(NULL) {}
 
         //! Constructor that takes a name for the process
         /*!
           \param name The name of the process
         */
-        Process(std::string name) : _name(name), _status(UNINITIALIZED) {}
+        Process(std::string name) : _name(name), _status(UNINITIALIZED), _manager_ptr(NULL) {}
         virtual ~Process() = default;
 
         // Interface for derived classes

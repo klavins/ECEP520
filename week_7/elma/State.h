@@ -18,12 +18,12 @@ namespace elma {
         public:
 
         //! Construct an unnamed State
-        State() : _name("unnamed state") {
+        State() : _name("unnamed state"), _state_machine_ptr(NULL) {
             _id = _id_counter++;
         }
 
         //! Construct a state with the given name
-        State(std::string name) : _name(name){
+        State(std::string name) : _name(name), _state_machine_ptr(NULL) {
             _id = _id_counter++;
         }
 
