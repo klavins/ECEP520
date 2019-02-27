@@ -1,7 +1,7 @@
 #
 # To use this image to compile C and C++ projects, do something like
-# docker build -t cppenv-json .
-# docker run -v $PWD/hw_1:/source -it cppenv-json bash
+# docker build -t cppenv-http .
+# docker run -v $PWD/hw_1:/source -it cppenv-http bash
 #
 
 # Get the GCC preinstalled image from Docker Hub
