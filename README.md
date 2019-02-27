@@ -34,6 +34,7 @@ Homework will be assigned weekly, and will be due the following Wednesday. Homew
 ## Resources
 
 * The [Elma](https://klavins.github.io/ECEP520/index.html) process manager
+* Prof. Klavins' [Dockerhub](https://cloud.docker.com/u/klavins/repository/docker/klavins/ecep520) account
 * We will be using [Github](https://github.com/) for version controlling all of our code. 
 * Please use the Visual Studio [Code](https://code.visualstudio.com/) to edit your code for this course.
 * [Google Test](https://github.com/google/googletest) unit testing environment
