@@ -534,12 +534,30 @@ See, for example, the comments in `event.h` and `manager.cc`.
 Exercises
 ===
 
-1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method that get's the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. We will describe where you should put your code so we can test it asap.
+1. Create a `Stopwatch` process the watches for events "start", "stop", and "reset". Note, this process is *not* supposed to be a StateMachine. Add to it a method called `seconds()` that gets the stopwatch's current value in seconds as a double. Also create a `StopWatchUser` process that emits a sequence of events that use the stopwatch. Please define this code in a new directory called `homework` in files `homework/stopwatch.h` and `homework/stopwatch.cc`. `Stopwatch` and `StopWatchUser` should be defined as classes that inherit from `Process`. We likely will not test `StopWatchUser` but please work on it regardless. File structure, minimal starter code, and a unit_test file has been provided on Canvas. See the announcement for more details.
+
 1. Define a `StateMachine` called 'Robot' that models the following diagram:
 
     <img src="images/robot.png" width="620"></image>
 
-    We will describe where you should put your code so we can test it asap.
+    Please define this code as a class called `Robot` in `homework/robot.h` (optionally `robot.cc` if you want). You will need to inherit a State and StateMachine classes. Your new State class used to hold robot states is should only internally be `Robot`, so it does not matter what it is named. Initialization of a `Robot` should initialize all of the states and transitions. You should be able to initialize your robot via the following:
+    
+    ```
+    Robot politebot = Robot("What a very nice robot.");
+    
+    Manager m;
+    m.schedule(politebot, 10_ms)
+    .init()
+    .start();
+    
+    std::cout << robot.current().name(); << std::endl;
+    m.emit(Event("intruder detected"));
+    std::cout << "Pardon me sir, I believe there is an INTRUDER";
+    std::cout << robot.current().name() << std::endl;
+    ```
+
+File structure, starter code, and a unit_test file has been provided on Canvas. See the announcment for more details. 
+
 1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. 
     ```json
     {
