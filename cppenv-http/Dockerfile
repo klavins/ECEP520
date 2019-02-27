@@ -29,7 +29,7 @@ WORKDIR /usr/local/include/json
 RUN curl -O -J -L https://github.com/nlohmann/json/releases/download/v3.5.0/json.hpp
 RUN mv json.hpp json.h
 
-#install httplib
+# Install httplib
 WORKDIR /tmp
 RUN git clone https://github.com/klavins/cpp-httplib.git
 RUN mkdir /usr/local/include/httplib
