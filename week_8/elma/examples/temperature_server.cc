@@ -48,9 +48,7 @@ int main(void)
         );
 
         result["result"] = "ok";
-        result["id"] = next_id;
-        next_id++;
-
+        result["id"] = next_id++;
         res.set_content(result.dump(), "json");
 
     });
