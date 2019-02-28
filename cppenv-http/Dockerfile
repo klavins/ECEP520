@@ -35,6 +35,7 @@ RUN git clone https://github.com/klavins/cpp-httplib.git
 RUN mkdir /usr/local/include/httplib
 RUN mv /tmp/cpp-httplib/httplib.h /usr/local/include/httplib
 RUN rm -r /tmp/cpp-httplib
+EXPOSE 8080
 
 WORKDIR /source
 
