@@ -132,21 +132,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// Event Interface</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; watch(<span class="keywordtype">string</span> event_name, std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="classelma_1_1Event.html">Event</a>&amp;)&gt; handler);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a>&amp; emit(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; event);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        vector&lt;Process *&gt; _processes;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        map&lt;string, Channel *&gt; _channels;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        map&lt;string, vector&lt;std::function&lt;void(Event&amp;)&gt;&gt;&gt; event_handlers;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        high_resolution_clock::time_point _start_time;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        high_resolution_clock::duration _elapsed;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    };</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classelma_1_1Client.html">Client</a>&amp; client() { <span class="keywordflow">return</span> _client; }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        vector&lt;Process *&gt; _processes;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        map&lt;string, Channel *&gt; _channels;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        map&lt;string, vector&lt;std::function&lt;void(Event&amp;)&gt;&gt;&gt; event_handlers;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        high_resolution_clock::time_point _start_time;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        high_resolution_clock::duration _elapsed;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        Client _client;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    };</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classelma_1_1Manager_html"><div class="ttname"><a href="classelma_1_1Manager.html">elma::Manager</a></div><div class="ttdoc">The Process Manager class. </div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00026">manager.h:26</a></div></div>
 <div class="ttc" id="classelma_1_1Manager_html_ae6498164a8e790e474510f02618981d0"><div class="ttname"><a href="classelma_1_1Manager.html#ae6498164a8e790e474510f02618981d0">elma::Manager::elapsed</a></div><div class="ttdeci">high_resolution_clock::duration elapsed()</div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00049">manager.h:49</a></div></div>
+<div class="ttc" id="classelma_1_1Client_html"><div class="ttname"><a href="classelma_1_1Client.html">elma::Client</a></div><div class="ttdoc">An HTTP client for connecting to json services. </div><div class="ttdef"><b>Definition:</b> <a href="client_8h_source.html#l00034">client.h:34</a></div></div>
 <div class="ttc" id="classelma_1_1Event_html"><div class="ttname"><a href="classelma_1_1Event.html">elma::Event</a></div><div class="ttdoc">Events that can be emitted, watched, and responded to with event handlers. </div><div class="ttdef"><b>Definition:</b> <a href="event_8h_source.html#l00023">event.h:23</a></div></div>
 <div class="ttc" id="namespacestd_1_1chrono_html"><div class="ttname"><a href="namespacestd_1_1chrono.html">chrono</a></div></div>
 <div class="ttc" id="classelma_1_1Manager_html_af3bdf1e96abe8a4a24d8acdb4350ba3e"><div class="ttname"><a href="classelma_1_1Manager.html#af3bdf1e96abe8a4a24d8acdb4350ba3e">elma::Manager::start_time</a></div><div class="ttdeci">high_resolution_clock::time_point start_time()</div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00045">manager.h:45</a></div></div>
@@ -157,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 18:07:26 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 28 2019 18:50:41 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

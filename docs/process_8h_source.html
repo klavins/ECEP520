@@ -109,10 +109,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classelma_1_1Process.html#a355d4150a5de734fcb8ff654b7eabf3e">   32</a></span>&#160;        <span class="keyword">typedef</span> <span class="keyword">enum</span> { UNINITIALIZED, STOPPED, RUNNING } status_type;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classelma_1_1Process.html#ae3b98871432794ea262f4a26dfeab3f7">   35</a></span>&#160;        <a class="code" href="classelma_1_1Process.html#ae3b98871432794ea262f4a26dfeab3f7">Process</a>() : _name(<span class="stringliteral">&quot;unnamed process&quot;</span>), _status(UNINITIALIZED) {}</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classelma_1_1Process.html#ae3b98871432794ea262f4a26dfeab3f7">   35</a></span>&#160;        <a class="code" href="classelma_1_1Process.html#ae3b98871432794ea262f4a26dfeab3f7">Process</a>() : _name(<span class="stringliteral">&quot;unnamed process&quot;</span>), _status(UNINITIALIZED), _manager_ptr(NULL) {}</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classelma_1_1Process.html#a4a29af963c350ce23ae8a91109affcf5">   41</a></span>&#160;        <a class="code" href="classelma_1_1Process.html#a4a29af963c350ce23ae8a91109affcf5">Process</a>(std::string name) : _name(name), _status(UNINITIALIZED) {}</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classelma_1_1Process.html#a4a29af963c350ce23ae8a91109affcf5">   41</a></span>&#160;        <a class="code" href="classelma_1_1Process.html#a4a29af963c350ce23ae8a91109affcf5">Process</a>(std::string name) : _name(name), _status(UNINITIALIZED), _manager_ptr(NULL) {}</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classelma_1_1Process.html">Process</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// Interface for derived classes</span></div>
@@ -149,29 +149,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordtype">void</span> watch(<span class="keywordtype">string</span> event_name, std::function&lt;<span class="keywordtype">void</span>(<a class="code" href="classelma_1_1Event.html">Event</a>&amp;)&gt; handler);</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">void</span> emit(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; event);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordtype">void</span> http_get(std::string url, std::function&lt;<span class="keywordtype">void</span>(json&amp;)&gt; handler);</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="comment">// Manager interface</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordtype">void</span> _init();</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordtype">void</span> _start(high_resolution_clock::duration elapsed);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordtype">void</span> _update(high_resolution_clock::duration elapsed);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">void</span> _stop();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="comment">// Instance variables</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">string</span> _name;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        status_type _status;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        high_resolution_clock::duration _period,          <span class="comment">// request time between updates</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                                        _previous_update, <span class="comment">// duration from start to update before last</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                                        _last_update;     <span class="comment">// duration from start to last update</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        time_point&lt;high_resolution_clock&gt; _start_time;    <span class="comment">// time of most recent start</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordtype">int</span> _num_updates;                                 <span class="comment">// number of times update() has been called</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a> * _manager_ptr;                           <span class="comment">// a pointer to the manager        </span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    };</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="comment">// Manager interface</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordtype">void</span> _init();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">void</span> _start(high_resolution_clock::duration elapsed);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">void</span> _update(high_resolution_clock::duration elapsed);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">void</span> _stop();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="comment">// Instance variables</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">string</span> _name;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        status_type _status;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        high_resolution_clock::duration _period,          <span class="comment">// request time between updates</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                                        _previous_update, <span class="comment">// duration from start to update before last</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                                        _last_update;     <span class="comment">// duration from start to last update</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        time_point&lt;high_resolution_clock&gt; _start_time;    <span class="comment">// time of most recent start</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordtype">int</span> _num_updates;                                 <span class="comment">// number of times update() has been called</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="classelma_1_1Manager.html">Manager</a> * _manager_ptr;                           <span class="comment">// a pointer to the manager        </span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    };</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span></div>
 <div class="ttc" id="classelma_1_1Manager_html"><div class="ttname"><a href="classelma_1_1Manager.html">elma::Manager</a></div><div class="ttdoc">The Process Manager class. </div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00026">manager.h:26</a></div></div>
 <div class="ttc" id="classelma_1_1Process_html_a8da013223752f15787a3ff5ed2190211"><div class="ttname"><a href="classelma_1_1Process.html#a8da013223752f15787a3ff5ed2190211">elma::Process::num_updates</a></div><div class="ttdeci">int num_updates()</div><div class="ttdef"><b>Definition:</b> <a href="process_8h_source.html#l00084">process.h:84</a></div></div>
 <div class="ttc" id="classelma_1_1Process_html_a2252f8767f4f437297c8a342b60b484e"><div class="ttname"><a href="classelma_1_1Process.html#a2252f8767f4f437297c8a342b60b484e">elma::Process::previous_update</a></div><div class="ttdeci">high_resolution_clock::duration previous_update()</div><div class="ttdef"><b>Definition:</b> <a href="process_8h_source.html#l00098">process.h:98</a></div></div>
@@ -191,7 +193,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 18:07:26 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 28 2019 18:50:41 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

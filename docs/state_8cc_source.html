@@ -88,17 +88,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceelma.html">elma</a> {</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
 <div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="classelma_1_1State.html#a2c1d2a5be2fc2635d3c055584bc1ff70">    5</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classelma_1_1State.html#a2c1d2a5be2fc2635d3c055584bc1ff70">State::emit</a>(<span class="keyword">const</span> <a class="code" href="classelma_1_1Event.html">Event</a>&amp; e) {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        _state_machine_ptr-&gt;emit(e);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    }</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="keywordflow">if</span> ( _state_machine_ptr == NULL ) {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;            <span class="keywordflow">throw</span> <a class="code" href="classelma_1_1Exception.html">Exception</a>(<span class="stringliteral">&quot;Cannot access events in a state before the is added to a state machine.&quot;</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        } <span class="keywordflow">else</span> {                </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            _state_machine_ptr-&gt;emit(e);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        }</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 <div class="ttc" id="classelma_1_1Event_html"><div class="ttname"><a href="classelma_1_1Event.html">elma::Event</a></div><div class="ttdoc">Events that can be emitted, watched, and responded to with event handlers. </div><div class="ttdef"><b>Definition:</b> <a href="event_8h_source.html#l00023">event.h:23</a></div></div>
+<div class="ttc" id="classelma_1_1Exception_html"><div class="ttname"><a href="classelma_1_1Exception.html">elma::Exception</a></div><div class="ttdoc">An exception class for Elma. </div><div class="ttdef"><b>Definition:</b> <a href="exceptions_8h_source.html#l00013">exceptions.h:13</a></div></div>
 <div class="ttc" id="classelma_1_1State_html_a2c1d2a5be2fc2635d3c055584bc1ff70"><div class="ttname"><a href="classelma_1_1State.html#a2c1d2a5be2fc2635d3c055584bc1ff70">elma::State::emit</a></div><div class="ttdeci">void emit(const Event &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="state_8cc_source.html#l00005">state.cc:5</a></div></div>
 <div class="ttc" id="namespaceelma_html"><div class="ttname"><a href="namespaceelma.html">elma</a></div><div class="ttdef"><b>Definition:</b> <a href="manager_8h_source.html#l00011">manager.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 22 2019 18:07:26 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Feb 28 2019 18:50:41 for Elma by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -10,6 +10,27 @@
 
 namespace elma {
 
+    //! An HTTP client for connecting to json services
+
+    //! An example usage in a process
+    //! @code
+    //! class GetTester : public Process {
+    //!     public:
+    //!     GetTester() : Process("Get Tester") {}
+    //!     void init() {}
+    //!     void start() {
+    //!         got_response = false;
+    //!         http_get("https://api.github.com/repos/klavins/ecep520", [this](json& response) {
+    //!             got_response = true;
+    //!         });
+    //!     }
+    //!     void update() {}
+    //!     void stop() {
+    //!         ASSERT_EQ(true,got_response);
+    //!     }
+    //!     bool got_response;
+    //! };
+    //! @endcode    
     class Client {
 
         public:

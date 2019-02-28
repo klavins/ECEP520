@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['manager',['Manager',['../classelma_1_1Manager.html#acab31d0187990cf28cc4d56ef3e63e28',1,'elma::Manager']]],
-  ['milli_5ftime',['milli_time',['../classelma_1_1Process.html#a713075c26ec23e09576ec966fb4be6ea',1,'elma::Process']]]
+  ['last_5fupdate',['last_update',['../classelma_1_1Process.html#a809b1e38a5504600d252f8f62a8bf487',1,'elma::Process']]],
+  ['latest',['latest',['../classelma_1_1Channel.html#aa7b62180f748af0bb2c64aa834d8d077',1,'elma::Channel']]]
 ];
