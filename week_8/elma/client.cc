@@ -1,3 +1,5 @@
+#define CPPHTTPLIB_OPENSSL_SUPPORT
+#include "httplib/httplib.h"
 #include "elma.h"
 #include <thread>
 #include <tuple>
