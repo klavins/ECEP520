@@ -562,7 +562,7 @@ File structure, starter code, and a unit_test file has been provided on Canvas. 
     ```json
     {
         "name": "binary counter",
-        "states": ["on": "off"],
+        "states": ["on", "off"],
         "transitions": [
             {
                 "from": "on",
