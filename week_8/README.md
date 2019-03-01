@@ -481,7 +481,7 @@ Exercises
 1. Add a GET response `/above/(\d+)` the temperature_server example that returns all database entries whose temperature exceeds a given integer valued threshold. It should a JSON array of all the tuples it finds, also in JSON format (similar to `/find`) that meet the criterion.
 1. Add a `post` request method to the Elma `Client` class. It should have the form
     ```c++
-    Client& get(std::string url, json data, std::function<void(json&)> handler);
+    Client& post(std::string url, json data, std::function<void(json&)> handler);
     ```
     The method `process_responses()` should dispatch the resulting responses from the server. And `num_responses()` should return the total GET and POST responses. Test your method by making an example that works with the temperature server.
 1. Decide on a project topic and do the following:

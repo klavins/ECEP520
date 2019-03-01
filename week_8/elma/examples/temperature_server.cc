@@ -69,6 +69,7 @@ int main(void)
         } else {
             result["result"] = "error";
             result["message"] = "not found";
+            res.status = 404;
         }
         res.set_content(result.dump(), "json");
     });
