@@ -305,7 +305,7 @@ void print_block (int n, char c) {
     for (int i=0; i<n; ++i) { 
     buffer[index] = c;
     index++;
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    std::this_thread::sleep_for(std::chrono::milliseconds(rand()%5));
     }
 }
 
@@ -327,7 +327,7 @@ Expected equality of these values:
   desired_result.c_str()
     Which is: "******************************************************************************************************************************************************$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
   buffer
-    Which is: "*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$*$$*$*$*$*$*$*$*$**$*$*$$*$**$$**$*$$*$*$*$*$*$*$*$**$$*$*$*$*$*$**$*$*$*$*$*$***$*$*$*$*$*$*$$**$*$$*$$*$*$*$*$**$*$*$*$$*$*$*$*$**$*$*$*$*$*$$**$*$*$*$*$**$*$*$$*$*$*$*$*$*$*$*$*$*$*$*$**$*$*$*$*$"
+    Which is: "*$$**$$$*$$$**$*$$*$$*$*$$$*$$$**$*$*$$*$*$$**$*$$$$**$*$$*$$$****$*$*$$**$$*$***$$*$*$*$*$$$*$**$*$$$**"
 ```
 
 To fix this, we use a `mutex` (use `#include <mutex>`), which is a mutual exclusion lock. When a thread locks a mutex, it will be allowed to contiune with what it is doing without being interrupted until it unlocks the mutex. The fix for the above code is

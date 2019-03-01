@@ -7,6 +7,8 @@
 #include <string>
 #include <chrono>
 
+#include <stdlib.h> // rand
+
 namespace {
 
     std::mutex mtx;           // mutex for critical section
@@ -19,7 +21,7 @@ namespace {
       for (int i=0; i<n; ++i) { 
         buffer[index] = c;
         index++;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(rand()%5));
       }
       // mtx.unlock();
     }
