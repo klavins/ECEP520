@@ -296,6 +296,7 @@ To emit an event, we define a `Manager` method and a `Process` wrapper that sear
 ```c++
 // Manager.cc
 Manager& Manager::emit(const Event& event) {
+    Event e = event; // make a copy so we can change propagation
     if ( event_handlers.find(event.name()) != event_handlers.end() ) {
         for ( auto handler : event_handlers[event.name()] ) {
             handler(e);
