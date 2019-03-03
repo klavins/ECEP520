@@ -557,7 +557,7 @@ Exercises
     std::cout << robot.current().name() << std::endl;
     ```
 
-File structure, starter code, and a unit_test file has been provided on Canvas. See the announcment for more details. 
+    File structure, starter code, and a unit_test file has been provided on Canvas. See the announcment for more details. 
 
 1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. 
     ```json
