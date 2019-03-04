@@ -296,6 +296,7 @@ To emit an event, we define a `Manager` method and a `Process` wrapper that sear
 ```c++
 // Manager.cc
 Manager& Manager::emit(const Event& event) {
+    Event e = event; // make a copy so we can change propagation
     if ( event_handlers.find(event.name()) != event_handlers.end() ) {
         for ( auto handler : event_handlers[event.name()] ) {
             handler(e);
@@ -556,7 +557,7 @@ Exercises
     std::cout << robot.current().name() << std::endl;
     ```
 
-File structure, starter code, and a unit_test file has been provided on Canvas. See the announcment for more details. 
+    File structure, starter code, and a unit_test file has been provided on Canvas. See the announcment for more details. 
 
 1. Create a `to_json()` method for the `StateMachine` class that returns a representation of a StateMachine as a json object. For example, in the `examples/binary.cc` example, `fsm.to_json().dump()` would return the following. 
     ```json
