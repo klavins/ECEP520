@@ -485,6 +485,6 @@ Exercises
     ```
     The method `process_responses()` should dispatch the resulting responses from the server. And `num_responses()` should return the total GET and POST responses. Test your method by making an example that works with the temperature server.
 1. Decide on a project topic and do the following:
-    - Create a new public github repo for your project. Send the name of the repo to the TAs, whoe will keep a list of all repos.
+    - Create a new public github repo for your project. Those of you who are planning to build new Elma examples or extend Elma for your project, should consider making your new repo start as a fork of https://github.com/klavinslab/elma. See [here](https://help.github.com/en/articles/fork-a-repo) for information on how to fork a repo. Send the name of the repo to the TAs, who will keep a list of all repos.
     - Create a README.md file in your repo that describes your project goals in detail. What will you do? What will it mean for you to succeed? What resources will you use (e.g. Elma, other C++ libraries, robots, etc.)
     - Create a set of at least five milestones that you will achieve, including completing the final project, and state when you will achieve them. A milestone could be as simple as getting particular test or code library to work, or completing the API documentation for your project.
