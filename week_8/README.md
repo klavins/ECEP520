@@ -1,4 +1,4 @@
-HTTP in Event Loops
+Week 8: HTTP in Event Loops
 ===
 
 Projects
