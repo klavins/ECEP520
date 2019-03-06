@@ -101,17 +101,17 @@ First step: Read all exiting issues to see if yours has already been reported.
 
 Go to the `klavinslab/elma` repo and click `Issues` and then `New Issues`.
 
-Label: <div style="background: red; padding: 0 3px 0 3px; color: black; display: inline-block">bug</div>
+Label: ![bug](https://placehold.it/15/ff0000/000000?text=+) bug
 ---
 Please be as speific as possible about the bug. If you can give a Google Test that fails, and the resulting message or compile error, that would be the best. Almost all bug reports will be handled by building as simple of a test as possible and then fixing the bug to make the test pass. Bugs that are not clear will likely generate comments and requests for clairifications. 
 - Note: If you know how to fix the bug, submit a pull request instead of a bug report.
 
-Label: <span style="background: cyan; padding: 3px; color: black;">enhancement</div>
+Label: ![enhancement](https://placehold.it/15/A2EEEE/000000?text=+) enhancement
 ---
 
 Describe what your requested feature should do. Give example code that should compile if the feature were added. Describe why you think the feature is important, and describe what you think might be the consequences on the code base of adding the feature.
 
-Label: <span style="background:  #d876e3;; padding: 3px; color: black">question</span> or <span style="background: #008672; padding: 3px; color: black;">help wanted</div>
+Label: ![help wanted](https://placehold.it/15/008672/000000?text=+) help wanted or ![question](https://placehold.it/15/d876e3/000000?text=+) question
 ---
 
 If you have a question about why something isn't working or doesn't make sense, the Issues page is a great place to ask it. By asking questions that produce comments chains, you help generate a FAQ for the repository.
