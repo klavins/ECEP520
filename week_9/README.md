@@ -101,7 +101,7 @@ First step: Read all exiting issues to see if yours has already been reported.
 
 Go to the `klavinslab/elma` repo and click `Issues` and then `New Issues`.
 
-Label: <span style="background: red; padding: 3px; color: black">bug</div>
+Label: <div style="background: red; padding: 0 3px 0 3px; color: black; display: inline-block">bug</div>
 ---
 Please be as speific as possible about the bug. If you can give a Google Test that fails, and the resulting message or compile error, that would be the best. Almost all bug reports will be handled by building as simple of a test as possible and then fixing the bug to make the test pass. Bugs that are not clear will likely generate comments and requests for clairifications. 
 - Note: If you know how to fix the bug, submit a pull request instead of a bug report.
