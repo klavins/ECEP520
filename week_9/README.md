@@ -150,7 +150,7 @@ There are many specific services that AWS provides, including:
 - Glacier: Long term storage on tape
 - Lambda: So called serverless computing. Put a simple function coded in your favorite language in the cloud and call it.
 
-In addition, AWS provices 
+In addition, AWS provides 
 - Machine learning 
 - Text to speech
 - Blockchain
@@ -280,7 +280,7 @@ Exercises
     ```c++
     MeasureLambda(std::string op, double x, double y);
     ```
-    It should call the Lambda with those arguments every time it is updated and keep a list of the times it took for each call to return with a response. Provide functions
+    It should call the Lambda with those arguments repeatedly, waiting for a response until calling it again. Provide functions
     ```c++
     double min();
     double max();
