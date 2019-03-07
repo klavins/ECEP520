@@ -14,7 +14,7 @@ Today
 - Social coding with Github branches, forks, and pull requests
 - Cloud computing with AWS
 
-<div style="height: 100px"></div>
+&nbsp;
 
 Social Coding with Github
 ===
@@ -116,16 +116,84 @@ Label: ![help wanted](https://placehold.it/15/008672/000000?text=+) help wanted 
 
 If you have a question about why something isn't working or doesn't make sense, the Issues page is a great place to ask it. By asking questions that produce comments chains, you help generate a FAQ for the repository.
 
-<div style="height: 100px"></div>
+&nbsp;
+
 
 Cloud Computing (on AWS)
 ===
+Applications that need servers that work with users over the Internet have basically three choices:
+- Build your own server computers and keep them on site.
+- Use servers at a cloud hosting service like [AWS](https://aws.amazon.com/), [Azure](https://azure.microsoft.com/en-us/), [Google Cloud](https://cloud.google.com/), [Heroku](https://www.heroku.com/), etc.
+- [Colocate](https://www.coloinseattle.com/): You buy the servers, but keep them at a specialized site.
+Each has its pros and cons. For cloud services, you 
+- can get started in minutes
+- benefit from not having to purchase, maintain, or upgrade computers
+- get a high-speed Internet connection
+- do not need to worry about power failures, etc.
+- you can schedule backups and other serves over the web
+- get a more secure system.
 
+You might think the downside is price. For about a year's worth of AWS payments for a server, you can buy your own server. However, you also need to factor in hiring someone to maintain it, deal with UPS, manager the network, etc.
 
-Making a Container Run on AWS
-===
+Here, we'll focus on Amazon Web Services (AWS), which is by far the biggest player. In 2018, AWS had about 30% of the [market](https://www.parkmycloud.com/blog/aws-vs-azure-vs-google-cloud-market-share/), while Azure and Google Cloud each had 15% and 8% respectively. Sites using AWS range from Netflix to Autodesk. 
 
-Build the container
+AWS
+---
+
+There are many specific services that AWS provides, including:
+- EC2: Rent all or part of a computer. Install an OS. Connect via ssh. 
+- Volumes: Rent a disk drive.
+- RDMS: Rent a computer with database software, like MySQL or Postgres, already installed.
+- ECS: Push a Docker container to a server and run it. 
+- S3: Data storage with key/value filesystem.
+- Redshift: AI managed storage for running a lot of data analysis.
+- Glacier: Long term storage on tape
+- Lambda: So called serverless computing. Put a simple function coded in your favorite language in the cloud and call it.
+
+In addition, AWS provices 
+- Machine learning 
+- Text to speech
+- Blockchain
+- Analytics
+- IO
+- Robotics (using Gazebo)
+- SES: Email server
+- SSL Certificates
+- IP Addresses
+
+Example Configuration
+---
+
+https://www.matillion.com/blog/redshift/data-storage-amazon-redshift-vs-s3/
+
+Example: Running a Server in the Cloud
+---
+
+Spin up a new EC2 instance.
+
+Example: Serverless Computing
+---
+
+Examples of Lambdas: https://www.simform.com/serverless-aws-lambda-examples/
+
+Make a Lambda:
+```javascript
+exports.handler = async (event) => {
+    let msg = "";
+    try {
+      msg = JSON.parse(event.body).str.split("").reverse().join("");
+    } catch(e) {
+      msg = "error: " + e;
+    }
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify({ msg: msg })
+    };
+    return response;
+};
+```
+
+Example: Making a Container Run a Service
 ---
 
 First, put `server.cc` and `Makefile` in the same directory as `Dokerfile`, as in the `week_9/server` directory. We have modified the server code to use port 80, the standard web server port. We have also adjusted the Makefile to include only those libraries we need, an d to use th `-O3` option to `g++`, which optimizes the executable for deployment.
@@ -175,9 +243,60 @@ Choose Load Balancer. Why do they call it this?
 
 Find the IP address. Go to Clusters > mycluster and click on the task. Find the Public IP. 
 
-Test the Server
+Testing the Server
 ---
 
 ```bash
 curl -d '{ "x": 123, "y": 234, "temperature": 41.2 }' -X POST 18.215.189.229/save
 ```
+
+&nbsp;
+
+Exercises
+===
+1. Write an AWS Lambda function that takes two numbers and an operation and returns the result of that operation applied to those numbers. For example,
+    ```json
+    {
+        "x": 1.2,
+        "y": 2.3,
+        "op": "multiply"
+    }
+    ```
+    should return
+    ```json
+    {
+        "result": 2.76
+    }
+    ```
+    The operations allowed should be "multiply", "divide", "subtract", and "add". An error message of the form
+    ```json
+    {
+        "error": "explain error here..."
+    }
+    ```
+    should rersult from improperly formed json, missing keys, and unknown operations.
+
+1. Write an Elma process called `MeasureLambda` that calls your AWS Lambda function using the client class and tests its response time. The process should have a constructor of the form
+    ```c++
+    MeasureLambda(std::string op, double x, double y);
+    ```
+    It should call the Lambda with those arguments every time it is updated and keep a list of the times it took for each call to return with a response. Provide functions
+    ```c++
+    double min();
+    double max();
+    double mean();
+    ```
+    that report the statistics. As an example, something like the following should compile:
+    ```c++
+    Manager m;
+    MeasureLambda ml("add", 1, 2);
+    m.schedule(ml, 1_s)
+    .init()
+    .run(20_s);
+
+    std::cout << ml.min() << ", " << ml.max << ", " << ml.mean() << "\n";
+    ```
+
+1. Update your project README with a description of what you have accomplished this week and how you may need to adjust your milestones.
+
+1. Get some aspect of the code for your project working and report in your README what it was, with pointers to the new code that worked, tests that passed, and so on.
