@@ -11,10 +11,15 @@ Elma on Dockerhub
     - `/usr/local/src/elma` - The source and build diretory
     - `/usr/local/include/elma` - Header files
     - `/usr/local/lib/libelma.a` - The shared library
-    See the Example Project for details on how to use these resources.
+
+    So you can do 
+    ```c++
+    #include "elma/elma.h"
+    ```
+    in your code and use the `-lelma` flag while linking. See the [example elma project](https://github.com/klavinslab/elma_project) for an example.
 
 **Continuous Integration**
-- Dockerbug build configured to build latest docker image upon every push and every pull request
+- Dockerhub build configured to build latest docker image upon every push and every pull request. This takes *forever*, but usually finished by overnight. You can also just pull the latest changes and build your own container from the Dockerfile. 
 
 Changes to Elma
 ---
