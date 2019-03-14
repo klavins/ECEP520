@@ -8,6 +8,7 @@ Last Time
 - Clients
 - Threads
 - HTTP in Elma
+- Project Assignment
 
 Today
 ---
